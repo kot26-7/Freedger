@@ -1,19 +1,110 @@
-# require 'rails_helper'
+RSpec.describe 'Users', type: :request do
+  let(:user) { create(:user) }
+  let(:other_user) { create(:other_user) }
 
-# RSpec.describe "Users", type: :request do
+  before do
+    sign_in user
+    get user_path(user)
+  end
 
-#   describe "GET /show" do
-#     it "returns http success" do
-#       get "/users/show"
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
+  describe 'user#show' do
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
 
-#   describe "GET /edit" do
-#     it "returns http success" do
-#       get "/users/edit"
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
+    it 'renders the :show template' do
+      expect(response).to render_template :show
+    end
 
-# end
+    it 'displayed on correct title' do
+      expect(response.body).to include full_title(user.username)
+    end
+
+    it 'assigns the requested user to @user' do
+      expect(assigns(:user)).to eq user
+    end
+
+    it 'invalid access and redirect to the page user' do
+      get user_path(other_user)
+      expect(response).to redirect_to user_path(user)
+    end
+  end
+
+  describe 'user#edit' do
+    before do
+      get edit_user_path(user)
+    end
+
+    it 'returns http success' do
+      expect(response).to have_http_status(:success)
+    end
+
+    it 'renders the :edit template' do
+      expect(response).to render_template :edit
+    end
+
+    it 'displayed on correct title' do
+      expect(response.body).to include full_title('Edit User')
+    end
+
+    it 'invalid access and redirect to the page user' do
+      get edit_user_path(other_user)
+      expect(response).to redirect_to user_path(user)
+    end
+  end
+
+  describe 'user#update' do
+    context 'parameter is valid' do
+      before do
+        user_params = { username: 'hogehoge' }
+        patch user_path, params: { id: user.id, user: user_params }
+      end
+
+      it 'update http has success' do
+        expect(response.status).to eq 302
+      end
+
+      it 'username has changed correctly' do
+        expect(user.reload.username).to eq 'hogehoge'
+      end
+
+      it 'redirects the page to /users/1' do
+        expect(response).to redirect_to user_path(1)
+      end
+    end
+
+    context 'parameter is valid' do
+      before do
+        user_params = { username: '' }
+        patch user_path, params: { id: user.id, user: user_params }
+      end
+
+      it 'returns http success' do
+        expect(response.status).to eq 200
+      end
+
+      it 'username has not changed' do
+        expect(user.reload.username).to eq 'test'
+      end
+
+      it 'display on correct error' do
+        expect(response.body).to include 'prohibited this object from being saved: not successfully'
+        expect(response.body).to include 'Username is invalid'
+        expect(response.body).not_to include 'Email is invalid'
+      end
+    end
+  end
+
+  describe 'user#destroy' do
+    it 'deletes an user' do
+      expect do
+        delete user_path, params: { id: user.id }
+      end.to change(User, :count).by(-1)
+    end
+
+    it 'redirects the page to root_path' do
+      delete user_path, params: { id: user.id }
+      expect(response).to redirect_to root_path
+    end
+  end
+end
