@@ -73,7 +73,7 @@ jobs:
             command: for app_name in $APP_NAMES_TO_REMOVE; do heroku apps:destroy -a $app_name -c $app_name; done
         - run:
             name: Define Heroku app name to create
-            command: timestamp=`date +%Y%m%d%H%M%S` && echo "export HEROKU_APP_NAME=Freedger-$timestamp" >> $BASH_ENV
+            command: timestamp=`date +%Y%m%d%H%M%S` && echo "export HEROKU_APP_NAME=freedger-$timestamp" >> $BASH_ENV
         - run:
             name: Create fresh Heroku app
             command: heroku apps:create $HEROKU_APP_NAME --addons=jawsdb:kitefin
