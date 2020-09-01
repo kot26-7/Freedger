@@ -74,7 +74,6 @@ RSpec.describe 'User', type: :system do
       page.accept_confirm do
         click_link 'Delete account'
       end
-      expect(current_path).to eq root_path
       within '#navbarNav' do
         expect(page).to have_link 'Home'
         expect(page).not_to have_link 'User'
@@ -82,13 +81,14 @@ RSpec.describe 'User', type: :system do
         expect(page).to have_link 'Login'
         expect(page).to have_link 'Signup'
       end
+      expect(current_path).to eq root_path
       expect(page).to have_content 'User deleted'
       visit current_path
       expect(page).not_to have_content 'User deleted'
     end
   end
 
-  describe 'GET /users/edit' do
+  describe 'GET /users/password_edit' do
     before do
       visit edit_user_registration_path
     end
