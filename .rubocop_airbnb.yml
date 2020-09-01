@@ -1,2 +1,5 @@
 require:
   - rubocop-airbnb
+
+Airbnb/OptArgParameters:
+  Enabled: false

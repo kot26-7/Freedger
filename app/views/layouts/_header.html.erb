@@ -1,0 +1,19 @@
+<header>
+  <nav class='navbar navbar-expand-lg navbar-light bg-light'>
+    <%= link_to 'Freedger', root_path, class: 'navbar-brand' %>
+    <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNav'>
+      <span class='navbar-toggler-icon'></span>
+    </button>
+    <div class='collapse navbar-collapse' id='navbarNav'>
+      <%= render 'layouts/header_links' %>
+    </div>
+  </nav>
+  <%= render 'layouts/flash' %>
+  <nav aria-label='breadcrumb'>
+    <ol class='breadcrumb'>
+      <li class='breadcrumb-item active' aria-current='page'>
+        <h3><%= yield(:title) %></h3>
+      </li>
+    </ol>
+  </nav>
+</header>
