@@ -1,14 +1,5 @@
 <% provide(:title, 'Edit User') %>
-<% if @user.errors.any? %>
-  <div class='alert alert-danger' role='alert'>
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this object from being saved: not successfully</h2>
-    <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render 'shared/error_msg', error_obj: @user %>
 <%= form_for @user do |f| %>
   <div class='form-group'>
     <%= f.label :username %>
