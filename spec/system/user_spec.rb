@@ -115,9 +115,9 @@ RSpec.describe 'User', type: :system do
       fill_in 'Current password', with: 'password'
       click_button 'Update'
       expect(current_path).to eq root_path
-      expect(page).to have_content 'Your account has been updated successfully.'
+      expect(page).to have_content 'Your password has been updated successfully.'
       visit current_path
-      expect(page).not_to have_content 'Your account has been updated successfully.'
+      expect(page).not_to have_content 'Your password has been updated successfully.'
     end
   end
 end
