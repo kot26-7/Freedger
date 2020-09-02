@@ -1,2 +1,5 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<% provide(:title, "#{@user.username} - #{@product.name}") %>
+<%= "#{@container.position}: #{@container.name}" %>
+<br><%= "作成日: #{@product.product_created_at}" %></br>
+<%= "消費期限: #{@product.product_expired_at}" %>
+<h2><%= link_to 'Edit product', edit_user_container_product_path(@user, @container, @product) %></h2>
