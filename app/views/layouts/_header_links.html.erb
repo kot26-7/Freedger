@@ -23,6 +23,9 @@
     </div>
   </li>
   <li class='nav-item'>
+    <%= link_to 'Products', user_products_path(current_user), class: 'nav-link' %>
+  </li>
+  <li class='nav-item'>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
   </li>
 <% else %>

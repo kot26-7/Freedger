@@ -1,0 +1,5 @@
+<% provide(:title, 'All Products') %>
+<h1>Products#index</h1>
+<% @products.each do |product| %>
+  <%= link_to product.name, user_container_product_path(@user, product.container_id, product) %>
+<% end %>

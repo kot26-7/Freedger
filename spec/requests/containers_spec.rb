@@ -216,6 +216,7 @@ RSpec.describe 'Containers', type: :request do
 
   describe 'container#destroy' do
     let!(:container) { create(:container) }
+    let!(:products) { create_list(:product, 2) }
 
     before do
       get edit_user_container_path(user, container)
@@ -235,6 +236,12 @@ RSpec.describe 'Containers', type: :request do
       expect do
         delete user_container_path, params: { user_id: user, container: container }
       end.to change(Container, :count).by(-1)
+    end
+
+    it 'deletes all products when container deleted' do
+      expect do
+        delete user_container_path, params: { user_id: user, container: container }
+      end.to change(Product, :count).by(-2)
     end
   end
 end

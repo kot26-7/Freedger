@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_011948) do
+ActiveRecord::Schema.define(version: 2020_09_02_091655) do
 
   create_table "containers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -20,6 +20,20 @@ ActiveRecord::Schema.define(version: 2020_09_02_011948) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_containers_on_user_id"
+  end
+
+  create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", default: "", null: false
+    t.integer "number", default: 1, null: false
+    t.date "product_created_at", null: false
+    t.date "product_expired_at", null: false
+    t.text "description"
+    t.bigint "user_id"
+    t.bigint "container_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["container_id"], name: "index_products_on_container_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -36,4 +50,6 @@ ActiveRecord::Schema.define(version: 2020_09_02_011948) do
   end
 
   add_foreign_key "containers", "users"
+  add_foreign_key "products", "containers"
+  add_foreign_key "products", "users"
 end

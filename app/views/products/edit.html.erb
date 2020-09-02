@@ -1,0 +1,26 @@
+<% provide(:title, 'Edit Product') %>
+<%= render 'shared/error_msg', error_obj: @product %>
+<%= form_for @product, url: user_container_product_path do |f| %>
+  <div class='form-group'>
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :number %>
+    <%= f.select :number, [*1..20], {}, { class: 'form-control' } %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :product_created_at %>
+    <%= f.date_field :product_created_at, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :product_expired_at %>
+    <%= f.date_field :product_expired_at, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= f.label :description %>
+    <%= f.text_area :description, autofocus: true, autocomplete: 'description', class: 'form-control' %>
+  </div>
+  <%= f.submit 'Update', class: 'btn btn-primary' %>
+<% end %>
+<%= link_to 'Delete product', user_container_product_path(@user, @container, @product), method: :delete, data: { confirm: 'You sure?' } %>
