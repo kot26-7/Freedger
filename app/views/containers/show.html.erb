@@ -1,2 +1,5 @@
-<h1>Containers#show</h1>
-<p>Find me in app/views/containers/show.html.erb</p>
+<% provide(:title, "#{@user.username} - #{@container.name}") %>
+<h1>Hi</h1>
+<h6>Container type: <%= @container.position %></h6></br>
+<h6>Description: <%= @container.description %></h6></br>
+<%= link_to 'go to edit container', edit_user_container_path(@user, @container) %>
