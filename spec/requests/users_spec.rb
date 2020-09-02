@@ -96,6 +96,8 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'user#destroy' do
+    let!(:container) { create(:container) }
+
     it 'deletes an user' do
       expect do
         delete user_path, params: { id: user.id }
@@ -105,6 +107,12 @@ RSpec.describe 'Users', type: :request do
     it 'redirects the page to root_path' do
       delete user_path, params: { id: user.id }
       expect(response).to redirect_to root_path
+    end
+
+    it 'deletes a container when user deleted' do
+      expect do
+        delete user_path, params: { id: user.id }
+      end.to change(Container, :count).by(-1)
     end
   end
 end
