@@ -101,8 +101,8 @@ RSpec.describe 'Product', type: :system do
       within('.breadcrumb') do
         expect(page).to have_content "#{user.username} - #{product.name}"
       end
-      expect(page).to have_content '作成日: 2020-04-04'
-      expect(page).to have_content '消費期限: 2020-04-05'
+      expect(page).to have_content "作成日: #{product.product_created_at}"
+      expect(page).to have_content "消費期限: #{product.product_expired_at}"
       expect(page).to have_link 'Edit product'
     end
 
@@ -131,8 +131,8 @@ RSpec.describe 'Product', type: :system do
       expect(page).to have_button 'Update'
       expect(page).to have_field 'Name', with: product.name
       expect(page).to have_field 'Number', with: product.number
-      expect(page).to have_field 'Product created at', with: '2020-04-04'
-      expect(page).to have_field 'Product expired at', with: '2020-04-05'
+      expect(page).to have_field 'Product created at', with: product.product_created_at
+      expect(page).to have_field 'Product expired at', with: product.product_expired_at
       expect(page).to have_field 'Description', with: product.description
       expect(page).to have_link 'Delete product'
     end
