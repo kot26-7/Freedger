@@ -20,7 +20,7 @@ class ContainersController < ApplicationController
   def create
     @container = @user.containers.build(container_params)
     if @container.save
-      redirect_to user_container_path(@user, @container), notice: "Container created Successfully"
+      redirect_to user_container_path(@user, @container), notice: 'Container created Successfully'
     else
       render :new
     end
@@ -28,7 +28,7 @@ class ContainersController < ApplicationController
 
   def update
     if @container.update(container_params)
-      redirect_to user_container_path(@user, @container), notice: "Update Successfully"
+      redirect_to user_container_path(@user, @container), notice: 'Update Successfully'
     else
       render :edit
     end
@@ -36,7 +36,7 @@ class ContainersController < ApplicationController
 
   def destroy
     @container.destroy
-    redirect_to user_path(current_user), notice: "Deleted Container Successfully"
+    redirect_to user_path(current_user), notice: 'Deleted Container Successfully'
   end
 
   private
