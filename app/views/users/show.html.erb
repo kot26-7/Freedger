@@ -2,3 +2,4 @@
 <h1>Users#show</h1>
 <%= @user.id %>
 <%= link_to 'go to edit ur profile', edit_user_path(@user.id) %>
+<%= link_to 'create container', new_user_container_path(@user.id) %>

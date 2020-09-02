@@ -66,6 +66,9 @@ RSpec.describe 'Home', type: :system do
           expect(page).to have_link user.username
           expect(page).to have_link 'Edit User'
           expect(page).to have_link 'Logout'
+          expect(page).to have_link 'Containers'
+          expect(page).to have_link 'All Containers'
+          expect(page).to have_link 'Create Container'
           expect(page).not_to have_link 'Login'
           expect(page).not_to have_link 'Signup'
         end
@@ -81,6 +84,16 @@ RSpec.describe 'Home', type: :system do
         expect(current_path).to eq edit_user_path(user)
       end
 
+      it 'All Containers を押してコンテナ一覧ページに飛ぶ' do
+        click_link 'All Containers'
+        expect(current_path).to eq user_containers_path(user)
+      end
+
+      it 'Create Container を押してコンテナ作成ページに飛ぶ' do
+        click_link 'Create Container'
+        expect(current_path).to eq new_user_container_path(user)
+      end
+
       it 'Logout を押してログアウトする' do
         click_link 'Logout'
         expect(current_path).to eq root_path
@@ -90,6 +103,9 @@ RSpec.describe 'Home', type: :system do
           expect(page).not_to have_link user.username
           expect(page).not_to have_link 'Edit User'
           expect(page).not_to have_link 'Logout'
+          expect(page).not_to have_link 'Containers'
+          expect(page).not_to have_link 'All Containers'
+          expect(page).not_to have_link 'Create Container'
           expect(page).to have_link 'Login'
           expect(page).to have_link 'Signup'
         end
