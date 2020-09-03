@@ -3,7 +3,10 @@ class DeadlineAlertsController < ApplicationController
   before_action :correct_deadline_alert, only: [:destroy]
 
   def index
-    @deadline_alerts = @user.deadline_alerts.all.includes(:container, :product)
+    deadline_alerts = @user.deadline_alerts.all.includes(:container, :product)
+    @warning_deadline_alerts = deadline_alerts.where(action: Settings.deadline_warning)
+    @expired_deadline_alerts = deadline_alerts.where(action: Settings.deadline_expired)
+    @recommend_deadline_alerts = deadline_alerts.where(action: Settings.deadline_recommend)
   end
 
   def create
