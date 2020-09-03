@@ -34,7 +34,7 @@ class DeadlineAlertsController < ApplicationController
 
   def destroy
     @deadline_alert.destroy
-    redirect_to user_deadline_alerts(current_user), notice: 'Deleted Successfully'
+    redirect_to user_deadline_alerts_path(current_user), notice: 'Deleted Successfully'
   end
 
   private

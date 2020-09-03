@@ -3,8 +3,15 @@
     <h5 class="card-title"><%= deadline.action %></h5>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"><%= deadline.container.position %></li>
-    <li class="list-group-item"><%= deadline.product.name %></li>
-    <li class="list-group-item"><%= deadline.product.product_expired_at %></li>
+    <li class="list-group-item">
+      <%= deadline.container.position %> - <%= link_to deadline.container.name, user_container_path(@user, deadline.container) %>
+    </li>
+    <li class="list-group-item">
+      <%= link_to deadline.product.name, user_container_product_path(@user, deadline.container_id, deadline.product) %>
+    </li>
+    <li class="list-group-item"><%= "期限 - #{deadline.product.product_expired_at}" %></li>
+    <li class="list-group-item">
+      <%= link_to 'Delete', user_deadline_alert_path(@user, deadline), method: :delete %>
+    </li>
   </ul>
 </div>
