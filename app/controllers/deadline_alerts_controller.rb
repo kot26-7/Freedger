@@ -3,19 +3,33 @@ class DeadlineAlertsController < ApplicationController
   before_action :correct_deadline_alert, only: [:destroy]
 
   def index
+    @deadline_alerts = @user.deadline_alerts.all
   end
 
   def create
+    if @user.deadline_alerts.present?
+      @user.deadline_alerts.destroy
+    end
+    today = Date.today
+    products = @user.products.includes(:container)
+    products.each do |product|
+      if today == product.product_expired_at
+        Deadline_alert.create(user_id: @user, container_id: product.container_id, product_id: product.id, action: 'Warning')
+      elsif today > product.product_expired_at
+        Deadline_alert.create(user_id: @user, container_id: product.container_id, product_id: product.id, action: 'Expired')
+      elsif today < product.product_expired_at && today - 3 > product.product_expired_at
+        Deadline_alert.create(user_id: @user, container_id: product.container_id, product_id: product.id, action: 'Recommend')
+      end
+    end
+    redirect_to user_deadline_alerts(@user), notice: "#{@user.deadline_alerts} detected"
   end
 
   def destroy
+    @deadline_alert.destroy
+    redirect_to user_deadline_alerts(current_user), notice: 'Deleted Successfully'
   end
 
   private
-
-  def product_params
-    params.require(:deadline_alert).permit(:action)
-  end
 
   def correct_user_with_user_id
     @user = User.find(params[:user_id])
