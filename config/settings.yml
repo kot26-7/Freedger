@@ -1,1 +1,4 @@
 base_title: 'Freedger'
+deadline_warning: 'Warning'
+deadline_recommend: 'Recommend'
+deadline_expired: 'Expired'

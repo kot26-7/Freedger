@@ -15,15 +15,15 @@ class DeadlineAlertsController < ApplicationController
       if today == product.product_expired_at
         DeadlineAlert.create(user_id: product.user_id,
                              container_id: product.container_id,
-                             product_id: product.id, action: 'Warning')
+                             product_id: product.id, action: Settings.deadline_warning)
       elsif today > product.product_expired_at
         DeadlineAlert.create(user_id: product.user_id,
                              container_id: product.container_id,
-                             product_id: product.id, action: 'Expired')
+                             product_id: product.id, action: Settings.deadline_expired)
       elsif today < product.product_expired_at && today + 3 > product.product_expired_at
         DeadlineAlert.create(user_id: product.user_id,
                              container_id: product.container_id,
-                             product_id: product.id, action: 'Recommend')
+                             product_id: product.id, action: Settings.deadline_recommend)
       end
     end
     redirect_to user_deadline_alerts_path(@user), notice: 'Searched Successfully'

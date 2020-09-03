@@ -3,6 +3,6 @@ FactoryBot.define do
     user_id { 1 }
     container_id { 1 }
     product_id { 1 }
-    action { 'recommend' }
+    action { 'Recommend' }
   end
 end
