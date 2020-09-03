@@ -3,25 +3,30 @@ class DeadlineAlertsController < ApplicationController
   before_action :correct_deadline_alert, only: [:destroy]
 
   def index
-    @deadline_alerts = @user.deadline_alerts.all
+    @deadline_alerts = @user.deadline_alerts.all.includes(:container, :product)
   end
 
   def create
     if @user.deadline_alerts.present?
-      @user.deadline_alerts.destroy
+      @user.deadline_alerts.destroy_all
     end
-    today = Date.today
-    products = @user.products.includes(:container)
-    products.each do |product|
+    today = Date.current
+    @user.products.all.each do |product|
       if today == product.product_expired_at
-        Deadline_alert.create(user_id: @user, container_id: product.container_id, product_id: product.id, action: 'Warning')
+        DeadlineAlert.create(user_id: product.user_id,
+                             container_id: product.container_id,
+                             product_id: product.id, action: 'Warning')
       elsif today > product.product_expired_at
-        Deadline_alert.create(user_id: @user, container_id: product.container_id, product_id: product.id, action: 'Expired')
-      elsif today < product.product_expired_at && today - 3 > product.product_expired_at
-        Deadline_alert.create(user_id: @user, container_id: product.container_id, product_id: product.id, action: 'Recommend')
+        DeadlineAlert.create(user_id: product.user_id,
+                             container_id: product.container_id,
+                             product_id: product.id, action: 'Expired')
+      elsif today < product.product_expired_at && today + 3 > product.product_expired_at
+        DeadlineAlert.create(user_id: product.user_id,
+                             container_id: product.container_id,
+                             product_id: product.id, action: 'Recommend')
       end
     end
-    redirect_to user_deadline_alerts(@user), notice: "#{@user.deadline_alerts} detected"
+    redirect_to user_deadline_alerts_path(@user), notice: 'Searched Successfully'
   end
 
   def destroy
@@ -39,7 +44,7 @@ class DeadlineAlertsController < ApplicationController
   end
 
   def correct_deadline_alert
-    @deadline_alert = Deadline_alert.find(params[:id])
+    @deadline_alert = DeadlineAlert.find(params[:id])
     unless @deadline_alert.user_id == @user.id
       redirect_to user_path(current_user), alert: 'Invalid access detected'
     end

@@ -1,2 +1,15 @@
+<% provide(:title, 'Results') %>
 <h1>DeadlineAlerts#index</h1>
 <p>Find me in app/views/deadline_alerts/index.html.erb</p>
+<% @deadline_alerts.each do |deadline| %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= deadline.action %></h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><%= deadline.container.position %></li>
+      <li class="list-group-item"><%= deadline.product.name %></li>
+      <li class="list-group-item"><%= deadline.product.product_expired_at %></li>
+    </ul>
+  </div>
+<% end %>
