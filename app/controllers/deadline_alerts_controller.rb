@@ -10,20 +10,19 @@ class DeadlineAlertsController < ApplicationController
   end
 
   def create
-    if @user.deadline_alerts.present?
-      @user.deadline_alerts.destroy_all
-    end
+    @user.deadline_alerts.destroy_all if @user.deadline_alerts.present?
     today = Date.current
     @user.container_products.all.each do |product|
-      if today == product.product_expired_at
+      prdct_date = product.product_expired_at
+      if today == prdct_date
         DeadlineAlert.create(user_id: product.user_id,
                              container_id: product.container_id,
                              product_id: product.id, action: Settings.deadline_warning)
-      elsif today > product.product_expired_at
+      elsif today > prdct_date
         DeadlineAlert.create(user_id: product.user_id,
                              container_id: product.container_id,
                              product_id: product.id, action: Settings.deadline_expired)
-      elsif today < product.product_expired_at && today + 3 > product.product_expired_at
+      elsif today < prdct_date && today + Settings.deadline_delay > prdct_date
         DeadlineAlert.create(user_id: product.user_id,
                              container_id: product.container_id,
                              product_id: product.id, action: Settings.deadline_recommend)
