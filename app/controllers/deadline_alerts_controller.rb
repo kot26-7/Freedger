@@ -14,7 +14,7 @@ class DeadlineAlertsController < ApplicationController
       @user.deadline_alerts.destroy_all
     end
     today = Date.current
-    @user.products.all.each do |product|
+    @user.container_products.all.each do |product|
       if today == product.product_expired_at
         DeadlineAlert.create(user_id: product.user_id,
                              container_id: product.container_id,

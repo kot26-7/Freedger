@@ -214,8 +214,9 @@ RSpec.describe 'Products', type: :request do
   end
 
   describe 'product#destroy' do
-    let(:product) { create(:product) }
+    let!(:product) { create(:product) }
     let(:product_params) { { user_id: user, container_id: container, product: product } }
+    let!(:deadline_alert) { create(:deadline_alert) }
 
     before do
       get edit_user_container_product_path(user, container, product)
@@ -235,6 +236,12 @@ RSpec.describe 'Products', type: :request do
       expect do
         delete user_container_product_path, params: product_params
       end.to change(Product, :count).by(-1)
+    end
+
+    it 'deletes deadline_alert when product deleted' do
+      expect do
+        delete user_container_product_path, params: product_params
+      end.to change(DeadlineAlert, :count).by(-1)
     end
   end
 end
