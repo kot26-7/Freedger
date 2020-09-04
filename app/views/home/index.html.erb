@@ -1,2 +1,5 @@
 <% provide(:title, 'Home') %>
 <h1>Welcome to Freedger !!</h1>
+<% if user_signed_in? && current_user.products.present? %>
+  <%= button_to '賞味期限をチェック', user_deadline_alerts_path(current_user), class: 'btn btn-primary' %>
+<% end %>

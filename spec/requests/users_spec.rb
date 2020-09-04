@@ -98,6 +98,7 @@ RSpec.describe 'Users', type: :request do
   describe 'user#destroy' do
     let!(:container) { create(:container) }
     let!(:products) { create_list(:product, 2) }
+    let!(:deadline_alert) { create(:deadline_alert) }
 
     it 'deletes an user' do
       expect do
@@ -120,6 +121,12 @@ RSpec.describe 'Users', type: :request do
       expect do
         delete user_path, params: { id: user.id }
       end.to change(Product, :count).by(-2)
+    end
+
+    it 'deletes deadline_alert when user deleted' do
+      expect do
+        delete user_path, params: { id: user.id }
+      end.to change(DeadlineAlert, :count).by(-1)
     end
   end
 end

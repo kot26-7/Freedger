@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
-  belongs_to :user, optional: true
+  belongs_to :user
   belongs_to :container
+  has_one :deadline_alert, dependent: :destroy
   validates :name, presence: true, length: { maximum: 50 }
   validates :number, presence: true,
                      numericality: {

@@ -70,6 +70,7 @@ RSpec.describe 'Home', type: :system do
           expect(page).to have_link 'All Containers'
           expect(page).to have_link 'Create Container'
           expect(page).to have_link 'Products'
+          expect(page).to have_link 'Deadline'
           expect(page).not_to have_link 'Login'
           expect(page).not_to have_link 'Signup'
         end
@@ -100,6 +101,11 @@ RSpec.describe 'Home', type: :system do
         expect(current_path).to eq user_products_path(user)
       end
 
+      it 'Deadline を押してDeadline_alerts一覧ページに飛ぶ' do
+        click_link 'Deadline'
+        expect(current_path).to eq user_deadline_alerts_path(user)
+      end
+
       it 'Logout を押してログアウトする' do
         click_link 'Logout'
         expect(current_path).to eq root_path
@@ -113,6 +119,7 @@ RSpec.describe 'Home', type: :system do
           expect(page).not_to have_link 'All Containers'
           expect(page).not_to have_link 'Create Container'
           expect(page).not_to have_link 'Products'
+          expect(page).not_to have_link 'Deadline'
           expect(page).to have_link 'Login'
           expect(page).to have_link 'Signup'
         end

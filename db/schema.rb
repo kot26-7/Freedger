@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_091655) do
+ActiveRecord::Schema.define(version: 2020_09_03_030015) do
 
   create_table "containers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", default: "", null: false
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(version: 2020_09_02_091655) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_containers_on_user_id"
+  end
+
+  create_table "deadline_alerts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "container_id"
+    t.bigint "product_id"
+    t.string "action", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["container_id"], name: "index_deadline_alerts_on_container_id"
+    t.index ["product_id"], name: "index_deadline_alerts_on_product_id"
+    t.index ["user_id"], name: "index_deadline_alerts_on_user_id"
   end
 
   create_table "products", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -50,6 +62,9 @@ ActiveRecord::Schema.define(version: 2020_09_02_091655) do
   end
 
   add_foreign_key "containers", "users"
+  add_foreign_key "deadline_alerts", "containers"
+  add_foreign_key "deadline_alerts", "products"
+  add_foreign_key "deadline_alerts", "users"
   add_foreign_key "products", "containers"
   add_foreign_key "products", "users"
 end
