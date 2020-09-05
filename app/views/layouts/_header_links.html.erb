@@ -1,41 +1,71 @@
-<li class='nav-item'>
-  <%= link_to 'Home', root_path, class: 'nav-link header-links' %>
-</li>
-<% if user_signed_in? %>
-  <li class='nav-item dropdown'>
-    <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-      User
-    </a>
-    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-      <%= link_to current_user.username, user_path(current_user), class: 'dropdown-item' %>
-      <div class='dropdown-divider'></div>
-      <%= link_to 'Edit User', edit_user_path(current_user), class: 'dropdown-item' %>
-    </div>
+<ul>
+  <li>
+    <%= link_to root_path do %>
+      <i class='fas fa-home fa-2x'></i>
+      <span id='home_span'>Home</span>
+    <% end %>
   </li>
-  <li class='nav-item dropdown'>
-    <a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-      Containers
-    </a>
-    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-      <%= link_to 'All Containers', user_containers_path(current_user), class: 'dropdown-item' %>
-      <div class='dropdown-divider'></div>
-      <%= link_to 'Create Container', new_user_container_path(current_user), class: 'dropdown-item' %>
-    </div>
-  </li>
-  <li class='nav-item'>
-    <%= link_to 'Products', user_products_path(current_user), class: 'nav-link header-links' %>
-  </li>
-  <li class='nav-item'>
-    <%= link_to 'Deadline', user_deadline_alerts_path(current_user), class: 'nav-link header-links' %>
-  </li>
-  <li class='nav-item'>
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link header-links' %>
-  </li>
-<% else %>
-  <li class='nav-item'>
-    <%= link_to 'Login', new_user_session_path, class: 'nav-link header-links' %>
-  </li>
-  <li class='nav-item'>
-    <%= link_to 'Signup', new_user_registration_path, class: 'nav-link header-links' %>
-  </li>
-<% end %>
+  <% if user_signed_in? %>
+    <li>
+      <%= link_to user_path(current_user) do %>
+        <i class='fas fa-user fa-2x' id='user_icon'></i>
+        <span id='user_span'><%= current_user.username %></span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to edit_user_path(current_user) do %>
+        <i class='fas fa-user-edit fa-2x' id='useredit_icon'></i>
+        <span id='useredit_span'>Edit User</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_user_container_path(current_user) do %>
+        <i class='fas fa-box-open fa-2x' id='c_user_icon'></i>
+        <span id='c_con_span'>Create Container</span>
+      <% end %>
+    </li>
+    <% if current_user.containers.present? %>
+      <li>
+        <%= link_to user_containers_path(current_user) do %>
+          <i class='fas fa-boxes fa-2x' id='containers_icon'></i>
+          <span id='all_c_span'>All Containers</span>
+        <% end %>
+      </li>
+    <% end %>
+    <% if current_user.products.present? %>
+      <li>
+        <%= link_to user_products_path(current_user) do %>
+          <i class='fas fa-utensils fa-2x' id='products_icon'></i>
+          <span id='all_p_span'>All Products</span>
+        <% end %>
+      </li>
+    <% end %>
+    <% if current_user.deadline_alerts.present? %>
+      <li>
+        <%= link_to user_deadline_alerts_path(current_user) do %>
+          <i class='fas fa-exclamation-circle fa-2x' id='alerts_icon'></i>
+          <span id='alert_span'>Alerts</span>
+        <% end %>
+      </li>
+    <% end %>
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class='fas fa-sign-out-alt fa-2x' id='logout_icon'></i>
+        <span id='logout_span'>Logout</span>
+      <% end %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to new_user_session_path do %>
+        <i class='fas fa-sign-in-alt fa-2x'></i>
+        <span id='login_span'>Login</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_user_registration_path do %>
+        <i class='fas fa-user-plus fa-2x'></i>
+        <span id='signup_span'>Signup</span>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
