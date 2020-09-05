@@ -1,5 +1,5 @@
 <li class='nav-item'>
-  <%= link_to 'Home', root_path, class: 'nav-link' %>
+  <%= link_to 'Home', root_path, class: 'nav-link header-links' %>
 </li>
 <% if user_signed_in? %>
   <li class='nav-item dropdown'>
@@ -23,19 +23,19 @@
     </div>
   </li>
   <li class='nav-item'>
-    <%= link_to 'Products', user_products_path(current_user), class: 'nav-link' %>
+    <%= link_to 'Products', user_products_path(current_user), class: 'nav-link header-links' %>
   </li>
   <li class='nav-item'>
-    <%= link_to 'Deadline', user_deadline_alerts_path(current_user), class: 'nav-link' %>
+    <%= link_to 'Deadline', user_deadline_alerts_path(current_user), class: 'nav-link header-links' %>
   </li>
   <li class='nav-item'>
-    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link header-links' %>
   </li>
 <% else %>
   <li class='nav-item'>
-    <%= link_to 'Login', new_user_session_path, class: 'nav-link' %>
+    <%= link_to 'Login', new_user_session_path, class: 'nav-link header-links' %>
   </li>
   <li class='nav-item'>
-    <%= link_to 'Signup', new_user_registration_path,class: 'nav-link' %>
+    <%= link_to 'Signup', new_user_registration_path, class: 'nav-link header-links' %>
   </li>
 <% end %>

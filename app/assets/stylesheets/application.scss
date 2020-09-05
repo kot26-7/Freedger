@@ -56,3 +56,47 @@ a {
 .radio-place{
   margin: 15px;
 }
+
+/* header */
+.navbar-dark .navbar-toggler{
+  border-color: rgba(255, 255, 255, 0.3);
+  padding: 1px 12px;
+  &:hover{
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+}
+#navbarDropdown{
+  color: white;
+}
+.breadcrumb-height{
+  padding: 0.7rem 1rem;
+}
+.breadcrumb-title{
+  margin: 0;
+}
+.header-links{
+  color: white;
+  margin: 0 16px;
+  padding: 8px 0;
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  &:after {
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    content: '';
+    width: 100%;
+    height: 1px;
+    background: white;
+    transform: scale(0, 1);
+    transform-origin: center top;
+    transition: transform .3s;
+  }
+  &:hover{
+    color: white;
+  }
+  &:hover::after {
+    transform: scale(1, 1);
+  }
+}

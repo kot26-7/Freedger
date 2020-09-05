@@ -1,5 +1,16 @@
 <% provide(:title, 'Home') %>
-<h1>Welcome to Freedger !!</h1>
-<% if user_signed_in? && current_user.products.present? %>
+<% if user_signed_in? %>
+a
+<% elsif user_signed_in? && current_user.products.present? %>
   <%= button_to '賞味期限をチェック', user_deadline_alerts_path(current_user), class: 'btn btn-primary' %>
+<% else %>
+  <div class='jumbotron'>
+    <h1 class='display-4'>Welcome to Freedger</h1>
+    <p class='lead'>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+    <hr class='my-4'>
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p></br>
+    <%= button_to 'Signup Here', new_user_registration_path, method: :get, class: 'btn btn-success btn-lg btn-block' %></br>
+    <%= button_to 'Login Here', new_user_session_path, method: :get, class: 'btn btn-primary btn-lg btn-block' %></br>
+    <a class='btn btn-outline-secondary btn-lg' href='#' role='button'>Learn more...</a>
+  </div>
 <% end %>
