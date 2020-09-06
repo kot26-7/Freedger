@@ -285,12 +285,33 @@ a {
   border: solid 1px;
 }
 
-/* user-show */
+/* user-show page */
 #user-profile-form {
   margin: 0 auto;
   padding-top: 55px;
   h3 {
     font-weight: bold;
     text-align: center;
+  }
+}
+
+/* user-edit page */
+#sub-info-links {
+  margin-top: 20px;
+  li {
+    margin-top: 10px;
+  }
+  #delete-btn:hover {
+    text-decoration: none;
+    color: red;
+    font-weight: bold;
+  }
+}
+
+/* container-new page */
+#radio-inputs {
+  margin: 20px 0px 10px 0px;
+  label {
+    margin-bottom: 10px;
   }
 }
