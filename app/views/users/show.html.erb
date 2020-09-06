@@ -1,5 +1,5 @@
 <% provide(:title, @user.username) %>
-<h1>Users#show</h1>
-<%= @user.id %>
-<%= link_to 'go to edit ur profile', edit_user_path(@user.id) %>
-<%= link_to 'create container', new_user_container_path(@user.id) %>
+<div id='user-profile-form' class='col-12 col-sm-10 col-md-8'>
+  <h3><%= @user.username %></h3>
+  <hr class='my-4'>
+</div>
