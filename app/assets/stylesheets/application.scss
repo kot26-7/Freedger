@@ -1,5 +1,6 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+@import "rails_bootstrap_forms";
 
 html, body, div, span, applet, object, iframe,
 p, blockquote, pre,
@@ -56,6 +57,11 @@ a {
 /* radio button */
 .radio-place{
   margin: 15px;
+}
+
+/* check form */
+.form-check-input{
+  margin-top: 0.2rem;
 }
 
 /* header sidebar */
@@ -230,6 +236,7 @@ a {
 }
 .main-contents {
   height: 100%;
+  background-color: rgba(225, 225, 225, 0.5);
   min-height: 100vh;
   padding-left: 3.5em;
   -webkit-transition: opacity 0.4s, -webkit-transform 0.4s;
@@ -239,12 +246,36 @@ a {
 }
 
 /* breadcrumb */
+.breadcrumb{
+  background-color: rgb(70, 130, 180);
+}
 .breadcrumb-height {
   margin: 0;
   border-radius: 0;
+  .breadcrumb-item{
+    margin: 0 auto;
+    padding-top: 10px;
+  }
+  h4{
+    color: white;
+  }
 }
 
 /* container */
 .container {
   margin-top: 1em;
+}
+
+/* error msg */
+.invalid-feedback{
+  display: inline-block;
+}
+
+/* main form */
+#main-form{
+  padding: 50px 40px 30px 40px;
+  background-color: white;
+  margin: 0 auto;
+  border: 4px solid rgb(225, 225, 225);
+  border-radius: 8px;
 }
