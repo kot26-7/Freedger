@@ -1,4 +1,19 @@
 <% provide(:title, "#{@user.username} - #{@container.name}") %>
 <div id='card-form' class='col-12 col-sm-10 col-md-8'>
   <%= render partial: 'containers/container_form', locals: {user: @user, container: @container} %>
+  <% if @container.products.present? %>
+    <div id='products-box'>
+      <h4><%= "Products in #{@container.name}" %></h4>
+      <% @container.products.each do |product| %>
+        <div class='row' id='products-in-c'>
+          <h5 class='col col-md-8 col-lg-10' id='pr-name-in-c-indx'>
+            <%= product.name %>
+          </h5>
+          <h5 class='col col-md-4 col-lg-2' id='pr-number-in-c-indx'>
+            <i class='fas fa-times fa-sm'></i><%= product.number %>
+          </h5>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

@@ -318,6 +318,38 @@ a {
   }
 }
 
+/* container-index */
+#products-box {
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  border: double 5px rgb(70, 130, 180);
+  background-color: white;
+  h4 {
+    text-align: center;
+    padding-bottom: 3px;
+    margin-top: 5px;
+    border-bottom: dashed 2px rgb(70, 130, 180);
+  }
+  #products-in-c {
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    background: rgba(0, 0, 0, 0.03);
+    border-left: double 6px #ffc06e;
+    transition: 0.5s;
+    &:hover {
+      box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.33);
+      border-left: double 6px #009f13;
+    }
+    #pr-number-in-c-indx {
+      padding-top: 3px;
+      float: right;
+      .fa-times{
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
 /* card class */
 .card {
   margin-bottom: 15px;
@@ -336,7 +368,7 @@ a {
   position: relative;
   display: inline-block;
   transition: .3s;
-  &:hover{
+  &:hover {
     color: #1a6fad;
     text-decoration: none;
   }
