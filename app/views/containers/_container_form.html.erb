@@ -1,0 +1,15 @@
+<div class='card'>
+  <h5 class='card-header'>
+    <%= link_to container.name, user_container_path(user, container), id: 'container-link' %>
+    <%= link_to edit_user_container_path(user, container) do %>
+      <i class='fas fa-cog fa-lg'></i>
+    <% end %>
+  </h5>
+  <div class='card-body'>
+    <h5 class='card-title'>Type: <%= container.position %></h5>
+    <% if container.description.present? %>
+      <p class='card-text'><%= container.description %></p>
+    <% end %>
+    <%= button_to 'Create product', new_user_container_product_path(user, container), method: :get, class: 'btn btn-success' %>
+  </div>
+</div>

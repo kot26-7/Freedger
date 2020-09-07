@@ -1,27 +1,21 @@
 <% provide(:title, 'Edit Container') %>
-<%= render 'shared/error_msg', error_obj: @container %>
-<%= form_for @container, url: user_container_path do |f| %>
-  <div class='form-group'>
-    <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true, autocomplete: 'name', class: 'form-control' %>
-  </div>
-  <p>Container type</p>
-  <div class='radio-place'>
-    <div class='form-check-inline'>
-      <%= f.radio_button :position, 'Fridge' %>
-      <%= f.label :position, 'Fridge' %>
+<div id='main-form' class='col-12 col-sm-10 col-md-8'>
+  <%= bootstrap_form_for @container, url: user_container_path do |f| %>
+    <%= f.text_field :name, autofocus: true, autocomplete: 'name' %>
+    <div id='radio-inputs'>
+      <%= f.form_group :position, label: { text: 'Container type' } do %>
+        <%= f.radio_button :position, 'Fridge', label: 'Fridge', checked: true %>
+        <%= f.radio_button :position, 'Freezer', label: 'Freezer' %>
+      <% end %>
     </div>
-    <div class='form-check-inline'>
-      <%= f.radio_button :position, 'Freezer' %>
-      <%= f.label :position, 'Freezer' %>
+    <%= f.text_area :description, autofocus: true, autocomplete: 'description', help: "It's optional" %>
+    <%= f.submit 'Update', class: 'btn btn-primary' %>
+    <div id='sub-info-links'>
+      <ul>
+        <% if @user.id == current_user.id %>
+          <li><%= link_to 'Delete container', user_container_path(@user, @container), method: :delete, data: { confirm: 'You sure?' }, id: 'delete-btn' %></li>
+        <% end %>
+      </ul>
     </div>
-  </div>
-  <div class='form-group'>
-    <%= f.label :description %>
-    <%= f.text_area :description, autofocus: true, autocomplete: 'description', class: 'form-control' %>
-  </div>
-  <%= f.submit 'Update', class: 'btn btn-primary' %>
-<% end %>
-<% if @user.id == current_user.id %>
-  <%= link_to 'Delete container', user_container_path(@user, @container), method: :delete, data: { confirm: 'You sure?' } %>
-<% end %>
+  <% end %>
+</div>

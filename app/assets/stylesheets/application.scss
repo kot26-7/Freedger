@@ -301,10 +301,12 @@ a {
   li {
     margin-top: 10px;
   }
-  #delete-btn:hover {
-    text-decoration: none;
-    color: red;
-    font-weight: bold;
+  #delete-btn {
+    transition: 0.5s;
+    &:hover {
+      text-decoration: none;
+      color: red;
+    }
   }
 }
 
@@ -313,5 +315,50 @@ a {
   margin: 20px 0px 10px 0px;
   label {
     margin-bottom: 10px;
+  }
+}
+
+/* card class */
+.card {
+  margin-bottom: 15px;
+  .card-header i {
+    margin-top: 3px;
+    float: right;
+  }
+  .card-body .card-text {
+    margin-bottom: 20px;
+  }
+}
+#card-form {
+  margin: 0 auto;
+}
+#container-link {
+  position: relative;
+  display: inline-block;
+  transition: .3s;
+  &:hover{
+    color: #1a6fad;
+    text-decoration: none;
+  }
+  &:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    content: '';
+    width: 0;
+    height: 1px;
+    background-color: #1a6fad;
+    transition: .3s;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+  &:hover::after {
+    width: 100%;
+  }
+}
+.fa-cog {
+  transition: 1.0s;
+  &:hover {
+    transform: rotateZ(180deg);
   }
 }

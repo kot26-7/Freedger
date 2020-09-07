@@ -2,4 +2,10 @@
 <div id='user-profile-form' class='col-12 col-sm-10 col-md-8'>
   <h3><%= @user.username %></h3>
   <hr class='my-4'>
+  <% if @user.containers.present? %>
+    <h5>Containers</h5>
+    <% @user.containers.each do |container| %>
+      <%= render partial: 'containers/container_form', locals: {user: @user, container: container} %>
+    <% end %>
+  <% end %>
 </div>
