@@ -442,12 +442,24 @@ a {
   ul {
     background-color: white;
     padding-top: 15px;
-    padding-bottom: 10px;
+    padding-bottom: 27px;
     border-radius: 0 0 10px 10px;
     border: 1px solid;
     border-top: transparent;
     li {
       margin-bottom: 10px;
+    }
+  }
+  .link-to-do {
+    text-decoration: none;
+  }
+  #edt-delt-icons {
+    float: right;
+    .fa-edit:hover {
+      color: green;
+    }
+    .fa-trash-alt:hover {
+      color: red;
     }
   }
 }
