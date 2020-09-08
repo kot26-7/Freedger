@@ -324,6 +324,9 @@ a {
   margin: 2em 0;
   border: double 5px rgb(70, 130, 180);
   background-color: white;
+  a {
+    text-decoration: none;
+  }
   h4 {
     text-align: center;
     padding-bottom: 3px;
@@ -339,8 +342,11 @@ a {
     &:hover {
       box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.33);
       border-left: double 6px #009f13;
+      #pr-name-in-c-shw, #pr-number-in-c-shw {
+        color: black;
+      }
     }
-    #pr-number-in-c-indx {
+    #pr-number-in-c-shw {
       padding-top: 3px;
       float: right;
       .fa-times{
@@ -392,5 +398,34 @@ a {
   transition: 1.0s;
   &:hover {
     transform: rotateZ(180deg);
+  }
+}
+
+/* product-show page */
+#prd-shw-form {
+  margin: 0 auto;
+  padding: 40px 15px 15px;
+  h2, ul {
+    margin: 0 auto;
+  }
+  h2 {
+    background: #fbffa8;
+    padding: 5px 15px 10px;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid;
+    border-bottom: transparent;
+    color: #000000;
+    margin-bottom: 0;
+  }
+  ul {
+    background-color: white;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    border-radius: 0 0 10px 10px;
+    border: 1px solid;
+    border-top: transparent;
+    li {
+      margin-bottom: 10px;
+    }
   }
 }

@@ -1,5 +1,10 @@
 <% provide(:title, "#{@user.username} - #{@product.name}") %>
-<%= "#{@container.position}: #{@container.name}" %>
-<br><%= "作成日: #{@product.product_created_at}" %></br>
-<%= "消費期限: #{@product.product_expired_at}" %>
-<h2><%= link_to 'Edit product', edit_user_container_product_path(@user, @container, @product) %></h2>
+<div class='col-12 col-sm-12 col-md-10' id='prd-shw-form'>
+  <h2><%= @product.name %></h2>
+  <ul class='col' id='prd-info'>
+    <li><%= "#{@container.position}: #{@container.name}" %></li>
+    <li><%= "Quantity: #{@product.number}" %></li>
+    <li><%= "Created_at: #{@product.product_created_at}" %></li>
+    <li><%= "Expiration_date: #{@product.product_expired_at}" %></li>
+  </ul>
+</div>

@@ -5,14 +5,16 @@
     <div id='products-box'>
       <h4><%= "Products in #{@container.name}" %></h4>
       <% @container.products.each do |product| %>
-        <div class='row' id='products-in-c'>
-          <h5 class='col col-md-8 col-lg-10' id='pr-name-in-c-indx'>
-            <%= product.name %>
-          </h5>
-          <h5 class='col col-md-4 col-lg-2' id='pr-number-in-c-indx'>
-            <i class='fas fa-times fa-sm'></i><%= product.number %>
-          </h5>
-        </div>
+        <%= link_to user_container_product_path(@user, @container, product) do %>
+          <div class='row' id='products-in-c'>
+            <h5 class='col col-md-8 col-lg-10' id='pr-name-in-c-shw'>
+              <%= product.name %>
+            </h5>
+            <h5 class='col col-md-4 col-lg-2' id='pr-number-in-c-shw'>
+              <i class='fas fa-times fa-sm'></i><%= product.number %>
+            </h5>
+          </div>
+        <% end %>
       <% end %>
     </div>
   <% end %>
