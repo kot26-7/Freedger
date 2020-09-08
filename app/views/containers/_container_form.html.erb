@@ -11,7 +11,10 @@
       <h5 class='card-title'>Products: <%= container.products.size %></h5>
     <% end %>
     <% if container.description.present? %>
-      <p class='card-text'><%= container.description %></p>
+      <div id='cntnr-shw-descrip'>
+        <span>Description</span>
+        <p><%= container.description %></p>
+      </div>
     <% end %>
     <%= button_to 'Create product', new_user_container_product_path(user, container), method: :get, class: 'btn btn-success' %>
   </div>

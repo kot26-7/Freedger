@@ -29,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
   line-height: 1;
+  background-color: rgba(225, 225, 225, 0.5);
 }
 html, body {
   overflow-x: hidden;
@@ -236,7 +237,6 @@ a {
 }
 .main-contents {
   height: 100%;
-  background-color: rgba(225, 225, 225, 0.5);
   min-height: 100vh;
   padding-left: 3.5em;
   -webkit-transition: opacity 0.4s, -webkit-transform 0.4s;
@@ -318,7 +318,7 @@ a {
   }
 }
 
-/* container-index */
+/* container-show */
 #products-box {
   padding: 0.5em 1em;
   margin: 2em 0;
@@ -356,7 +356,7 @@ a {
   }
 }
 
-/* card class */
+/* container-form */
 .card {
   margin-bottom: 15px;
   .card-header i {
@@ -365,6 +365,28 @@ a {
   }
   .card-body .card-text {
     margin-bottom: 20px;
+  }
+  #cntnr-shw-descrip {
+    position: relative;
+    margin-bottom: 15px;
+    padding: 25px 10px 7px;
+    border: solid 2px lightgray;
+    background-color: white;
+    span {
+      position: absolute;
+      display: inline-block;
+      top: -2px;
+      left: -2px;
+      padding: 0 9px;
+      height: 25px;
+      line-height: 25px;
+      font-size: 17px;
+      background: lightgray;
+      font-weight: bold;
+    }
+    p {
+      margin: 6px 10px 0px 10px;
+    }
   }
 }
 #card-form {
@@ -426,6 +448,39 @@ a {
     border-top: transparent;
     li {
       margin-bottom: 10px;
+    }
+  }
+}
+
+/* product-index page */
+#prd-indx-form {
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.33);
+  h5 {
+    padding-bottom: 3px;
+    border-bottom: 2px solid black;
+    margin-bottom: 15px;
+  }
+  .link-to-do {
+    text-decoration: none;
+  }
+  #prd-indx-lists #prd-indx-info {
+    padding: 0.5em 1em;
+    color: #232323;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
+    margin: 0 15px;
+    margin-bottom: 10px;
+    transition: .5s;
+    &:hover {
+      background: #f1fffe;
+      border-left: solid 10px #54f89f;
+      a {
+        color: black;
+      }
     }
   }
 }

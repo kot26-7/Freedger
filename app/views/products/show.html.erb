@@ -6,5 +6,8 @@
     <li><%= "Quantity: #{@product.number}" %></li>
     <li><%= "Created_at: #{@product.product_created_at}" %></li>
     <li><%= "Expiration_date: #{@product.product_expired_at}" %></li>
+    <% if @product.description.present? %>
+      <li><%= "Description: #{@product.description}" %></li>
+    <% end %>
   </ul>
 </div>
