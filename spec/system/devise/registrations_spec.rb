@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'Devise::Registrations', type: :system do
   describe 'GET /users/signup' do
     before do
@@ -6,13 +8,15 @@ RSpec.describe 'Devise::Registrations', type: :system do
 
     it 'check if contents are displayed correctly on users/signup' do
       within('.breadcrumb') do
-        expect(page).to have_content 'Signup'
+        expect(page).to have_content 'Freedger - Signup'
       end
-      within('.container') do
+      within('.col-12') do
         expect(page).to have_content 'Username'
         expect(page).to have_content 'Email'
         expect(page).to have_content 'Password'
         expect(page).to have_content 'Password confirmation'
+        expect(page).to have_content 'Only half-width English numbers and letters'
+        expect(page).to have_content '6 characters minimum'
         expect(page).to have_button 'Sign up'
         expect(page).to have_field 'Username'
         expect(page).to have_field 'Email'
@@ -42,12 +46,8 @@ RSpec.describe 'Devise::Registrations', type: :system do
       fill_in 'Password', with: 'password'
       fill_in 'Password confirmation', with: 'password'
       click_button 'Sign up'
-      expect(page).to have_content 'prohibited this user from being saved'
-      expect(page).to have_content 'Username can\'t be blank'
-      expect(page).to have_content 'Username is invalid'
-      expect(page).not_to have_content 'Email is invalid'
-      expect(page).not_to have_content 'Email can\'t be blank'
-      expect(page).not_to have_content 'Password can\'t be blank'
+      expect(page).to have_content 'can\'t be blank'
+      expect(page).to have_content 'is invalid'
     end
   end
 end
