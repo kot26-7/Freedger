@@ -1,7 +1,7 @@
 <div class='card'>
   <h5 class='card-header'>
     <%= link_to container.name, user_container_path(user, container), id: 'container-link' %>
-    <%= link_to edit_user_container_path(user, container) do %>
+    <%= link_to edit_user_container_path(user, container), class: 'cog-link' do %>
       <i class='fas fa-cog fa-lg'></i>
     <% end %>
   </h5>
