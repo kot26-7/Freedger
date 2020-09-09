@@ -59,11 +59,6 @@ RSpec.describe 'Containers', type: :request do
       expect(response.body).to include full_title("#{user.username} - #{container.name}")
     end
 
-    it 'display on correct infomation' do
-      expect(response.body).to include "Container type: #{container.position}"
-      expect(response.body).to include "Description: #{container.description}"
-    end
-
     it 'invalid access and redirect to the page user' do
       get user_container_path(user, container2)
       expect(response).to redirect_to user_path(user)

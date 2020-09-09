@@ -86,12 +86,6 @@ RSpec.describe 'Users', type: :request do
       it 'username has not changed' do
         expect(user.reload.username).to eq 'test'
       end
-
-      it 'display on correct error' do
-        expect(response.body).to include 'prohibited this object from being saved: not successfully'
-        expect(response.body).to include 'Username is invalid'
-        expect(response.body).not_to include 'Email is invalid'
-      end
     end
   end
 

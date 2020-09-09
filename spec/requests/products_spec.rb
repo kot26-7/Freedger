@@ -81,7 +81,7 @@ RSpec.describe 'Products', type: :request do
     end
 
     it 'displayed on correct title' do
-      expect(response.body).to include full_title('Product New')
+      expect(response.body).to include full_title('Create Product')
     end
   end
 
