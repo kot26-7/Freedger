@@ -22,7 +22,7 @@ class DeadlineAlertsController < ApplicationController
         DeadlineAlert.create(user_id: product.user_id,
                              container_id: product.container_id,
                              product_id: product.id, action: Settings.deadline_expired)
-      elsif today < prdct_date && today + Settings.deadline_delay > prdct_date
+      elsif today < prdct_date && today + Settings.deadline_delay >= prdct_date
         DeadlineAlert.create(user_id: product.user_id,
                              container_id: product.container_id,
                              product_id: product.id, action: Settings.deadline_recommend)

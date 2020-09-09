@@ -496,3 +496,42 @@ a {
     }
   }
 }
+
+/* deadline-alert index */
+#ddln-form {
+  .deadline_expired,
+  .deadline_warning,
+  .deadline_recommend {
+    padding-bottom: 15px;
+  }
+  .card {
+    margin: 0 auto;
+    .card-body {
+      padding: 0.5em 1.25rem;
+      .card-title {
+        display: inline;
+      }
+    }
+    .list-group #delt-btn {
+      text-decoration: none;
+      &:hover {
+        color: red;
+      }
+    }
+  }
+  .deadline_expired {
+    .card-body {
+      background-color: red;
+    }
+  }
+  .deadline_warning {
+    .card-body {
+      background-color: orange;
+    }
+  }
+  .deadline_recommend {
+    .card-body {
+      background-color: #83e698;
+    }
+  }
+}
