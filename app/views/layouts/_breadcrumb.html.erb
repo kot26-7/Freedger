@@ -3,5 +3,14 @@
     <li class='breadcrumb-item active' aria-current='page'>
       <h4>Freedger - <%= yield(:title) %></h4>
     </li>
+    <% if user_signed_in? && current_user.products.present? %>
+      <i class='fas fa-search fa-2x srch-icon'></i>
+    <% end %>
   </ol>
+  <div id='search-zone'>
+    <form method='get' action='#' class='search_container'>
+      <input type='text' size='25' placeholder='Search'>
+      <input type='submit' value='&#xf002'>
+    </form>
+  </div>
 </nav>

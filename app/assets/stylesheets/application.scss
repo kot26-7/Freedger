@@ -259,6 +259,49 @@ a {
   h4 {
     color: white;
   }
+  .srch-icon {
+    color: white;
+    margin: 7px 5px 0 0;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+#search-zone {
+  display: none;
+  padding: 10px 0 0 15px;
+  .search_container{
+    background-color: white;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid #999;
+    display: block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    height: 2.3em;
+    width: 265px;
+    overflow: hidden;
+    input[type="text"]{
+      border: none;
+      height: 2.0em;
+    }
+    input[type="text"]:focus {
+      outline: 0;
+    }
+    input[type="submit"]{
+      cursor: pointer;
+      font-family: FontAwesome;
+      border: none;
+      background: #3879D9;
+      color: #fff;
+      position: absolute;
+      width: 3.3em;
+      height: 2.6em;
+      right:0px;
+      top: -3px;
+      outline : none;
+    }
+  }
 }
 
 /* container */
