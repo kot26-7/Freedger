@@ -74,7 +74,7 @@ a {
   height: 100%;
   -webkit-transition: width 0.4s;
   transition: width 0.4s;
-  background: rgba(49, 210, 246, 1);
+  background: #31d2f6;
   &:hover {
     width: 17em;
     .sidenav li:nth-of-type(1) span {
@@ -145,13 +145,13 @@ a {
       padding-bottom: 0.5em;
     }
     &:hover {
-      background-color: rgba(255,255,255,1);
+      background-color: white;
     }
     &:hover:before {
-      background-color: rgba(255,255,255,1);
+      background-color: white;
     }
     &:hover a {
-      color: rgba(30,126,230,1);
+      color: #1e7ee6;
     }
     &:before {
       position: absolute;
@@ -163,7 +163,7 @@ a {
       content: '';
       -webkit-transition: background 0.4s;
       transition: background 0.4s;
-      background: rgba(30,126,230,1);
+      background: #1e7ee6;
     }
   }
   a {
@@ -247,7 +247,7 @@ a {
 
 /* breadcrumb */
 .breadcrumb {
-  background-color: rgb(70, 130, 180);
+  background-color: #4682b4;
 }
 .breadcrumb-height {
   margin: 0;
@@ -276,7 +276,7 @@ a {
   padding: 50px 40px 30px 40px;
   background-color: white;
   margin: 0 auto;
-  border: 4px solid rgb(225, 225, 225);
+  border: 4px solid #e1e1e1;
   border-radius: 8px;
 }
 
@@ -322,7 +322,7 @@ a {
 #products-box {
   padding: 0.5em 1em;
   margin: 2em 0;
-  border: double 5px rgb(70, 130, 180);
+  border: double 5px #4682b4;
   background-color: white;
   a {
     text-decoration: none;
@@ -331,7 +331,7 @@ a {
     text-align: center;
     padding-bottom: 3px;
     margin-top: 5px;
-    border-bottom: dashed 2px rgb(70, 130, 180);
+    border-bottom: dashed 2px #4682b4;
   }
   #products-in-c {
     margin: 1em 0;
