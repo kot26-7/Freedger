@@ -12,10 +12,10 @@
       <li><%= "Description: #{@product.description}" %></li>
     <% end %>
     <div id='edt-delt-icons'>
-      <%= link_to edit_user_container_product_path(@user, @product.container_id, @product), class: 'link-to-do' do %>
+      <%= link_to edit_user_container_product_path(@user, @product.container_id, @product), class: 'link-to-do edt-icon' do %>
         <i class='fas fa-edit fa-lg'></i>
       <% end %>
-      <%= link_to user_container_product_path(@user, @product.container_id, @product), method: :delete, data: { confirm: 'You sure?' }, class: 'link-to-do' do %>
+      <%= link_to user_container_product_path(@user, @product.container_id, @product), method: :delete, data: { confirm: 'You sure?' }, class: 'link-to-do dlt-icon' do %>
         <i class='fas fa-trash-alt fa-lg'></i>
       <% end %>
     </div>
