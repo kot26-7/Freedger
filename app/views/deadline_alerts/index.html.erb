@@ -1,16 +1,18 @@
 <% provide(:title, 'Results') %>
-<% @expired_deadline_alerts.each do |deadline| %>
-  <div class='deadline_expired'>
-    <%= render 'deadline_fields', deadline: deadline %>
-  </div>
-<% end %>
-<% @warning_deadline_alerts.each do |deadline| %>
-  <div class='deadline_warning'>
-    <%= render 'deadline_fields', deadline: deadline %>
-  </div>
-<% end %>
-<% @recommend_deadline_alerts.each do |deadline| %>
-  <div class='deadline_recommend'>
-    <%= render 'deadline_fields', deadline: deadline %>
-  </div>
-<% end %>
+<div class='row' id='ddln-form'>
+  <% @expired_deadline_alerts.each do |deadline| %>
+    <div class='deadline_expired col-12 col-md-6 col-lg-4'>
+      <%= render 'deadline_fields', deadline: deadline %>
+    </div>
+  <% end %>
+  <% @warning_deadline_alerts.each do |deadline| %>
+    <div class='deadline_warning col-12 col-md-6 col-lg-4'>
+      <%= render 'deadline_fields', deadline: deadline %>
+    </div>
+  <% end %>
+  <% @recommend_deadline_alerts.each do |deadline| %>
+    <div class='deadline_recommend col-12 col-md-6 col-lg-4'>
+      <%= render 'deadline_fields', deadline: deadline %>
+    </div>
+  <% end %>
+</div>

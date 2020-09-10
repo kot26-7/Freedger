@@ -14,7 +14,7 @@ RSpec.describe 'DeadlineAlert', type: :system do
 
   describe 'deadline_alerts#create & index & destroy' do
     around do |e|
-      travel_to('2020-4-10 10:00') { e.run }
+      travel_to('2020-4-10') { e.run }
     end
 
     it 'deadline_alerts create successfully' do
@@ -24,27 +24,30 @@ RSpec.describe 'DeadlineAlert', type: :system do
       expect(current_path).to eq user_deadline_alerts_path(user)
       expect(page).to have_content 'Searched Successfully'
       within('.breadcrumb') do
-        expect(page).to have_content 'Results'
+        expect(page).to have_content 'Freedger - Results'
       end
       within('.deadline_expired') do
         expect(page).to have_content 'Expired'
         expect(page).to have_content "#{p_expired.container.position} - #{p_expired.container.name}"
+        expect(page).to have_link p_expired.container.name
         expect(page).to have_content p_expired.name
-        expect(page).to have_content "期限 - #{p_expired.product_expired_at}"
+        expect(page).to have_content "Exp - #{p_expired.product_expired_at}"
         expect(page).to have_link 'Delete'
       end
       within('.deadline_warning') do
         expect(page).to have_content 'Warning'
         expect(page).to have_content "#{p_warning.container.position} - #{p_warning.container.name}"
+        expect(page).to have_link p_warning.container.name
         expect(page).to have_content p_warning.name
-        expect(page).to have_content "期限 - #{p_warning.product_expired_at}"
+        expect(page).to have_content "Exp - #{p_warning.product_expired_at}"
         expect(page).to have_link 'Delete'
       end
       within('.deadline_recommend') do
         expect(page).to have_content 'Recommend'
         expect(page).to have_content "#{p_recom.container.position} - #{p_recom.container.name}"
+        expect(page).to have_link p_recom.container.name
         expect(page).to have_content p_recom.name
-        expect(page).to have_content "期限 - #{p_recom.product_expired_at}"
+        expect(page).to have_content "Exp - #{p_recom.product_expired_at}"
         expect(page).to have_link 'Delete'
       end
       visit current_path

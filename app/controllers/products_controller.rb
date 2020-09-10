@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
   before_action :correct_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = @user.products.all
+    @products = @user.products.all.order(:name)
   end
 
   def show

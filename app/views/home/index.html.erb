@@ -1,5 +1,17 @@
 <% provide(:title, 'Home') %>
-<h1>Welcome to Freedger !!</h1>
 <% if user_signed_in? && current_user.products.present? %>
   <%= button_to '賞味期限をチェック', user_deadline_alerts_path(current_user), class: 'btn btn-primary' %>
+<% elsif user_signed_in? %>
+  a
+<% else %>
+  <div class='jumbotron'>
+    <h1 class='display-4'>Welcome to Freedger</h1>
+    <p class='lead'>This app can check products' expiration date to create containers as Fridge and Freezer.</p>
+    <hr class='my-4'>
+    <p>Before using this, you need to login or signup for user</p></br>
+    <p>When you know about this app more, please check 'Learn more...'</p></br>
+    <%= button_to 'Signup Here', new_user_registration_path, method: :get, class: 'btn btn-success btn-lg btn-block' %></br>
+    <%= button_to 'Login Here', new_user_session_path, method: :get, class: 'btn btn-primary btn-lg btn-block' %></br>
+    <a class='btn btn-outline-secondary btn-lg' href='#' role='button'>Learn more...</a>
+  </div>
 <% end %>

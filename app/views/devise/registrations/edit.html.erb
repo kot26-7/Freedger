@@ -1,22 +1,12 @@
-<% provide(:title, 'Edit Password') %>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render 'devise/shared/error_messages', resource: resource %>
-  <div class='form-group'>
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
+<% provide(:title, 'Change Password') %>
+<div id='main-form' class='col-12 col-sm-10 col-md-8'>
+  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= f.password_field :password %>
+    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :current_password, help: 'we need current password to confirm changes' %>
+    <%= f.submit 'Update', class: 'btn btn-primary' %>
+  <% end %>
+  <div id='sub-info-links'>
+    <%= link_to 'Back', :back %>
   </div>
-  <div class='form-group'>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-  </div>
-  <div class='form-group'>
-    <%= f.label :current_password %>
-    <%= f.password_field :current_password, class: 'form-control' %>
-    <small id='passwordHelpBlock' class='form-text text-muted'>
-      we need your current password to confirm your changes
-    </small>
-  </div>
-  <%= f.submit 'Update', class: 'btn btn-primary' %>
-<% end %>
-<%= link_to 'Back', :back %>
+</div>

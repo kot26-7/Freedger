@@ -23,7 +23,7 @@ FactoryBot.define do
     factory :product_recommend, class: 'Product' do
       name { 'rec product' }
       product_created_at { '2020-04-04' }
-      product_expired_at { '2020-04-12' }
+      product_expired_at { '2020-04-13' }
     end
   end
 end

@@ -1,5 +1,23 @@
 <% provide(:title, "#{@user.username} - #{@product.name}") %>
-<%= "#{@container.position}: #{@container.name}" %>
-<br><%= "作成日: #{@product.product_created_at}" %></br>
-<%= "消費期限: #{@product.product_expired_at}" %>
-<h2><%= link_to 'Edit product', edit_user_container_product_path(@user, @container, @product) %></h2>
+<div class='col-12 col-sm-12 col-md-10' id='prd-shw-form'>
+  <h2><%= @product.name %></h2>
+  <ul class='col'>
+    <%= link_to user_container_path(@user, @product.container), class: 'link-to-do' do %>
+      <li><%= "#{@container.position}: #{@container.name}" %></li>
+    <% end %>
+    <li><%= "Quantity: #{@product.number}" %></li>
+    <li><%= "Created_at: #{@product.product_created_at}" %></li>
+    <li><%= "Expiration_date: #{@product.product_expired_at}" %></li>
+    <% if @product.description.present? %>
+      <li><%= "Description: #{@product.description}" %></li>
+    <% end %>
+    <div id='edt-delt-icons'>
+      <%= link_to edit_user_container_product_path(@user, @product.container_id, @product), class: 'link-to-do edt-icon' do %>
+        <i class='fas fa-edit fa-lg'></i>
+      <% end %>
+      <%= link_to user_container_product_path(@user, @product.container_id, @product), method: :delete, data: { confirm: 'You sure?' }, class: 'link-to-do dlt-icon' do %>
+        <i class='fas fa-trash-alt fa-lg'></i>
+      <% end %>
+    </div>
+  </ul>
+</div>

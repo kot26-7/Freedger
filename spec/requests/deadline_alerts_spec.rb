@@ -54,7 +54,7 @@ RSpec.describe 'DeadlineAlerts', type: :request do
     let!(:product_recommend) { create(:product_recommend) }
 
     around do |e|
-      travel_to('2020-4-10 10:00') { e.run }
+      travel_to('2020-04-10') { e.run }
     end
 
     it 'create http has success' do
@@ -75,17 +75,17 @@ RSpec.describe 'DeadlineAlerts', type: :request do
 
     it 'deadline_alerts.first.action is Warning' do
       post user_deadline_alerts_path(user)
-      expect(user.deadline_alerts.first[:action]).to eq Settings.deadline_warning
+      expect(DeadlineAlert.all.first[:action]).to eq Settings.deadline_warning
     end
 
     it 'deadline_alerts.second.action is Expired' do
       post user_deadline_alerts_path(user)
-      expect(user.deadline_alerts.second[:action]).to eq Settings.deadline_expired
+      expect(DeadlineAlert.all.second[:action]).to eq Settings.deadline_expired
     end
 
     it 'deadline_alerts.third.action is Expired' do
       post user_deadline_alerts_path(user)
-      expect(user.deadline_alerts.third[:action]).to eq Settings.deadline_recommend
+      expect(DeadlineAlert.all.third[:action]).to eq Settings.deadline_recommend
     end
   end
 

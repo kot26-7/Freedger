@@ -46,11 +46,6 @@ RSpec.describe 'Devise::Registrations', type: :request do
           post user_registration_path, params: { user: invalid_user_params }
         end.not_to change(User, :count)
       end
-
-      it 'display on correct error' do
-        post user_registration_path, params: { user: invalid_user_params }
-        expect(response.body).to include 'prohibited this user from being saved'
-      end
     end
   end
 end
