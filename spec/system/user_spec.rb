@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe 'User', type: :system do
   let(:user) { create(:user) }
 
@@ -6,20 +8,35 @@ RSpec.describe 'User', type: :system do
   end
 
   describe 'GET user#show' do
-    before do
-      visit user_path(user)
-    end
-
-    it 'check if contents are displayed correctly on /users/:id' do
-      within('.breadcrumb') do
-        expect(page).to have_content user.username
+    context 'only signin' do
+      before do
+        visit user_path(user)
       end
-      expect(page).to have_link 'go to edit ur profile'
+
+      it 'check if contents are displayed correctly on /users/:id' do
+        within('.breadcrumb') do
+          expect(page).to have_content user.username
+        end
+        within('#user-profile-form') do
+          expect(page).to have_content user.username
+        end
+      end
     end
 
-    it 'edit を押してユーザー編集ページに飛ぶ' do
-      click_link 'go to edit ur profile'
-      expect(current_path).to eq edit_user_path(user)
+    context 'when container exists' do
+      let!(:container) { create(:container) }
+
+      before do
+        visit user_path(user)
+      end
+
+      it 'container generated' do
+        expect(page).to have_content 'Containers'
+        within('.card') do
+          expect(page).to have_link container.name
+          expect(page).to have_button 'Create product'
+        end
+      end
     end
   end
 
@@ -30,9 +47,9 @@ RSpec.describe 'User', type: :system do
 
     it 'check if contents are displayed correctly on /users/:id/edit' do
       within('.breadcrumb') do
-        expect(page).to have_content 'Edit User'
+        expect(page).to have_content 'Freedger - Edit User'
       end
-      within('.container') do
+      within('#main-form') do
         expect(page).to have_content 'Username'
         expect(page).to have_content 'Email'
         expect(page).to have_button 'Update'
@@ -63,21 +80,16 @@ RSpec.describe 'User', type: :system do
     it 'update failed' do
       fill_in 'Username', with: ''
       click_button 'Update'
-      expect(page).to have_content 'prohibited this object from being saved: not successfully'
-      expect(page).to have_content 'Username can\'t be blank'
-      expect(page).to have_content 'Username is invalid'
-      expect(page).not_to have_content 'Email is invalid'
-      expect(page).not_to have_content 'Email can\'t be blank'
+      expect(page).to have_content 'can\'t be blank'
+      expect(page).to have_content 'is invalid'
     end
 
     it 'Delete user successfully', js: true do
       page.accept_confirm do
         click_link 'Delete account'
       end
-      within '#navbarNav' do
+      within '.sidenav' do
         expect(page).to have_link 'Home'
-        expect(page).not_to have_link 'User'
-        expect(page).not_to have_link 'Logout'
         expect(page).to have_link 'Login'
         expect(page).to have_link 'Signup'
       end
@@ -95,9 +107,9 @@ RSpec.describe 'User', type: :system do
 
     it 'check if contents are displayed correctly on users/edit' do
       within('.breadcrumb') do
-        expect(page).to have_content 'Edit Password'
+        expect(page).to have_content 'Change Password'
       end
-      within('.container') do
+      within('#main-form') do
         expect(page).to have_content 'Password'
         expect(page).to have_content 'Password confirmation'
         expect(page).to have_content 'Current password'
@@ -110,10 +122,12 @@ RSpec.describe 'User', type: :system do
     end
 
     it 'password update succsessfully' do
-      fill_in 'Password', with: 'hogehoge'
-      fill_in 'Password confirmation', with: 'hogehoge'
-      fill_in 'Current password', with: 'password'
-      click_button 'Update'
+      within('#main-form') do
+        fill_in 'Password', with: 'hogehoge'
+        fill_in 'Password confirmation', with: 'hogehoge'
+        fill_in 'Current password', with: 'password'
+        click_button 'Update'
+      end
       expect(current_path).to eq root_path
       expect(page).to have_content 'Your password has been updated successfully.'
       visit current_path
