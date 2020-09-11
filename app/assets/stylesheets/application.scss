@@ -269,8 +269,8 @@ a {
 }
 #search-zone {
   display: none;
-  padding: 10px 0 0 15px;
-  .search_container{
+  padding: 10px 0 10px 15px;
+  .search_container {
     background-color: white;
     box-sizing: border-box;
     position: relative;
@@ -281,16 +281,15 @@ a {
     height: 2.3em;
     width: 265px;
     overflow: hidden;
-    input[type="text"]{
+    input[type="text"] {
       border: none;
       height: 2.0em;
+      &:focus {
+        outline: none;
+      }
     }
-    input[type="text"]:focus {
-      outline: 0;
-    }
-    input[type="submit"]{
+    button {
       cursor: pointer;
-      font-family: FontAwesome;
       border: none;
       background: #3879D9;
       color: #fff;
@@ -392,7 +391,7 @@ a {
     #pr-number-in-c-shw {
       padding-top: 3px;
       float: right;
-      .fa-times{
+      .fa-times {
         margin-right: 5px;
       }
     }
@@ -537,6 +536,10 @@ a {
         color: black;
       }
     }
+  }
+  h4 {
+    text-align: center;
+    margin-top: 25px;
   }
 }
 

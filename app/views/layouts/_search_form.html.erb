@@ -1,0 +1,8 @@
+<div id='search-zone'>
+  <%= form_tag(user_products_path, method: 'get', class: 'search_container') do %>
+    <%= text_field_tag :search, '', placeholder: 'Search' %>
+    <%= button_tag type: 'submit', class: 'btn btn-primary' do %>
+      <i class='fas fa-search'></i>
+    <% end %>
+  <% end %>
+</div>

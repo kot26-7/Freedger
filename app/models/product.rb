@@ -12,4 +12,12 @@ class Product < ApplicationRecord
   validates :description, length: { maximum: 150 }
   validates :product_created_at, presence: true
   validates :product_expired_at, presence: true
+
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
 end
