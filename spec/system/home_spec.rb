@@ -16,6 +16,7 @@ RSpec.describe 'Home', type: :system do
         end
         within('.breadcrumb') do
           expect(page).to have_content 'Freedger - Home'
+          expect(page).not_to have_css '.srch-icon'
         end
         within('.jumbotron') do
           expect(page).to have_content 'Welcome to Freedger'
@@ -84,6 +85,9 @@ RSpec.describe 'Home', type: :system do
           expect(page).not_to have_link 'All Products'
           expect(page).not_to have_link 'Alerts'
         end
+        within('.breadcrumb') do
+          expect(page).not_to have_css '.srch-icon'
+        end
       end
 
       it 'Username を押してユーザーページに飛ぶ' do
@@ -134,6 +138,9 @@ RSpec.describe 'Home', type: :system do
 
     describe 'GET home/index' do
       it 'All Containers link generated' do
+        within('.breadcrumb') do
+          expect(page).not_to have_css '.srch-icon'
+        end
         within '.sidenav' do
           expect(page).to have_link 'All Containers'
           click_link 'All Containers'
@@ -158,6 +165,9 @@ RSpec.describe 'Home', type: :system do
         within '.sidenav' do
           expect(page).to have_link 'All Products'
           click_link 'All Products'
+        end
+        within('.breadcrumb') do
+          expect(page).to have_css '.srch-icon'
         end
         expect(current_path).to eq user_products_path(user)
       end

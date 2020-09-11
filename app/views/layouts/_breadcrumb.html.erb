@@ -3,5 +3,11 @@
     <li class='breadcrumb-item active' aria-current='page'>
       <h4>Freedger - <%= yield(:title) %></h4>
     </li>
+    <% if user_signed_in? && current_user.products.present? %>
+      <i class='fas fa-search fa-2x srch-icon'></i>
+    <% end %>
   </ol>
+  <% if user_signed_in? && current_user.products.present? %>
+    <%= render 'layouts/search_form' %>
+  <% end %>
 </nav>

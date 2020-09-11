@@ -73,26 +73,68 @@ RSpec.describe 'Product', type: :system do
   end
 
   describe 'GET products#index' do
-    let!(:products) { create_list(:product, 2) }
+    context 'products present' do
+      let!(:products) { create_list(:product, 2) }
 
-    before do
-      visit user_products_path(user)
+      before do
+        visit user_products_path(user)
+      end
+
+      it 'check if contents are displayed correctly on users/:user_id/containers' do
+        within('.breadcrumb') do
+          expect(page).to have_content 'Freedger - All Products'
+        end
+        within('#prd-indx-form') do
+          expect(page).to have_content "#{user.username} 's Products"
+          expect(page).to have_link products.first.name
+          expect(page).to have_link products.second.name
+        end
+      end
+
+      it 'products.first.name を押してProduct詳細ページにいく' do
+        click_link products.first.name
+        expect(current_path).to eq user_container_product_path(user, container, products.first)
+      end
+
+      it 'searching successfully' do
+        within('.breadcrumb') do
+          expect(page).to have_css '.srch-icon'
+        end
+        within('#search-zone') do
+          expect(page).to have_field 'Search'
+          expect(page).to have_button 'button'
+          fill_in 'Search', with: products.first.name
+          click_button 'button'
+        end
+        expect(current_path).to eq user_products_path(user)
+        within('#prd-indx-form') do
+          expect(page).to have_link products.first.name
+          expect(page).not_to have_link products.second.name
+        end
+      end
+
+      it 'searching failed' do
+        within('#search-zone') do
+          fill_in 'Search', with: 'hogehoge'
+          click_button 'button'
+        end
+        expect(current_path).to eq user_products_path(user)
+        within('#prd-indx-form') do
+          expect(page).to have_content 'No products found'
+        end
+      end
     end
 
-    it 'check if contents are displayed correctly on users/:user_id/containers' do
-      within('.breadcrumb') do
-        expect(page).to have_content 'Freedger - All Products'
+    context 'products unpresent' do
+      before do
+        visit user_products_path(user)
       end
-      within('#prd-indx-form') do
-        expect(page).to have_content "#{user.username} 's Products"
-        expect(page).to have_link products.first.name
-        expect(page).to have_link products.second.name
-      end
-    end
 
-    it 'products.first.name を押してProduct詳細ページにいく' do
-      click_link products.first.name
-      expect(current_path).to eq user_container_product_path(user, container, products.first)
+      it 'check if contents are displayed correctly on users/:user_id/containers' do
+        within('#prd-indx-form') do
+          expect(page).to have_content 'No products found'
+        end
+      end
     end
   end
 
