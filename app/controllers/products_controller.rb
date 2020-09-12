@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = @user.products.search(params[:search]).order(:name)
+    @data = { '2019-06-01' => 100, '2019-06-02' => 200, '2019-06-03' => 150 }
   end
 
   def show
