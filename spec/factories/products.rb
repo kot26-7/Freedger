@@ -25,5 +25,11 @@ FactoryBot.define do
       product_created_at { '2020-04-04' }
       product_expired_at { '2020-04-13' }
     end
+
+    factory :product_safe, class: 'Product' do
+      name { 'sav product' }
+      product_created_at { '2020-04-04' }
+      product_expired_at { '2020-04-14' }
+    end
   end
 end

@@ -7,6 +7,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    if @user.containers.present?
+      @data = {}
+      @user.containers.includes(:products).each do |container|
+        @data.merge!(container.name => container.products.size)
+      end
+    end
   end
 
   def edit
