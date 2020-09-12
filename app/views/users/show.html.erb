@@ -4,6 +4,7 @@
   <hr class='my-4'>
   <% if @user.containers.present? %>
     <h5>Containers</h5>
+    <%= column_chart @data %>
     <% @user.containers.each do |container| %>
       <%= render partial: 'containers/container_form', locals: {user: @user, container: container} %>
     <% end %>

@@ -400,7 +400,7 @@ a {
 
 /* container-form */
 .card {
-  margin-bottom: 15px;
+  margin: 10px 0px;
   .card-header i {
     margin-top: 3px;
     float: right;
@@ -545,10 +545,11 @@ a {
 
 /* deadline-alert index */
 #ddln-form {
+  margin-bottom: 20px;
   .deadline_expired,
   .deadline_warning,
   .deadline_recommend {
-    padding-bottom: 15px;
+    padding-top: 20px;
   }
   .card {
     margin: 0 auto;

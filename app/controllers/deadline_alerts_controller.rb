@@ -7,6 +7,11 @@ class DeadlineAlertsController < ApplicationController
     @warning_deadline_alerts = deadline_alerts.where(action: Settings.deadline_warning)
     @expired_deadline_alerts = deadline_alerts.where(action: Settings.deadline_expired)
     @recommend_deadline_alerts = deadline_alerts.where(action: Settings.deadline_recommend)
+    @data = {
+      'Expired' => @expired_deadline_alerts.size,
+      'Warning' => @warning_deadline_alerts.size,
+      'Recommend' => @recommend_deadline_alerts.size,
+    }
   end
 
   def create
