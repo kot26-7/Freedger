@@ -1,5 +1,6 @@
 <% provide(:title, 'Create Product') %>
 <div id='main-form' class='col-sm-10 col-md-8'>
+  <h3><%= "In #{@container.name}" %></h3>
   <%= bootstrap_form_for @product, url: user_container_products_path do |f| %>
     <%= f.hidden_field :user_id, value: @user.id %>
     <%= f.text_field :name, autofocus: true, autocomplete: 'name' %>

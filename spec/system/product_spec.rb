@@ -22,6 +22,7 @@ RSpec.describe 'Product', type: :system do
         expect(page).to have_content 'Name'
         expect(page).to have_content 'Number'
         expect(page).to have_content 'Description'
+        expect(page).to have_content 'Tag list'
         expect(page).to have_content 'Product created at'
         expect(page).to have_content 'Product expired at'
         expect(page).to have_button 'Create'
@@ -29,6 +30,7 @@ RSpec.describe 'Product', type: :system do
         expect(page).to have_field 'Number'
         expect(page).to have_field 'Product created at'
         expect(page).to have_field 'Product expired at'
+        expect(page).to have_field 'Tag list'
         expect(page).to have_field 'Description'
       end
     end
@@ -39,18 +41,27 @@ RSpec.describe 'Product', type: :system do
         find('option[value=3]').select_option
         fill_in 'Product created at', with: '2020-01-01'
         fill_in 'Product expired at', with: '2020-02-01'
+        fill_in 'Tag list', with: 'sample, test'
         fill_in 'Description', with: 'this is sample'
         click_button 'Create'
       end
       expect(current_path).to eq user_container_product_path(user, container, 1)
       expect(page).to have_content 'Product created Successfully'
       within('#prd-shw-form') do
+        expect(page).to have_link 'sample'
+        expect(page).to have_link 'test'
         expect(page).to have_content 'Created_at: 2020-01-01'
         expect(page).to have_content 'Expiration_date: 2020-02-01'
         expect(page).to have_content 'Quantity: 3'
       end
       visit current_path
       expect(page).not_to have_content 'Product created Successfully'
+      click_link 'sample'
+      expect(current_path).to eq user_products_path(user)
+      within('#prd-indx-form') do
+        expect(page).to have_content 'With Tag: sample'
+        expect(page).to have_link 'testhoge'
+      end
     end
 
     it 'product create failed with nil fields' do
@@ -108,6 +119,7 @@ RSpec.describe 'Product', type: :system do
         end
         expect(current_path).to eq user_products_path(user)
         within('#prd-indx-form') do
+          expect(page).to have_content "Including keyword: #{products.first.name}"
           expect(page).to have_link products.first.name
           expect(page).not_to have_link products.second.name
         end
@@ -187,6 +199,7 @@ RSpec.describe 'Product', type: :system do
       within('#main-form') do
         expect(page).to have_content 'Name'
         expect(page).to have_content 'Number'
+        expect(page).to have_content 'Tag list'
         expect(page).to have_content 'Description'
         expect(page).to have_content 'Product created at'
         expect(page).to have_content 'Product expired at'
@@ -196,6 +209,7 @@ RSpec.describe 'Product', type: :system do
         expect(page).to have_field 'Product created at', with: product.product_created_at
         expect(page).to have_field 'Product expired at', with: product.product_expired_at
         expect(page).to have_field 'Description', with: product.description
+        expect(page).to have_field 'Tag list'
         expect(page).to have_link 'Delete product'
       end
     end
