@@ -10,7 +10,7 @@ RSpec.describe 'Devise::Registrations', type: :system do
       within('.breadcrumb') do
         expect(page).to have_content 'Freedger - Signup'
       end
-      within('.col-12') do
+      within('#main-form') do
         expect(page).to have_content 'Username'
         expect(page).to have_content 'Email'
         expect(page).to have_content 'Password'

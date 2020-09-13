@@ -6,6 +6,7 @@
     <%= f.select :number, [*1..20], {selected: 1}, {} %>
     <%= f.date_field :product_created_at %>
     <%= f.date_field :product_expired_at %>
+    <%= f.text_field :tag_list, autofocus: true, value: @product.tag_list.join(','), placeholder: 'hoge, foobar', help: "It's optional" %>
     <%= f.text_area :description, autofocus: true, autocomplete: 'description', help: "It's optional" %>
     <%= f.submit 'Create', class: 'btn btn-primary' %>
   <% end %>

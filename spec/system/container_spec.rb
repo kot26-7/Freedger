@@ -17,7 +17,7 @@ RSpec.describe 'Container', type: :system do
       within('.breadcrumb') do
         expect(page).to have_content 'Container New'
       end
-      within('.col-12') do
+      within('#main-form') do
         expect(page).to have_content 'Name'
         expect(page).to have_content 'Container type'
         expect(page).to have_content 'Description'
@@ -32,7 +32,7 @@ RSpec.describe 'Container', type: :system do
     end
 
     it 'container create successfully' do
-      within('.col-12') do
+      within('#main-form') do
         fill_in 'Name', with: 'testhoge'
         fill_in 'Description', with: 'this is sample'
         click_button 'Create'
@@ -55,7 +55,7 @@ RSpec.describe 'Container', type: :system do
     end
 
     it 'container create failed' do
-      within('.col-12') do
+      within('#main-form') do
         fill_in 'Name', with: ''
         click_button 'Create'
       end
@@ -151,7 +151,7 @@ RSpec.describe 'Container', type: :system do
       within('.breadcrumb') do
         expect(page).to have_content 'Freedger - Edit Container'
       end
-      within('.col-12') do
+      within('#main-form') do
         expect(page).to have_content 'Name'
         expect(page).to have_content 'Container type'
         expect(page).to have_content 'Description'
@@ -167,7 +167,7 @@ RSpec.describe 'Container', type: :system do
     end
 
     it 'container update successfully' do
-      within('.col-12') do
+      within('#main-form') do
         fill_in 'Name', with: 'testhoge'
         find("input[id='container_position_freezer']").set(true)
         fill_in 'Description', with: 'heres sample'
@@ -188,7 +188,7 @@ RSpec.describe 'Container', type: :system do
     end
 
     it 'container update failed' do
-      within('.col-12') do
+      within('#main-form') do
         fill_in 'Name', with: ''
         click_button 'Update'
       end
