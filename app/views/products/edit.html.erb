@@ -1,11 +1,13 @@
 <% provide(:title, 'Edit Product') %>
-<div id='main-form' class='col-12 col-sm-10 col-md-8'>
+<div id='main-form' class='col-sm-10 col-md-8'>
+  <h3><%= @product.name %></h3>
   <%= bootstrap_form_for @product, url: user_container_product_path do |f| %>
     <%= f.text_field :name, autofocus: true, autocomplete: 'name' %>
     <%= f.select :number, [*1..20], {}, {} %>
     <%= f.date_field :product_created_at %>
     <%= f.date_field :product_expired_at %>
-    <%= f.text_area :description, autofocus: true, autocomplete: 'description' %>
+    <%= f.text_field :tag_list, autofocus: true, value: @product.tag_list.join(','), help: "It's optional" %>
+    <%= f.text_area :description, autofocus: true, autocomplete: 'description', help: "It's optional" %>
     <%= f.submit 'Update', class: 'btn btn-primary' %>
   <% end %>
   <div id='sub-info-links'>

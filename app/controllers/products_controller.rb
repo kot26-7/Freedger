@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = @user.products.search(params[:search]).order(:name)
+    @products = @user.products.tagged_with("#{params[:tag_name]}").order(:name) if params[:tag_name]
   end
 
   def show
@@ -50,7 +51,7 @@ class ProductsController < ApplicationController
                                     :product_created_at,
                                     :product_expired_at,
                                     :description,
-                                    :user_id)
+                                    :user_id, :tag_list)
   end
 
   def correct_user_with_user_id
