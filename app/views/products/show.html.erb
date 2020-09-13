@@ -1,5 +1,5 @@
 <% provide(:title, "#{@user.username} - #{@product.name}") %>
-<div class='col-12 col-sm-12 col-md-10' id='prd-shw-form'>
+<div class='col-md-10' id='prd-shw-form'>
   <h2><%= @product.name %></h2>
   <ul class='col'>
     <%= link_to user_container_path(@user, @product.container), class: 'link-to-do' do %>

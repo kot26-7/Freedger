@@ -1,5 +1,5 @@
 <% provide(:title, "#{@user.username} - #{@container.name}") %>
-<div id='card-form' class='col-12 col-sm-10 col-md-8'>
+<div id='card-form' class='col-sm-10 col-md-8'>
   <%= render partial: 'containers/container_form', locals: {user: @user, container: @container} %>
   <% if @container.products.present? %>
     <div id='products-box'>

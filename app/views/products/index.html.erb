@@ -2,9 +2,9 @@
 <div class='col' id='prd-indx-form'>
   <h5><%= @user.username %> 's Products</h5>
   <% if @products.present? %>
-    <div class='row row-cols-12 row-cols-sm-6 row-cols-md-4' id='prd-indx-lists'>
+    <div class='row row-cols-sm-6 row-cols-md-4' id='prd-indx-lists'>
       <% @products.each do |product| %>
-        <div class='col-12 col-sm-4 col-md-3'>
+        <div class='col-sm-4 col-md-3'>
           <%= link_to user_container_product_path(@user, product.container_id, product), class: 'link-to-do' do %>
             <div id='prd-indx-info'>
               <p><%= product.name %></p>

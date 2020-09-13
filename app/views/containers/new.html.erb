@@ -1,5 +1,5 @@
 <% provide(:title, 'Container New') %>
-<div id='main-form' class='col-12 col-sm-10 col-md-8'>
+<div id='main-form' class='col-sm-10 col-md-8'>
   <%= bootstrap_form_for @container, url: user_containers_path do |f| %>
     <%= f.text_field :name, autofocus: true, autocomplete: 'name' %>
     <div id='radio-inputs'>
