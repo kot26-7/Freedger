@@ -36,11 +36,13 @@ gem 'jbuilder', '~> 2.5'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'dotenv-rails'
 gem 'config'
 gem 'devise'
 gem 'bootstrap', '~> 4.1.1'
 gem 'bootstrap_form', '~> 4.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'chartkick'
 gem 'acts-as-taggable-on'
 

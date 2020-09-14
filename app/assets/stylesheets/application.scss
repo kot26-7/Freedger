@@ -1,6 +1,9 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
 @import "rails_bootstrap_forms";
+@import "jquery-ui/autocomplete";
+@import "jquery-ui/theme";
+@import "jquery-ui/menu";
 
 html, body, div, span, applet, object, iframe,
 p, blockquote, pre,
