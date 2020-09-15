@@ -1,4 +1,3 @@
-
 // Search form and Searching suggests
 $(function() {
   var user_id = $('#user_id').val();
@@ -9,9 +8,9 @@ $(function() {
     source: function(req, res){
       $.ajax({
         url: `/users/${user_id}/search_suggests`,
-        type: "GET",
+        type: 'GET',
         cache: false,
-        dataType: "json",
+        dataType: 'json',
         data: {
           keyword: req.term,
           suggests_max_num: 5
