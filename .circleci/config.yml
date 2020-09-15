@@ -84,6 +84,7 @@ jobs:
             name: Run post-deploy tasks
             command: |
               heroku run bin/rails db:migrate
+              heroku run bin/rails db:seed
 
 orbs:
   build-tools: circleci/build-tools@2.6.3
