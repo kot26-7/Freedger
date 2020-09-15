@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     end
     resources :products, only: [:index]
     resources :deadline_alerts, only: [:index, :create, :destroy]
+    resources :search_suggests, only: [:index]
   end
   get '/users/:user_id/containers/:container_id/products', to: redirect('/')
 end

@@ -17,4 +17,5 @@
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage
+//= require jquery-ui/widgets/autocomplete
 //= require_tree .
