@@ -5,8 +5,12 @@ class ProductsController < ApplicationController
   before_action :correct_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = @user.products.search(params[:search]).order(:name)
-    @products = @user.products.tagged_with("#{params[:tag_name]}").order(:name) if params[:tag_name]
+    @products = @user.products.search(params[:search]).order(:name).page(params[:page])
+    @products = @user.products.tagged_with("#{params[:tag_name]}").order(:name).page(params[:page]) if params[:tag_name]
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

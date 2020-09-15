@@ -45,6 +45,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'chartkick'
 gem 'acts-as-taggable-on'
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

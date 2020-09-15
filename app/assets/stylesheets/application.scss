@@ -309,6 +309,7 @@ a {
 /* container */
 .container {
   margin-top: 1em;
+  padding: 0;
 }
 
 /* error msg */
@@ -331,6 +332,15 @@ a {
 /* jumbotron */
 .jumbotron {
   border: solid 1px;
+}
+
+/* pagenation */
+#pagenation-zone {
+  display: flex;
+  margin: 10px 0px;
+  nav {
+    margin: 0 auto;
+  }
 }
 
 /* user-show page */
@@ -372,8 +382,11 @@ a {
   margin: 2em 0;
   border: double 5px #4682b4;
   background-color: white;
-  a {
+  .link-to-do {
     text-decoration: none;
+    &:hover {
+      color: black;
+    }
   }
   h4 {
     text-align: center;
