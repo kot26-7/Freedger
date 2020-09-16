@@ -7,17 +7,7 @@
     <h6><%= "Including keyword: #{params[:search]}" %></h6>
   <% end %>
   <% if @products.present? %>
-    <div class='row row-cols-sm-6 row-cols-md-4' id='prd-indx-lists'>
-      <% @products.each do |product| %>
-        <div class='col-sm-4 col-md-3'>
-          <%= link_to user_container_product_path(@user, product.container_id, product), class: 'link-to-do' do %>
-            <div id='prd-indx-info'>
-              <p><%= product.name %></p>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+    <%= render 'products_lists', products: @products %>
   <% else %>
     <h4>No products found</h4>
   <% end %>

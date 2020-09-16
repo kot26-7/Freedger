@@ -8,6 +8,11 @@ class ContainersController < ApplicationController
   end
 
   def show
+    @products = @container.products.page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
