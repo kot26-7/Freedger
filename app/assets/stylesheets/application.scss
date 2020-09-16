@@ -377,6 +377,23 @@ a {
 }
 
 /* container-show */
+#container-img {
+  padding: 0.5em 1em 1em 1em;
+  margin: 0 auto;
+  font-weight: bold;
+  color: #6091d3;
+  background: white;
+  border: solid 3px #6091d3;
+  border-radius: 10px;
+  h4 {
+    color: black;
+    text-align: center;
+  }
+  img {
+    margin: 0 auto;
+    display: block;
+  }
+}
 #products-box {
   padding: 0.5em 1em;
   margin: 2em 0;

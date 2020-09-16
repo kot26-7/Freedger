@@ -9,6 +9,7 @@
       <% end %>
     </div>
     <%= f.text_area :description, autofocus: true, autocomplete: 'description', help: "It's optional" %>
+    <%= f.file_field :image, help: "It's optional" %>
     <%= f.submit 'Create', class: 'btn btn-primary' %>
   <% end %>
 </div>

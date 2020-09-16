@@ -1,5 +1,11 @@
 <% provide(:title, "#{@user.username} - #{@container.name}") %>
 <div id='card-form' class='col-sm-10 col-md-8'>
+  <% unless @container.image.file.nil? %>
+    <div class='col-md-8 col-lg-6' id='container-img'>
+      <h4><%= "#{@container.name}'s image" %></h4>
+      <%= image_tag @container.image.to_s %>
+    </div>
+  <% end %>
   <%= render partial: 'containers/container_form', locals: {user: @user, container: @container} %>
   <% if @container.products.present? %>
     <div id='products-box'>

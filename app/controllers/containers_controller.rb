@@ -47,7 +47,7 @@ class ContainersController < ApplicationController
   private
 
   def container_params
-    params.require(:container).permit(:name, :position, :description)
+    params.require(:container).permit(:name, :position, :description, :image)
   end
 
   def correct_user_with_user_id
