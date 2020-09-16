@@ -70,6 +70,7 @@ a {
 
 /* header sidebar */
 .sidebarmenu {
+  overflow-y: scroll;
   position: fixed;
   z-index: 1;
   bottom: 0;
@@ -502,6 +503,12 @@ a {
 }
 
 /* product-show page */
+@media screen and (min-width: 480px) {
+  #product-img {
+    float: left;
+    margin-right: 25px;
+  }
+}
 #prd-shw-form {
   margin: 0 auto;
   padding: 40px 15px 15px;

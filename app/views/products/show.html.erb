@@ -2,6 +2,11 @@
 <div class='col-md-10' id='prd-shw-form'>
   <h2><%= @product.name %></h2>
   <ul class='col'>
+    <% unless @product.image.file.nil? %>
+      <div id='product-img' media='screen and (min-width: 480px)'>
+        <%= image_tag @product.image.to_s %>
+      </div>
+    <% end %>
     <li class='p-tags'>
       <% if @product.tags.present? %>
         <% @product.tag_list.each do |tag| %>

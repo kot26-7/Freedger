@@ -8,6 +8,7 @@
     <%= f.date_field :product_expired_at %>
     <%= f.text_field :tag_list, autofocus: true, value: @product.tag_list.join(','), help: "It's optional" %>
     <%= f.text_area :description, autofocus: true, autocomplete: 'description', help: "It's optional" %>
+    <%= f.file_field :image, help: "It's optional" %>
     <%= f.submit 'Update', class: 'btn btn-primary' %>
   <% end %>
   <div id='sub-info-links'>
