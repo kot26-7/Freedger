@@ -28,3 +28,5 @@
 
 /db/mysql/*
 .env
+.DS_Store
+public/uploads/

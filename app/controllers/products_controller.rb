@@ -5,11 +5,9 @@ class ProductsController < ApplicationController
   before_action :correct_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    user_prods = @user.products
-    @products = user_prods.search(params[:search]).order(:name).page(params[:page])
-    if params[:tag_name]
-      @products = user_prods.tagged_with("#{params[:tag_name]}").order(:name).page(params[:page])
-    end
+    user_prods = @user.products.page(params[:page]).per(24)
+    @products = user_prods.search(params[:search]).order(:name)
+    @products = user_prods.tagged_with("#{params[:tag_name]}").order(:name) if params[:tag_name]
     respond_to do |format|
       format.html
       format.js
@@ -58,7 +56,8 @@ class ProductsController < ApplicationController
                                     :product_created_at,
                                     :product_expired_at,
                                     :description,
-                                    :user_id, :tag_list)
+                                    :user_id, :tag_list,
+                                    :image)
   end
 
   def correct_user_with_user_id

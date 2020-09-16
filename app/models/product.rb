@@ -3,6 +3,7 @@ class Product < ApplicationRecord
   belongs_to :container
   has_one :deadline_alert, dependent: :destroy
   acts_as_taggable
+  mount_uploader :image, ProductImageUploader
   validates :name, presence: true, length: { maximum: 50 }
   validates :number, presence: true,
                      numericality: {

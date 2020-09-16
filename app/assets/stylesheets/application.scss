@@ -70,6 +70,7 @@ a {
 
 /* header sidebar */
 .sidebarmenu {
+  overflow-y: scroll;
   position: fixed;
   z-index: 1;
   bottom: 0;
@@ -377,6 +378,23 @@ a {
 }
 
 /* container-show */
+#container-img {
+  padding: 0.5em 1em 1em 1em;
+  margin: 0 auto;
+  font-weight: bold;
+  color: #6091d3;
+  background: white;
+  border: solid 3px #6091d3;
+  border-radius: 10px;
+  h4 {
+    color: black;
+    text-align: center;
+  }
+  img {
+    margin: 0 auto;
+    display: block;
+  }
+}
 #products-box {
   padding: 0.5em 1em;
   margin: 2em 0;
@@ -485,6 +503,12 @@ a {
 }
 
 /* product-show page */
+@media screen and (min-width: 480px) {
+  #product-img {
+    float: left;
+    margin-right: 25px;
+  }
+}
 #prd-shw-form {
   margin: 0 auto;
   padding: 40px 15px 15px;
