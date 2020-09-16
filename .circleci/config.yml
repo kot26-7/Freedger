@@ -83,7 +83,7 @@ jobs:
         - run:
             name: Run post-deploy tasks
             command: |
-              heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY AWS_REGION=$AWS_REGION BUCKET_NAME=$BUCKET_NAME
+              heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY AWS_REGION=$AWS_REGION BUCKET_NAME=$BUCKET_NAME ADMIN_USERNAME=$ADMIN_USERNAME ADMIN_PASSWORD=$ADMIN_PASSWORD
               heroku run bin/rails db:migrate
               heroku run bin/rails db:seed
 
