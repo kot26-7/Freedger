@@ -1,6 +1,2 @@
 <% provide(:title, 'All Containers') %>
-<% @containers.each do |container| %>
-  <%= link_to user_container_path(@user, container) do %>
-    <%= render partial: 'containers/container_form', locals: {user: @user, container: container} %>
-  <% end %>
-<% end %>
+<%= render partial: 'container_form', collection: @containers %>

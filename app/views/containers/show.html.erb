@@ -6,8 +6,8 @@
       <%= image_tag @container.image.to_s %>
     </div>
   <% end %>
-  <%= render partial: 'containers/container_form', locals: {user: @user, container: @container} %>
-  <% if @container.products.present? %>
+  <%= render 'container_form', container_form: @container %>
+  <% if @products.present? %>
     <div id='products-box'>
       <h4><%= "Products in #{@container.name}" %></h4>
       <%= render 'container_products', products: @products %>

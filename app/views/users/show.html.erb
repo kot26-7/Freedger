@@ -2,11 +2,9 @@
 <div id='user-profile-form' class='col-sm-10 col-md-8'>
   <h3><%= @user.username %></h3>
   <hr class='my-4'>
-  <% if @user.containers.present? %>
+  <% if @containers.present? %>
     <h5>Containers</h5>
     <%= column_chart @data %>
-    <% @user.containers.each do |container| %>
-      <%= render partial: 'containers/container_form', locals: {user: @user, container: container} %>
-    <% end %>
+    <%= render partial: 'containers/container_form', collection: @containers %>
   <% end %>
 </div>

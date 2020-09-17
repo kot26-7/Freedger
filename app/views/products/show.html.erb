@@ -10,13 +10,13 @@
     <li class='p-tags'>
       <% if @product.tags.present? %>
         <% @product.tag_list.each do |tag| %>
-          <%= link_to user_products_path(@user, tag_name: tag) do %>
+          <%= link_to user_products_path(@product.user_id, tag_name: tag) do %>
             <span class='badge badge-secondary'><%= tag %></span>
           <% end %>
         <% end %>
       <% end %>
     </li>
-    <%= link_to user_container_path(@user, @product.container), class: 'link-to-do' do %>
+    <%= link_to user_container_path(@product.user_id, @product.container_id), class: 'link-to-do' do %>
       <li><%= "#{@container.position}: #{@container.name}" %></li>
     <% end %>
     <li><%= "Quantity: #{@product.number}" %></li>
@@ -26,10 +26,10 @@
       <li><%= "Description: #{@product.description}" %></li>
     <% end %>
     <div id='edt-delt-icons'>
-      <%= link_to edit_user_container_product_path(@user, @product.container_id, @product), class: 'link-to-do edt-icon' do %>
+      <%= link_to edit_user_container_product_path(@product.user_id, @product.container_id, @product), class: 'link-to-do edt-icon' do %>
         <i class='fas fa-edit fa-lg'></i>
       <% end %>
-      <%= link_to user_container_product_path(@user, @product.container_id, @product), method: :delete, data: { confirm: 'You sure?' }, class: 'link-to-do dlt-icon' do %>
+      <%= link_to user_container_product_path(@product.user_id, @product.container_id, @product), method: :delete, data: { confirm: 'You sure?' }, class: 'link-to-do dlt-icon' do %>
         <i class='fas fa-trash-alt fa-lg'></i>
       <% end %>
     </div>

@@ -4,7 +4,7 @@ class ContainersController < ApplicationController
   before_action :correct_container, only: [:show, :edit, :update, :destroy]
 
   def index
-    @containers = @user.containers.all
+    @containers = @user.containers.all.includes(:products)
   end
 
   def show
