@@ -31,18 +31,6 @@ RSpec.describe 'DeadlineAlerts', type: :request do
       expect(assigns(:user)).to eq user
     end
 
-    it 'assigns the requested container to @recommend_deadline_alerts' do
-      expect(assigns(:recommend_deadline_alerts)).to match([deadline_rec])
-    end
-
-    it 'assigns the requested container to @warning_deadline_alerts' do
-      expect(assigns(:warning_deadline_alerts)).to match([deadline_war])
-    end
-
-    it 'assigns the requested container to @expired_deadline_alerts' do
-      expect(assigns(:expired_deadline_alerts)).to match([deadline_exp])
-    end
-
     it 'displayed on correct title' do
       expect(response.body).to include full_title('Results')
     end
@@ -94,18 +82,13 @@ RSpec.describe 'DeadlineAlerts', type: :request do
     let!(:deadline_alert) { create(:deadline_alert) }
 
     it 'destroy http has success' do
-      delete user_deadline_alert_path(user.id, deadline_alert.id)
-      expect(response.status).to eq 302
-    end
-
-    it 'redirects to user_deadline_alerts_path' do
-      delete user_deadline_alert_path(user.id, deadline_alert.id)
-      expect(response).to redirect_to user_deadline_alerts_path(user)
+      delete user_deadline_alert_path(user.id, deadline_alert.id), xhr: true
+      expect(response.status).to eq 200
     end
 
     it 'deletes an deadline_alert' do
       expect do
-        delete user_deadline_alert_path(user.id, deadline_alert.id)
+        delete user_deadline_alert_path(user.id, deadline_alert.id), xhr: true
       end.to change(DeadlineAlert, :count).by(-1)
     end
   end

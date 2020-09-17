@@ -59,23 +59,20 @@ RSpec.describe 'DeadlineAlert', type: :system do
         expect(page).not_to have_content 'Searched Successfully'
       end
 
-      it 'deadline_alert delete successfully' do
+      it 'deadline_alert delete successfully', js: true do
         click_button '賞味期限をチェック'
         expect(current_path).to eq user_deadline_alerts_path(user)
         within('.deadline_expired') do
           expect(page).to have_link 'Delete'
           click_link 'Delete'
         end
-        expect(page).to have_content 'Deleted Successfully'
-        expect(page).not_to have_content 'Expired'
+        expect(page).not_to have_content '1: Expired'
         within('.deadline_warning') do
-          expect(page).to have_content 'Warning'
+          expect(page).to have_content '2: Warning'
         end
         within('.deadline_recommend') do
-          expect(page).to have_content 'Recommend'
+          expect(page).to have_content '3: Recommend'
         end
-        visit current_path
-        expect(page).not_to have_content 'Deleted Successfully'
       end
     end
 

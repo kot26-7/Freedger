@@ -15,6 +15,8 @@ module ApplicationHelper
       'deadline_warning'
     elsif deadline.action == Settings.deadline_recommend
       'deadline_recommend'
+    else
+      'deadline_recommend'
     end
   end
 end

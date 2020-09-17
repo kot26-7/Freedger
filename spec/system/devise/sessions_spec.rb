@@ -10,7 +10,7 @@ RSpec.describe 'Devise::Sessions', type: :system do
       within('.breadcrumb') do
         expect(page).to have_content 'Login'
       end
-      within('.container') do
+      within('#main-form') do
         expect(page).to have_content 'Email'
         expect(page).to have_content 'Password'
         expect(page).to have_button 'Log in'
