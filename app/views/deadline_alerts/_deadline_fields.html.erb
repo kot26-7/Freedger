@@ -11,7 +11,7 @@
     </li>
     <li class='list-group-item'><%= "Exp - #{deadline.product.product_expired_at}" %></li>
     <li class='list-group-item'>
-      <%= link_to 'Delete Alert', user_deadline_alert_path(@user, deadline), method: :delete, id: 'delt-btn' %>
+      <%= link_to 'Delete Alert', user_deadline_alert_path(@user, deadline), method: :delete, id: 'delt-btn', remote: true %>
     </li>
   </ul>
 </div>

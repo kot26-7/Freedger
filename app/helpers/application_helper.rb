@@ -6,4 +6,15 @@ module ApplicationHelper
       Settings.base_title
     end
   end
+
+  # deadline_alert index における class 判別メソッド
+  def alert_define(deadline)
+    if deadline.action == Settings.deadline_expired
+      'deadline_expired'
+    elsif deadline.action == Settings.deadline_warning
+      'deadline_warning'
+    elsif deadline.action == Settings.deadline_recommend
+      'deadline_recommend'
+    end
+  end
 end

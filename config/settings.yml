@@ -1,5 +1,5 @@
 base_title: 'Freedger'
-deadline_warning: 'Warning'
-deadline_recommend: 'Recommend'
-deadline_expired: 'Expired'
+deadline_warning: '2: Warning'
+deadline_recommend: '3: Recommend'
+deadline_expired: '1: Expired'
 deadline_delay: 3

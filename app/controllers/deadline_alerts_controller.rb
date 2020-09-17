@@ -4,14 +4,19 @@ class DeadlineAlertsController < ApplicationController
 
   def index
     deadline_alerts = @user.deadline_alerts.all.includes(:container, :product)
-    @warning_deadline_alerts = deadline_alerts.where(action: Settings.deadline_warning)
-    @expired_deadline_alerts = deadline_alerts.where(action: Settings.deadline_expired)
-    @recommend_deadline_alerts = deadline_alerts.where(action: Settings.deadline_recommend)
+    @alerts = deadline_alerts.order(:action).page(params[:page]).per(12)
+    warning = deadline_alerts.where(action: Settings.deadline_warning)
+    expired = deadline_alerts.where(action: Settings.deadline_expired)
+    recommend = deadline_alerts.where(action: Settings.deadline_recommend)
     @data = {
-      'Expired' => @expired_deadline_alerts.size,
-      'Warning' => @warning_deadline_alerts.size,
-      'Recommend' => @recommend_deadline_alerts.size,
+      'Expired' => expired.size,
+      'Warning' => warning.size,
+      'Recommend' => recommend.size,
     }
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -38,7 +43,12 @@ class DeadlineAlertsController < ApplicationController
 
   def destroy
     @deadline_alert.destroy
-    redirect_to user_deadline_alerts_path(current_user), notice: 'Deleted Successfully'
+    deadline_alerts = @user.deadline_alerts.all.includes(:container, :product)
+    @alerts = deadline_alerts.order(:action).page(params[:page]).per(12)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private
