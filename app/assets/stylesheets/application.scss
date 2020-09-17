@@ -247,6 +247,10 @@ a {
   transition: opacity 0.4s, -webkit-transform 0.4s;
   transition: transform 0.4s, opacity 0.4s;
   transition: transform 0.4s, opacity 0.4s, -webkit-transform 0.4s;
+  #main-container {
+    min-height: 550px;
+    margin-top: 3em;
+  }
 }
 
 /* breadcrumb */
