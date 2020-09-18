@@ -445,6 +445,7 @@ a {
         border: solid;
         border-radius: 60px;
         transition: 0.5s;
+        cursor: pointer;
         &:hover {
           background-color: #fff9e7;
           padding: 25px;
@@ -458,6 +459,9 @@ a {
   .btn {
     margin-bottom: 15px;
   }
+}
+.modal-body img {
+  margin-bottom: 10px;
 }
 
 /* user-show page */

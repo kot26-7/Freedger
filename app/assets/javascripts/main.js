@@ -26,3 +26,8 @@ $(function() {
     autoFocus: true
   });
 });
+
+// Modal in home#about
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
