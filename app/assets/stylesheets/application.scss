@@ -427,6 +427,39 @@ a {
   }
 }
 
+/* home-about page */
+#about-topic {
+  margin: 0 20px;
+  .about-column {
+    padding: 10px 0;
+    margin-bottom: 10px;
+    background-color: white;
+    border-radius: 30px;
+    li {
+      text-align: center;
+      margin: 10px 0;
+      .fas {
+        margin: 20px 0 10px;
+        font-size: 60px;
+        padding: 19px;
+        border: solid;
+        border-radius: 60px;
+        transition: 0.5s;
+        &:hover {
+          background-color: #fff9e7;
+          padding: 25px;
+        }
+      }
+    }
+  }
+}
+#about-btns {
+  margin: 10px 20px;
+  .btn {
+    margin-bottom: 15px;
+  }
+}
+
 /* user-show page */
 #user-profile-form {
   margin: 0 auto;

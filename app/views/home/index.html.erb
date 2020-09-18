@@ -12,6 +12,6 @@
     <p>When you know about this app more, please check 'Learn more...'</p></br>
     <%= button_to 'Signup Here', new_user_registration_path, method: :get, class: 'btn btn-success btn-lg btn-block' %></br>
     <%= button_to 'Login Here', new_user_session_path, method: :get, class: 'btn btn-primary btn-lg btn-block' %></br>
-    <a class='btn btn-outline-secondary btn-lg' href='#' role='button'>Learn more...</a>
+    <%= button_to 'Learn more...', about_path, method: :get, class: 'btn btn-outline-secondary btn-lg' %>
   </div>
 <% end %>
