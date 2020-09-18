@@ -472,6 +472,16 @@ a {
     font-weight: bold;
     text-align: center;
   }
+  #email-info {
+    margin-bottom: 20px;
+    h5 {
+      display: inline-block;
+    }
+    p {
+      float: right;
+      margin-top: 4px;
+    }
+  }
 }
 
 /* user-edit page */
