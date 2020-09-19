@@ -1,0 +1,48 @@
+<div class='modal fade' id='step3Modal' data-backdrop='static' data-keyboard='false' tabindex='-1'>
+  <div class='modal-dialog modal-dialog-centered modal-dialog-scrollable'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title'>
+          Check Alerts
+        </h5>
+        <button type='button' class='close' data-dismiss='modal'>
+          <span aria-hidden='true'>&times;</span>
+        </button>
+      </div>
+      <div class='modal-body'>
+        <h6>
+          1: After you created products, let's access to top page and push "Check Expiration Date" button. 
+        </h6>
+        <%= image_tag 'step6.png', size: '300x300'%>
+        <hr>
+        <h6>
+          2: When pushing the button, Alerts would be displayed and they have 3 types which are "Expired", "Warning" and "Recommend".
+        </h6>
+        <%= image_tag 'step7.png', size: '300x320'%>
+        <hr>
+        <h6>
+          3: "Expired" would tell us the product's expiration date is already over.
+        </h6>
+        <hr>
+        <h6>
+          4: "Warning" would tell us the product's expiration date is today.
+        </h6>
+        <hr>
+        <h6>
+          5: "Recommend" would tell us the product's expiration date is within 3 days.
+        </h6>
+        <hr>
+        <h6 class='text-danger'>Warning:</h6>
+        <h6>
+          If you check already-existing alerts, please access to "Alerts" in the sidebar.
+        </h6>
+        <h6>
+          But when you want to recreate the alerts, please push "Check Expiration Date".
+        </h6>
+      </div>
+      <div class='modal-footer'>
+        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+      </div>
+    </div>
+  </div>
+</div>
