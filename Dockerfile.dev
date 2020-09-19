@@ -26,5 +26,5 @@ COPY Gemfile.lock /myapp/Gemfile.lock
 
 RUN bundle install
 COPY . /myapp
-RUN bundle exec rails assets:precompile RAILS_ENV=production && \
+RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile RAILS_ENV=production && \
     yarn cache clean
