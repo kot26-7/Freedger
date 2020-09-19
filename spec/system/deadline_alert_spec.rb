@@ -24,8 +24,8 @@ RSpec.describe 'DeadlineAlert', type: :system do
 
       it 'deadline_alerts create successfully' do
         expect(current_path).to eq root_path(user)
-        expect(page).to have_button '賞味期限をチェック'
-        click_button '賞味期限をチェック'
+        expect(page).to have_button 'Check Expiration Date'
+        click_button 'Check Expiration Date'
         expect(current_path).to eq user_deadline_alerts_path(user)
         expect(page).to have_content 'Searched Successfully'
         within('.breadcrumb') do
@@ -60,7 +60,7 @@ RSpec.describe 'DeadlineAlert', type: :system do
       end
 
       it 'deadline_alert delete successfully', js: true do
-        click_button '賞味期限をチェック'
+        click_button 'Check Expiration Date'
         expect(current_path).to eq user_deadline_alerts_path(user)
         within('.deadline_expired') do
           expect(page).to have_link 'Delete'
@@ -84,7 +84,7 @@ RSpec.describe 'DeadlineAlert', type: :system do
       end
 
       it 'display no alerts found' do
-        click_button '賞味期限をチェック'
+        click_button 'Check Expiration Date'
         expect(page).to have_content 'No Alerts found'
       end
     end
