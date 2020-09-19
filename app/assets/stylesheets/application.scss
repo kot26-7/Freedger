@@ -427,6 +427,24 @@ a {
   }
 }
 
+/* home-index page */
+.home-topic {
+  padding: 0.5em 1em;
+  margin: 2em auto;
+  color: #474747;
+  background: white;
+  border-left: double 7px blue;
+  border-right: double 7px blue;
+  .btn {
+    margin: 20px auto 10px auto;
+    display: block;
+    cursor: pointer;
+  }
+  h4 {
+    text-align: center;
+  }
+}
+
 /* home-about page */
 #about-topic {
   margin: 0 20px;
