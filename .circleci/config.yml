@@ -12,10 +12,6 @@ jobs:
           command: |
             echo "export COMPOSE_FILE=docker-compose.ci.yml" >> $BASH_ENV
       - run:
-          name: Assets compile
-          command: |
-            docker-compose exec web bash -c 'bundle exec rails assets:precompile assets:clean'
-      - run:
           name: Start containers and verify it is working
           command: |
             set -x
@@ -66,6 +62,10 @@ jobs:
         - checkout
         - build-tools/install-ci-tools
         - jq/install
+        - run:
+            name: Assets compile
+            command: |
+              docker-compose exec web bash -c 'bundle exec rails assets:precompile assets:clean'
         - run:
             name: Identify who I am
             command: echo 'export MY_EMAIL=`heroku auth:whoami | tail -n 1`' >> $BASH_ENV
