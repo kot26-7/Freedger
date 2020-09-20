@@ -12,6 +12,10 @@ jobs:
           command: |
             echo "export COMPOSE_FILE=docker-compose.ci.yml" >> $BASH_ENV
       - run:
+          name: Assets compile
+          command: |
+            docker-compose exec web bash -c 'bundle exec rails assets:precompile assets:clean'
+      - run:
           name: Start containers and verify it is working
           command: |
             set -x
