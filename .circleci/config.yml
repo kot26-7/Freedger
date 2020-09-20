@@ -28,7 +28,7 @@ jobs:
       - run:
             name: Assets compile
             command: |
-              docker-compose exec web bash -c 'bundle exec rails assets:precompile RAILS_ENV=production assets:clean'
+              docker-compose exec web bash -c 'SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile RAILS_ENV=production assets:clean'
       - run:
           name: Run rspec
           command: docker-compose exec web rspec
