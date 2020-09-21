@@ -1,4 +1,6 @@
 class DeadlineAlertsController < ApplicationController
+  require 'pdf/alerts_pdf'
+
   before_action :correct_user_with_user_id
   before_action :correct_deadline_alert, only: [:destroy]
 
@@ -48,6 +50,21 @@ class DeadlineAlertsController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+    end
+  end
+
+  def list
+    data = @user.deadline_alerts.all.includes(:container, :product)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = AlertsPdf.new(data)
+
+        send_data pdf.render,
+                  filename: 'alerts_list.pdf',
+                  type: 'application/pdf',
+                  disposition: 'inline'
+      end
     end
   end
 

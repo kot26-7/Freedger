@@ -1,5 +1,6 @@
 <% provide(:title, 'Results') %>
 <% if @alerts.present? %>
+  <%= link_to 'PDF', list_user_deadline_alerts_path(@user, format: 'pdf') %>
   <div class='col-md-10 col-lg-10 alert-chart'>
     <%= pie_chart @data, colors: ['red', 'orange', '#83e698'] %>
   </div>

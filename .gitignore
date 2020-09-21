@@ -30,3 +30,4 @@
 .env
 .DS_Store
 public/uploads/
+vendor/assets/*
