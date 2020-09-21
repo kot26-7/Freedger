@@ -1,0 +1,51 @@
+<% provide(:title, 'About') %>
+<div id='about-topic'>
+  <div class='row'>
+    <div class='col-md-4'>
+      <div class='about-column'>
+        <ul>
+          <li><h2>Step 1</h2></li>
+          <li>
+            <i class='fas fa-archive' data-toggle='modal' data-target='#step1Modal'></i>
+          </li>
+          <li><h5>Create Container</h5></li>
+        </ul>
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <div class='about-column'>
+        <ul>
+          <li><h2>Step 2</h2></li>
+          <li>
+            <i class='fas fa-hamburger' data-toggle='modal' data-target='#step2Modal'></i>
+          </li>
+          <li><h5>Create Products</h5></li>
+        </ul>
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <div class='about-column'>
+        <ul>
+          <li><h2>Step 3</h2></li>
+          <li>
+            <i class='fas fa-exclamation-circle' data-toggle='modal' data-target='#step3Modal'></i>
+          </li>
+          <li><h5>Check Alerts</h5></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div id='about-btns'>
+  <ul>
+    <li>
+      <%= button_to 'Signup Here', new_user_registration_path, method: :get, class: 'btn btn-success btn-lg btn-block' %>
+    </li>
+    <li>
+      <%= button_to 'Login Here', new_user_session_path, method: :get, class: 'btn btn-primary btn-lg btn-block' %>
+    </li>
+  </ul>
+</div>
+<%= render 'step1_modal' %>
+<%= render 'step2_modal' %>
+<%= render 'step3_modal' %>

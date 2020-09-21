@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe DeadlineAlert, type: :model do
   let!(:user) { create(:user) }
   let!(:container) { create(:container) }
@@ -22,13 +24,13 @@ RSpec.describe DeadlineAlert, type: :model do
       expect(deadline).to be_invalid
     end
 
-    it 'invalid with action less than 7' do
-      deadline = DeadlineAlert.new(deadline_alert_params[action: 'a' * 6])
+    it 'invalid with action less than 10' do
+      deadline = DeadlineAlert.new(deadline_alert_params[action: 'a' * 9])
       expect(deadline).to be_invalid
     end
 
-    it 'invalid with action greater than 9' do
-      deadline = DeadlineAlert.new(deadline_alert_params[action: 'a' * 10])
+    it 'invalid with action greater than 12' do
+      deadline = DeadlineAlert.new(deadline_alert_params[action: 'a' * 13])
       expect(deadline).to be_invalid
     end
   end

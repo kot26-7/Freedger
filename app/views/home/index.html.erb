@@ -1,8 +1,15 @@
 <% provide(:title, 'Home') %>
 <% if user_signed_in? && current_user.products.present? %>
-  <%= button_to '賞味期限をチェック', user_deadline_alerts_path(current_user), class: 'btn btn-primary' %>
+  <div class='home-topic'>
+    <h4>Let's check the Expiration Date</h4>
+    <%= button_to 'Check Expiration Date', user_deadline_alerts_path(current_user), class: 'btn btn-primary' %>
+  </div>
 <% elsif user_signed_in? %>
-  a
+  <div class='home-topic col-sm-10 col-md-8'>
+    <h3>You haven't create any products</h3>
+    <p>please create products</p>
+    <button type='button' class='btn btn-lg btn-primary' disabled>Check Expiration Date</button>
+  </div>
 <% else %>
   <div class='jumbotron'>
     <h1 class='display-4'>Welcome to Freedger</h1>
@@ -12,6 +19,6 @@
     <p>When you know about this app more, please check 'Learn more...'</p></br>
     <%= button_to 'Signup Here', new_user_registration_path, method: :get, class: 'btn btn-success btn-lg btn-block' %></br>
     <%= button_to 'Login Here', new_user_session_path, method: :get, class: 'btn btn-primary btn-lg btn-block' %></br>
-    <a class='btn btn-outline-secondary btn-lg' href='#' role='button'>Learn more...</a>
+    <%= button_to 'Learn more...', about_path, method: :get, class: 'btn btn-outline-secondary btn-lg' %>
   </div>
 <% end %>

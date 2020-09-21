@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   root 'home#index'
+  get '/about', to: 'home#about'
   resources :users, except: [:new, :create] do
     resources :containers do
       resources :products, except: [:index]

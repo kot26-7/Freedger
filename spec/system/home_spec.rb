@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe 'Home', type: :system do
-  context 'if not signin' do
-    describe 'GET home/index' do
+  describe 'GET home/index' do
+    context 'if not signin' do
       before do
         visit root_path
       end
@@ -61,18 +61,16 @@ RSpec.describe 'Home', type: :system do
         expect(current_path).to eq new_user_session_path
       end
     end
-  end
 
-  context 'if signin already' do
-    let(:user) { create(:user) }
+    context 'if signin already' do
+      let(:user) { create(:user) }
 
-    before do
-      sign_in user
-      visit root_path
-    end
+      before do
+        sign_in user
+        visit root_path
+      end
 
-    describe 'GET home/index' do
-      it 'check if contents are displayed correctly on header-navbar' do
+      it 'check if contents are displayed correctly' do
         within '.sidenav' do
           expect(page).to have_link 'Home'
           expect(page).to have_link user.username
@@ -87,6 +85,10 @@ RSpec.describe 'Home', type: :system do
         end
         within('.breadcrumb') do
           expect(page).not_to have_css '.srch-icon'
+        end
+        within '.home-topic' do
+          expect(page).to have_content "You haven't create any products"
+          expect(page).to have_content 'please create products'
         end
       end
 
@@ -125,18 +127,16 @@ RSpec.describe 'Home', type: :system do
         expect(page).not_to have_content 'Signed out successfully.'
       end
     end
-  end
 
-  context 'when signin and created container' do
-    let!(:user) { create(:user) }
-    let!(:container) { create(:container) }
+    context 'when signin and created container' do
+      let!(:user) { create(:user) }
+      let!(:container) { create(:container) }
 
-    before do
-      sign_in user
-      visit root_path
-    end
+      before do
+        sign_in user
+        visit root_path
+      end
 
-    describe 'GET home/index' do
       it 'All Containers link generated' do
         within('.breadcrumb') do
           expect(page).not_to have_css '.srch-icon'
@@ -148,19 +148,17 @@ RSpec.describe 'Home', type: :system do
         expect(current_path).to eq user_containers_path(user)
       end
     end
-  end
 
-  context 'when signin and created product' do
-    let!(:user) { create(:user) }
-    let!(:container) { create(:container) }
-    let!(:product) { create(:product) }
+    context 'when signin and created product' do
+      let!(:user) { create(:user) }
+      let!(:container) { create(:container) }
+      let!(:product) { create(:product) }
 
-    before do
-      sign_in user
-      visit root_path
-    end
+      before do
+        sign_in user
+        visit root_path
+      end
 
-    describe 'GET home/index' do
       it 'All Products link generated' do
         within '.sidenav' do
           expect(page).to have_link 'All Products'
@@ -171,21 +169,26 @@ RSpec.describe 'Home', type: :system do
         end
         expect(current_path).to eq user_products_path(user)
       end
-    end
-  end
 
-  context 'when signin and created deadline_alerts' do
-    let!(:user) { create(:user) }
-    let!(:container) { create(:container) }
-    let!(:product) { create(:product) }
-    let!(:deadline_alert) { create(:deadline_alert) }
-
-    before do
-      sign_in user
-      visit root_path
+      it 'check if contents are displayed correctly' do
+        within '.home-topic' do
+          expect(page).to have_content "Let's check the Expiration Date"
+          expect(page).to have_button 'Check Expiration Date'
+        end
+      end
     end
 
-    describe 'GET home/index' do
+    context 'when signin and created deadline_alerts' do
+      let!(:user) { create(:user) }
+      let!(:container) { create(:container) }
+      let!(:product) { create(:product) }
+      let!(:deadline_alert) { create(:deadline_alert) }
+
+      before do
+        sign_in user
+        visit root_path
+      end
+
       it 'Alerts link generated' do
         within '.sidenav' do
           expect(page).to have_link 'Alerts'
@@ -193,6 +196,61 @@ RSpec.describe 'Home', type: :system do
         end
         expect(current_path).to eq user_deadline_alerts_path(user)
       end
+    end
+  end
+
+  describe 'GET home/about' do
+    before do
+      visit about_path
+    end
+
+    it 'check if contents are displayed correctly on home/about' do
+      within('#about-topic') do
+        expect(page).to have_content 'Step 1'
+        expect(page).to have_content 'Create Container'
+        expect(page).to have_content 'Step 2'
+        expect(page).to have_content 'Create Products'
+        expect(page).to have_content 'Step 3'
+        expect(page).to have_content 'Check Alerts'
+        expect(page).to have_css '.fa-archive'
+        expect(page).to have_css '.fa-hamburger'
+        expect(page).to have_css '.fa-exclamation-circle'
+      end
+      within('#about-btns') do
+        expect(page).to have_button 'Signup Here'
+        expect(page).to have_button 'Login Here'
+      end
+      within('#step1Modal') do
+        expect(page).to have_content 'Create Containers'
+        expect(page).to have_button 'Close'
+        expect(page).to have_css("img[src*='step1']")
+        expect(page).to have_css("img[src*='step2']")
+      end
+      within('#step2Modal') do
+        expect(page).to have_content 'Create Products'
+        expect(page).to have_css("img[src*='step3']")
+        expect(page).to have_css("img[src*='step4']")
+        expect(page).to have_css("img[src*='step5']")
+      end
+      within('#step3Modal') do
+        expect(page).to have_content 'Check Alerts'
+        expect(page).to have_css("img[src*='step6']")
+        expect(page).to have_css("img[src*='step7']")
+      end
+    end
+
+    it 'Signup Here ボタンを押してユーザー登録ページに飛ぶ' do
+      within('#about-btns') do
+        click_button 'Signup Here'
+      end
+      expect(current_path).to eq new_user_registration_path
+    end
+
+    it 'Login Here ボタンを押してユーザーログインページに飛ぶ' do
+      within('#about-btns') do
+        click_button 'Login Here'
+      end
+      expect(current_path).to eq new_user_session_path
     end
   end
 end
