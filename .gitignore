@@ -30,5 +30,3 @@
 .env
 .DS_Store
 public/uploads/
-/app/assets/images/*
-/public/images/*
