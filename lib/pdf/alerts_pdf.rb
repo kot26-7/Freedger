@@ -9,7 +9,7 @@ class AlertsPdf < Prawn::Document
     )
     @data = data
 
-    font 'vendor/assets/fonts/ipaexg.ttf'
+    font 'app/assets/fonts/ipaexg.ttf'
 
     header
 
