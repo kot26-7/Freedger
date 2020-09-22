@@ -54,14 +54,14 @@ class DeadlineAlertsController < ApplicationController
   end
 
   def list
-    data = @user.deadline_alerts.all.includes(:container, :product)
+    data = @user.deadline_alerts.all.includes(:container, :product).order(:action)
     respond_to do |format|
       format.html
       format.pdf do
         pdf = AlertsPdf.new(data)
 
         send_data pdf.render,
-                  filename: 'alerts_list.pdf',
+                  filename: 'list.pdf',
                   type: 'application/pdf',
                   disposition: 'inline'
       end
