@@ -24,11 +24,8 @@ RSpec.describe 'Devise::Sessions', type: :system do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
       click_button 'Log in'
-      expect(current_path).to eq user_path(1)
+      expect(current_path).to eq root_path
       expect(page).to have_content 'Login successfully.'
-      within('.breadcrumb') do
-        expect(page).to have_content user.username
-      end
       visit current_path
       expect(page).not_to have_content 'Login successfully.'
     end

@@ -82,9 +82,9 @@ RSpec.describe 'SearchSuggests', type: :request do
         expect(response).to have_http_status(:found)
       end
 
-      it 'redirect_to root_path' do
+      it 'redirect_to new_user_session_path' do
         get user_search_suggests_path(user_id: user.id, keyword: 'p', suggests_max_num: 5)
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to new_user_session_path
       end
     end
   end

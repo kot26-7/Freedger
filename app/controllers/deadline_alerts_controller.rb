@@ -1,6 +1,7 @@
-class DeadlineAlertsController < ApplicationController
+class DeadlineAlertsController < AuthenticationController
   require 'pdf/alerts_pdf'
 
+  before_action :authenticate_user!
   before_action :correct_user_with_user_id
   before_action :correct_deadline_alert, only: [:destroy]
 
@@ -69,13 +70,6 @@ class DeadlineAlertsController < ApplicationController
   end
 
   private
-
-  def correct_user_with_user_id
-    @user = User.find(params[:user_id])
-    unless @user == current_user
-      redirect_to user_path(current_user), alert: 'Invalid access detected'
-    end
-  end
 
   def correct_deadline_alert
     @deadline_alert = DeadlineAlert.find(params[:id])

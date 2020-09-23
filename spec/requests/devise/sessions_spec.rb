@@ -26,9 +26,9 @@ RSpec.describe 'Devise::Sessions', type: :request do
         expect(response.status).to eq 302
       end
 
-      it 'move to user page successfully' do
+      it 'move to top page successfully' do
         post user_session_path, params: { user: { email: user.email, password: 'password' } }
-        expect(response).to redirect_to user_path(user.id)
+        expect(response).to redirect_to root_path
       end
     end
 
