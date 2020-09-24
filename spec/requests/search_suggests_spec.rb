@@ -16,18 +16,18 @@ RSpec.describe 'SearchSuggests', type: :request do
       end
 
       it 'returns http success' do
-        get user_search_suggests_path(user_id: user.id, keyword: 'p', suggests_max_num: 5)
+        get user_search_suggests_path(user_id: user, keyword: 'p', suggests_max_num: 5)
         expect(response).to have_http_status(:success)
       end
 
       it 'returns res_body correctly' do
-        get user_search_suggests_path(user_id: user.id, keyword: 'p', suggests_max_num: 5)
+        get user_search_suggests_path(user_id: user, keyword: 'p', suggests_max_num: 5)
         expect(json_res).to eq products.take(5).pluck(:name)
         expect(json_res).not_to include products.last.name
       end
 
       it 'returns res_body correctly without suggests_max_num' do
-        get user_search_suggests_path(user_id: user.id), params: { keyword: 'p' }
+        get user_search_suggests_path(user_id: user), params: { keyword: 'p' }
         expect(json_res).to eq products.pluck(:name)
         expect(json_res).not_to include product_warning.name
       end
@@ -42,12 +42,12 @@ RSpec.describe 'SearchSuggests', type: :request do
       end
 
       it 'returns http bad_request' do
-        get user_search_suggests_path(user_id: user.id, keyword: nil, suggests_max_num: 5)
+        get user_search_suggests_path(user_id: user, keyword: nil, suggests_max_num: 5)
         expect(response).to have_http_status(:bad_request)
       end
 
       it 'returns res_body correctly' do
-        get user_search_suggests_path(user_id: user.id, keyword: nil, suggests_max_num: 5)
+        get user_search_suggests_path(user_id: user, keyword: nil, suggests_max_num: 5)
         expect(json_res['alert']).to eq 'Invalid parameter detected, please check parameters'
         expect(json_res['data']).to eq 'keyword: , suggests_max_num: 5'
       end
@@ -60,12 +60,12 @@ RSpec.describe 'SearchSuggests', type: :request do
       end
 
       it 'returns http bad_request' do
-        get user_search_suggests_path(user_id: user.id, keyword: 'p', suggests_max_num: 5)
+        get user_search_suggests_path(user_id: user, keyword: 'p', suggests_max_num: 5)
         expect(response).to have_http_status(:bad_request)
       end
 
       it 'returns res_body correctly' do
-        get user_search_suggests_path(user_id: user.id, keyword: 'p', suggests_max_num: 5)
+        get user_search_suggests_path(user_id: user, keyword: 'p', suggests_max_num: 5)
         expect(json_res['alert']).to eq 'Has no products, please create any products'
       end
     end
@@ -78,12 +78,12 @@ RSpec.describe 'SearchSuggests', type: :request do
       end
 
       it 'returns http found' do
-        get user_search_suggests_path(user_id: user.id, keyword: 'p', suggests_max_num: 5)
+        get user_search_suggests_path(user_id: user, keyword: 'p', suggests_max_num: 5)
         expect(response).to have_http_status(:found)
       end
 
       it 'redirect_to new_user_session_path' do
-        get user_search_suggests_path(user_id: user.id, keyword: 'p', suggests_max_num: 5)
+        get user_search_suggests_path(user_id: user, keyword: 'p', suggests_max_num: 5)
         expect(response).to redirect_to new_user_session_path
       end
     end

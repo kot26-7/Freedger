@@ -27,7 +27,7 @@ RSpec.describe 'Users', type: :request do
         expect(assigns(:user)).to eq user
       end
 
-      it 'invalid access and redirect to user#show' do
+      it 'invalid access and redirect to user_path' do
         get user_path(other_user)
         expect(response).to redirect_to user_path(user)
       end
@@ -50,7 +50,7 @@ RSpec.describe 'Users', type: :request do
         expect(response.body).to include full_title('Edit User')
       end
 
-      it 'invalid access and redirect to user#show' do
+      it 'invalid access and redirect to user_path' do
         get edit_user_path(other_user)
         expect(response).to redirect_to user_path(user)
       end
@@ -60,10 +60,10 @@ RSpec.describe 'Users', type: :request do
       context 'parameter is valid' do
         before do
           user_params = { username: 'hogehoge' }
-          patch user_path, params: { id: user.id, user: user_params }
+          patch user_path, params: { id: user, user: user_params }
         end
 
-        it 'update http has success' do
+        it 'update http has 302' do
           expect(response.status).to eq 302
         end
 
@@ -71,15 +71,15 @@ RSpec.describe 'Users', type: :request do
           expect(user.reload.username).to eq 'hogehoge'
         end
 
-        it 'redirects the page to /users/1' do
-          expect(response).to redirect_to user_path(1)
+        it 'redirects to user_path' do
+          expect(response).to redirect_to user_path(user)
         end
       end
 
-      context 'parameter is valid' do
+      context 'parameter is invalid' do
         before do
           user_params = { username: '' }
-          patch user_path, params: { id: user.id, user: user_params }
+          patch user_path, params: { id: user, user: user_params }
         end
 
         it 'returns http success' do
@@ -91,8 +91,8 @@ RSpec.describe 'Users', type: :request do
         end
       end
 
-      it 'invalid access and redirect to user#show' do
-        patch user_path, params: { id: other_user.id, user: { username: 'hogehoge' } }
+      it 'invalid access and redirect to user_path' do
+        patch user_path, params: { id: other_user, user: { username: 'hogehoge' } }
         expect(response).to redirect_to user_path(user)
       end
     end
@@ -104,35 +104,35 @@ RSpec.describe 'Users', type: :request do
 
       it 'deletes an user' do
         expect do
-          delete user_path, params: { id: user.id }
+          delete user_path, params: { id: user }
         end.to change(User, :count).by(-1)
       end
 
       it 'redirects the page to root_path' do
-        delete user_path, params: { id: user.id }
+        delete user_path, params: { id: user }
         expect(response).to redirect_to root_path
       end
 
       it 'deletes a container when user deleted' do
         expect do
-          delete user_path, params: { id: user.id }
+          delete user_path, params: { id: user }
         end.to change(Container, :count).by(-1)
       end
 
       it 'deletes all products when user deleted' do
         expect do
-          delete user_path, params: { id: user.id }
+          delete user_path, params: { id: user }
         end.to change(Product, :count).by(-2)
       end
 
       it 'deletes deadline_alert when user deleted' do
         expect do
-          delete user_path, params: { id: user.id }
+          delete user_path, params: { id: user }
         end.to change(DeadlineAlert, :count).by(-1)
       end
 
-      it 'invalid access and redirect to user#show' do
-        delete user_path(other_user.id)
+      it 'invalid access and redirect to user_path' do
+        delete user_path(other_user)
         expect(response).to redirect_to user_path(user)
       end
     end
@@ -159,14 +159,14 @@ RSpec.describe 'Users', type: :request do
 
     describe 'user#update' do
       it 'going to login page' do
-        patch user_path(user.id), params: { user: { username: 'hogehoge' } }
+        patch user_path(user), params: { user: { username: 'hogehoge' } }
         expect(response).to redirect_to new_user_session_path
       end
     end
 
     describe 'user#destroy' do
       it 'going to login page' do
-        delete user_path(user.id)
+        delete user_path(user)
         expect(response).to redirect_to new_user_session_path
       end
     end

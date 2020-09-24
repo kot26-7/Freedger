@@ -3,14 +3,14 @@ RSpec.describe Product, type: :model do
   let(:container) { create(:container) }
   let(:product_params) { attributes_for(:product) }
 
-  context 'All params is correct' do
+  context 'All params is valid' do
     it 'product is valid' do
       product = container.products.new(product_params)
       expect(product).to be_valid
     end
   end
 
-  context 'name is uncorrect' do
+  context 'name is invalid' do
     it 'name is invalid with nil' do
       product = container.products.new(product_params[name: nil])
       expect(product).to be_invalid
@@ -27,7 +27,7 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  context 'number is uncorrect' do
+  context 'number is invalid' do
     it 'number is invalid with nil' do
       product = container.products.new(product_params[number: nil])
       expect(product).to be_invalid
@@ -49,7 +49,7 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  context 'product_created_at is uncorrect' do
+  context 'product_created_at is invalid' do
     it 'product_created_at is invalid with nil' do
       product = container.products.new(product_params[product_created_at: nil])
       expect(product).to be_invalid
@@ -61,7 +61,7 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  context 'product_expired_at is uncorrect' do
+  context 'product_expired_at is invalid' do
     it 'product_expired_at is invalid with nil' do
       product = container.products.new(product_params[product_expired_at: nil])
       expect(product).to be_invalid
@@ -73,7 +73,7 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  context 'description is uncorrect' do
+  context 'description is invalid' do
     it 'description is invalid with greater than 150' do
       product = container.products.new(product_params[description: 'a' * 151])
       expect(product).to be_invalid

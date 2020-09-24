@@ -21,12 +21,12 @@ RSpec.describe 'Devise::Sessions', type: :request do
     let(:user) { create(:user) }
 
     context 'parameters are valid' do
-      it 'create request http is success' do
+      it 'create request http is 302' do
         post user_session_path, params: { user: { email: user.email, password: 'password' } }
         expect(response.status).to eq 302
       end
 
-      it 'move to top page successfully' do
+      it 'redirect to top page successfully' do
         post user_session_path, params: { user: { email: user.email, password: 'password' } }
         expect(response).to redirect_to root_path
       end

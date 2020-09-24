@@ -23,7 +23,7 @@ RSpec.describe 'Devise::Registrations', type: :request do
 
   describe 'GET registrations#create' do
     context 'parameters are valid' do
-      it 'create request http is success' do
+      it 'create request http is 302' do
         post user_registration_path, params: { user: user_params }
         expect(response.status).to eq 302
       end
@@ -32,6 +32,11 @@ RSpec.describe 'Devise::Registrations', type: :request do
         expect do
           post user_registration_path, params: { user: user_params }
         end.to change(User, :count).by 1
+      end
+
+      it 'redirect to top page successfully' do
+        post user_registration_path, params: { user: user_params }
+        expect(response).to redirect_to root_path
       end
     end
 

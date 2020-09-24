@@ -6,7 +6,7 @@ RSpec.describe 'Devise::Registrations', type: :system do
       visit new_user_registration_path
     end
 
-    it 'check if contents are displayed correctly on users/signup' do
+    it 'check if contents are displayed correctly on new_user_registration' do
       within('.breadcrumb') do
         expect(page).to have_content 'Freedger - Signup'
       end

@@ -13,7 +13,7 @@ RSpec.describe 'User', type: :system do
         visit user_path(user)
       end
 
-      it 'check if contents are displayed correctly on /users/:id' do
+      it 'check if contents are displayed correctly on user_path' do
         within('.breadcrumb') do
           expect(page).to have_content user.username
         end
@@ -45,7 +45,7 @@ RSpec.describe 'User', type: :system do
       visit edit_user_path(user)
     end
 
-    it 'check if contents are displayed correctly on /users/:id/edit' do
+    it 'check if contents are displayed correctly on edit_user' do
       within('.breadcrumb') do
         expect(page).to have_content 'Freedger - Edit User'
       end
@@ -105,7 +105,7 @@ RSpec.describe 'User', type: :system do
       visit edit_user_registration_path
     end
 
-    it 'check if contents are displayed correctly on users/edit' do
+    it 'check if contents are displayed correctly on edit_user_registration' do
       within('.breadcrumb') do
         expect(page).to have_content 'Change Password'
       end

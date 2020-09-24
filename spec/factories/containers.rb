@@ -5,9 +5,9 @@ FactoryBot.define do
     user_id { 1 }
   end
 
-  factory :container2, class: 'Container' do
-    name { 'Container_user2' }
-    description { 'this is sample container2' }
+  factory :other_container, class: 'Container' do
+    name { 'Container_other_user' }
+    description { 'this is sample other_container' }
     user_id { 2 }
   end
 end

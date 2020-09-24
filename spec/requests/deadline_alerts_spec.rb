@@ -46,7 +46,7 @@ RSpec.describe 'DeadlineAlerts', type: :request do
         travel_to('2020-04-10') { e.run }
       end
 
-      it 'create http has success' do
+      it 'create http has 302' do
         post user_deadline_alerts_path(user)
         expect(response.status).to eq 302
       end
@@ -57,7 +57,7 @@ RSpec.describe 'DeadlineAlerts', type: :request do
         end.to change(user.deadline_alerts, :count).by 3
       end
 
-      it 'redirects the page to users/1/deadline_alerts' do
+      it 'redirects to user_deadline_alerts_path' do
         post user_deadline_alerts_path(user)
         expect(response).to redirect_to user_deadline_alerts_path(user)
       end
@@ -83,13 +83,13 @@ RSpec.describe 'DeadlineAlerts', type: :request do
       let!(:deadline_alert) { create(:deadline_alert) }
 
       it 'destroy http has success' do
-        delete user_deadline_alert_path(user.id, deadline_alert.id), xhr: true
+        delete user_deadline_alert_path(user, deadline_alert), xhr: true
         expect(response.status).to eq 200
       end
 
       it 'deletes an deadline_alert' do
         expect do
-          delete user_deadline_alert_path(user.id, deadline_alert.id), xhr: true
+          delete user_deadline_alert_path(user, deadline_alert), xhr: true
         end.to change(DeadlineAlert, :count).by(-1)
       end
     end
@@ -132,7 +132,7 @@ RSpec.describe 'DeadlineAlerts', type: :request do
       let!(:deadline_alert) { create(:deadline_alert) }
 
       it 'going to login page' do
-        delete user_deadline_alert_path(user.id, deadline_alert.id)
+        delete user_deadline_alert_path(user, deadline_alert)
         expect(response).to redirect_to new_user_session_path
       end
     end

@@ -13,7 +13,7 @@ RSpec.describe 'DeadlineAlert', type: :system do
       travel_to('2020-4-10') { e.run }
     end
 
-    context 'when it has some deadline_alerts' do
+    context 'when user has deadline_alerts' do
       let!(:p_war) { create(:product_warning) }
       let!(:p_exp) { create(:product_expired) }
       let!(:p_recom) { create(:product_recommend) }
@@ -76,7 +76,7 @@ RSpec.describe 'DeadlineAlert', type: :system do
       end
     end
 
-    context 'when it has no deadline_alerts' do
+    context 'when user has no deadline_alerts' do
       let!(:p_safe) { create(:product_safe) }
 
       before do

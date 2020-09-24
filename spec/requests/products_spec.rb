@@ -142,7 +142,7 @@ RSpec.describe 'Products', type: :request do
       end
 
       context 'parameter is valid' do
-        it 'create http has success' do
+        it 'create http has 302' do
           post user_container_products_path, params: valid_product_params
           expect(response.status).to eq 302
         end
@@ -153,13 +153,13 @@ RSpec.describe 'Products', type: :request do
           end.to change(Product, :count).by 1
         end
 
-        it 'redirects the page to users/1/containers/1/products/1' do
+        it 'redirects to user_container_product_path' do
           post user_container_products_path, params: valid_product_params
-          expect(response).to redirect_to user_container_product_path(1, 1, 1)
+          expect(response).to redirect_to user_container_product_path(user, container, 1)
         end
       end
 
-      context 'parameter is valid' do
+      context 'parameter is invalid' do
         before do
           post user_container_products_path, params: invalid_product_params
         end
@@ -192,7 +192,7 @@ RSpec.describe 'Products', type: :request do
       end
 
       context 'parameter is valid' do
-        it 'update http has success' do
+        it 'update http has 302' do
           patch user_container_product_path, params: valid_product_params
           expect(response.status).to eq 302
         end
@@ -202,13 +202,13 @@ RSpec.describe 'Products', type: :request do
           expect(product.reload.name).to eq 'sample product'
         end
 
-        it 'redirects the page to users/1/containers/1/products/1' do
+        it 'redirects the page to user_container_product_path' do
           patch user_container_product_path, params: valid_product_params
-          expect(response).to redirect_to user_container_product_path(1, 1, 1)
+          expect(response).to redirect_to user_container_product_path(user, container, product)
         end
       end
 
-      context 'parameter is valid' do
+      context 'parameter is invalid' do
         it 'returns http success' do
           patch user_container_product_path, params: invalid_product_params
           expect(response.status).to eq 200
@@ -225,7 +225,7 @@ RSpec.describe 'Products', type: :request do
         get edit_user_container_product_path(user, container, product)
       end
 
-      it 'destroy http has success' do
+      it 'destroy http has 302' do
         delete user_container_product_path, params: product_params
         expect(response.status).to eq 302
       end
@@ -315,7 +315,7 @@ RSpec.describe 'Products', type: :request do
       end
 
       it 'going to login page' do
-        patch user_container_product_path(product.id, valid_product_params)
+        patch user_container_product_path(product, valid_product_params)
         expect(response).to redirect_to new_user_session_path
       end
     end
@@ -325,7 +325,7 @@ RSpec.describe 'Products', type: :request do
       let(:product_params) { { user_id: user, container_id: container, product: product } }
 
       it 'going to login page' do
-        delete user_container_product_path(product.id, product_params)
+        delete user_container_product_path(product, product_params)
         expect(response).to redirect_to new_user_session_path
       end
     end

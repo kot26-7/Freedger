@@ -12,7 +12,7 @@ RSpec.describe 'Containers', type: :request do
 
     describe 'GET container#index' do
       let!(:containers) { create_list(:container, 2) }
-      let!(:container2) { create(:container2) }
+      let!(:other_container) { create(:other_container) }
 
       before do
         get user_containers_path(user)
@@ -38,7 +38,7 @@ RSpec.describe 'Containers', type: :request do
         expect(response.body).to include full_title('All Containers')
       end
 
-      it 'invalid access and redirect to user#show' do
+      it 'invalid access and redirect to user_path' do
         get user_containers_path(other_user)
         expect(response).to redirect_to user_path(user)
       end
@@ -46,7 +46,7 @@ RSpec.describe 'Containers', type: :request do
 
     describe 'GET container#show' do
       let(:container) { create(:container) }
-      let(:container2) { create(:container2) }
+      let(:other_container) { create(:other_container) }
 
       before do
         get user_container_path(user, container)
@@ -68,8 +68,8 @@ RSpec.describe 'Containers', type: :request do
         expect(response.body).to include full_title("#{user.username} - #{container.name}")
       end
 
-      it 'invalid access and redirect to user#show' do
-        get user_container_path(user, container2)
+      it 'invalid access and redirect to user_path' do
+        get user_container_path(user, other_container)
         expect(response).to redirect_to user_path(user)
       end
     end
@@ -94,7 +94,7 @@ RSpec.describe 'Containers', type: :request do
 
     describe 'GET container#edit' do
       let(:container) { create(:container) }
-      let(:container2) { create(:container2) }
+      let(:other_container) { create(:other_container) }
 
       before do
         get edit_user_container_path(user, container)
@@ -120,8 +120,8 @@ RSpec.describe 'Containers', type: :request do
         expect(response.body).to include full_title('Edit Container')
       end
 
-      it 'invalid access and redirect to user#show' do
-        get edit_user_container_path(user, container2)
+      it 'invalid access and redirect to user_path' do
+        get edit_user_container_path(user, other_container)
         expect(response).to redirect_to user_path(user)
       end
     end
@@ -146,7 +146,7 @@ RSpec.describe 'Containers', type: :request do
       end
 
       context 'parameter is valid' do
-        it 'create http has success' do
+        it 'create http has 302' do
           post user_containers_path, params: container_params
           expect(response.status).to eq 302
         end
@@ -157,13 +157,13 @@ RSpec.describe 'Containers', type: :request do
           end.to change(Container, :count).by 1
         end
 
-        it 'redirects the page to users/:user_id/containers/:id' do
+        it 'redirects to user_container_path' do
           post user_containers_path, params: container_params
-          expect(response).to redirect_to user_container_path(user.id, 1)
+          expect(response).to redirect_to user_container_path(user, 1)
         end
       end
 
-      context 'parameter is valid' do
+      context 'parameter is invalid' do
         before do
           post user_containers_path, params: invalid_container_params
         end
@@ -194,7 +194,7 @@ RSpec.describe 'Containers', type: :request do
       end
 
       context 'parameter is valid' do
-        it 'update http has success' do
+        it 'update http has 302' do
           patch user_container_path, params: valid_container_params
           expect(response.status).to eq 302
         end
@@ -204,13 +204,13 @@ RSpec.describe 'Containers', type: :request do
           expect(container.reload.name).to eq 'sample container'
         end
 
-        it 'redirects the page to users/:user_id/containers/:id' do
+        it 'redirects to user_container_path' do
           patch user_container_path, params: valid_container_params
-          expect(response).to redirect_to user_container_path(user.id, container.id)
+          expect(response).to redirect_to user_container_path(user, container)
         end
       end
 
-      context 'parameter is valid' do
+      context 'parameter is invalid' do
         it 'returns http success' do
           patch user_container_path, params: invalid_container_params
           expect(response.status).to eq 200
@@ -227,7 +227,7 @@ RSpec.describe 'Containers', type: :request do
         get edit_user_container_path(user, container)
       end
 
-      it 'destroy http has success' do
+      it 'destroy http is 302' do
         delete user_container_path, params: { user_id: user, container: container }
         expect(response.status).to eq 302
       end

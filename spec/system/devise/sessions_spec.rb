@@ -6,7 +6,7 @@ RSpec.describe 'Devise::Sessions', type: :system do
       visit new_user_session_path
     end
 
-    it 'check if contents are displayed correctly on users/signin' do
+    it 'check if contents are displayed correctly on new_user_session' do
       within('.breadcrumb') do
         expect(page).to have_content 'Login'
       end
