@@ -1,4 +1,4 @@
-class ContainersController < ApplicationController
+class ContainersController < AuthenticationController
   before_action :authenticate_user!
   before_action :correct_user_with_user_id
   before_action :correct_container, only: [:show, :edit, :update, :destroy]
@@ -48,13 +48,6 @@ class ContainersController < ApplicationController
 
   def container_params
     params.require(:container).permit(:name, :position, :description, :image)
-  end
-
-  def correct_user_with_user_id
-    @user = User.find(params[:user_id])
-    unless @user == current_user
-      redirect_to user_path(current_user), alert: 'Invalid access detected'
-    end
   end
 
   def correct_container

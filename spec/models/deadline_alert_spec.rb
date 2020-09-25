@@ -6,14 +6,14 @@ RSpec.describe DeadlineAlert, type: :model do
   let!(:product) { create(:product) }
   let(:deadline_alert_params) { attributes_for(:deadline_alert) }
 
-  context 'All params is correct' do
+  context 'All params is valid' do
     it 'deadline_alert is valid' do
       deadline = DeadlineAlert.new(deadline_alert_params)
       expect(deadline).to be_valid
     end
   end
 
-  context 'action is uncorrect' do
+  context 'action is invalid' do
     it 'invalid with action nil' do
       deadline = DeadlineAlert.new(deadline_alert_params[action: nil])
       expect(deadline).to be_invalid

@@ -13,7 +13,7 @@ RSpec.describe 'Container', type: :system do
       visit new_user_container_path(user)
     end
 
-    it 'check if contents are displayed correctly on users/:user_id/containers' do
+    it 'check if contents are displayed correctly on new_user_container_path' do
       within('.breadcrumb') do
         expect(page).to have_content 'Container New'
       end
@@ -70,7 +70,7 @@ RSpec.describe 'Container', type: :system do
       visit user_containers_path(user)
     end
 
-    it 'check if contents are displayed correctly on users/:user_id/containers' do
+    it 'check if contents are displayed correctly on user_containers' do
       within('.breadcrumb') do
         expect(page).to have_content 'All Containers'
       end
@@ -87,7 +87,7 @@ RSpec.describe 'Container', type: :system do
         visit user_container_path(user, container)
       end
 
-      it 'check if contents are displayed correctly on users/:user_id/containers/:id' do
+      it 'check if contents are displayed correctly on user_container_path' do
         within('.breadcrumb') do
           expect(page).to have_content "Freedger - #{user.username} - #{container.name}"
         end
@@ -122,7 +122,7 @@ RSpec.describe 'Container', type: :system do
         visit user_container_path(user, container)
       end
 
-      it 'check if contents are displayed correctly on users/:user_id/containers/:id' do
+      it 'check if contents are displayed correctly on user_container' do
         within('.card') do
           expect(page).to have_content "Products: #{container.products.size}"
         end
@@ -147,7 +147,7 @@ RSpec.describe 'Container', type: :system do
       visit edit_user_container_path(user, container)
     end
 
-    it 'check if contents are displayed correctly on users/:user_id/containers/:id/edit' do
+    it 'check if contents are displayed correctly on edit_user_container' do
       within('.breadcrumb') do
         expect(page).to have_content 'Freedger - Edit Container'
       end

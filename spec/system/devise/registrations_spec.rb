@@ -6,7 +6,7 @@ RSpec.describe 'Devise::Registrations', type: :system do
       visit new_user_registration_path
     end
 
-    it 'check if contents are displayed correctly on users/signup' do
+    it 'check if contents are displayed correctly on new_user_registration' do
       within('.breadcrumb') do
         expect(page).to have_content 'Freedger - Signup'
       end
@@ -31,11 +31,8 @@ RSpec.describe 'Devise::Registrations', type: :system do
       fill_in 'Password', with: 'password'
       fill_in 'Password confirmation', with: 'password'
       click_button 'Sign up'
-      expect(current_path).to eq user_path(1)
+      expect(current_path).to eq root_path
       expect(page).to have_content 'Welcome! You have signed up successfully.'
-      within('.breadcrumb') do
-        expect(page).to have_content 'hogehoge'
-      end
       visit current_path
       expect(page).not_to have_content 'Welcome! You have signed up successfully.'
     end

@@ -1,15 +1,15 @@
 RSpec.describe User, type: :model do
   let(:user_params) { attributes_for(:user) }
 
-  context 'All params is correct' do
+  context 'All params is valid' do
     it 'user is valid' do
       user = User.new(user_params)
       expect(user).to be_valid
     end
   end
 
-  context 'username is uncorrect' do
-    it 'blank username is invalid' do
+  context 'username is invalid' do
+    it 'empty username is invalid' do
       user = User.new(user_params[username: ''])
       expect(user).to be_invalid
     end
@@ -24,14 +24,14 @@ RSpec.describe User, type: :model do
       expect(user).to be_invalid
     end
 
-    it 'username over 51 is invalid' do
+    it 'username greater than 51 is invalid' do
       user = User.new(user_params[username: 'a' * 51])
       expect(user).to be_invalid
     end
   end
 
-  context 'email is uncorrect' do
-    it 'blank email is invalid' do
+  context 'email is invalid' do
+    it 'empty email is invalid' do
       user = User.new(user_params[email: ''])
       expect(user).to be_invalid
     end
@@ -47,8 +47,8 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context 'password is uncorrect' do
-    it 'blank password is invalid' do
+  context 'password is invalid' do
+    it 'empty password is invalid' do
       user = User.new(user_params[password: ''])
       expect(user).to be_invalid
     end
@@ -58,7 +58,7 @@ RSpec.describe User, type: :model do
       expect(user).to be_invalid
     end
 
-    it 'password under 6 is invalid' do
+    it 'password less than 6 is invalid' do
       user = User.new(user_params[password: 'faaff'])
       expect(user).to be_invalid
     end

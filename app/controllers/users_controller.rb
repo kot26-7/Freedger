@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < AuthenticationController
   before_action :authenticate_user!
   before_action :correct_user, except: [:index]
 

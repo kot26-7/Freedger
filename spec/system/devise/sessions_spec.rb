@@ -6,7 +6,7 @@ RSpec.describe 'Devise::Sessions', type: :system do
       visit new_user_session_path
     end
 
-    it 'check if contents are displayed correctly on users/signin' do
+    it 'check if contents are displayed correctly on new_user_session' do
       within('.breadcrumb') do
         expect(page).to have_content 'Login'
       end
@@ -24,11 +24,8 @@ RSpec.describe 'Devise::Sessions', type: :system do
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
       click_button 'Log in'
-      expect(current_path).to eq user_path(1)
+      expect(current_path).to eq root_path
       expect(page).to have_content 'Login successfully.'
-      within('.breadcrumb') do
-        expect(page).to have_content user.username
-      end
       visit current_path
       expect(page).not_to have_content 'Login successfully.'
     end

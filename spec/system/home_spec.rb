@@ -7,7 +7,7 @@ RSpec.describe 'Home', type: :system do
         visit root_path
       end
 
-      it 'check if contents are displayed correctly on home/index' do
+      it 'check if contents are displayed correctly on root' do
         expect(page).to have_title full_title('Home')
         within('.sidenav') do
           expect(page).to have_link 'Home'
@@ -204,7 +204,7 @@ RSpec.describe 'Home', type: :system do
       visit about_path
     end
 
-    it 'check if contents are displayed correctly on home/about' do
+    it 'check if contents are displayed correctly on about' do
       within('#about-topic') do
         expect(page).to have_content 'Step 1'
         expect(page).to have_content 'Create Container'

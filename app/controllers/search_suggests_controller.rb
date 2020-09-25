@@ -1,4 +1,5 @@
-class SearchSuggestsController < ApplicationController
+class SearchSuggestsController < AuthenticationController
+  before_action :authenticate_user!
   before_action :correct_user_with_user_id
 
   def index
@@ -26,12 +27,5 @@ class SearchSuggestsController < ApplicationController
 
   def autocomplete_params
     params.permit(:keyword, :suggests_max_num)
-  end
-
-  def correct_user_with_user_id
-    @user = User.find(params[:user_id])
-    unless @user == current_user
-      redirect_to root_path, alert: 'Invalid access detected'
-    end
   end
 end

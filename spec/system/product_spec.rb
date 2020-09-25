@@ -14,7 +14,7 @@ RSpec.describe 'Product', type: :system do
       visit new_user_container_product_path(user, container)
     end
 
-    it 'check if contents are displayed correctly on users/:user_id/products/new' do
+    it 'check if contents are displayed correctly on new_user_container_product' do
       within('.breadcrumb') do
         expect(page).to have_content 'Freedger - Create Product'
       end
@@ -91,7 +91,7 @@ RSpec.describe 'Product', type: :system do
         visit user_products_path(user)
       end
 
-      it 'check if contents are displayed correctly on users/:user_id/containers' do
+      it 'check if contents are displayed correctly on user_products' do
         within('.breadcrumb') do
           expect(page).to have_content 'Freedger - All Products'
         end
@@ -142,7 +142,7 @@ RSpec.describe 'Product', type: :system do
         visit user_products_path(user)
       end
 
-      it 'check if contents are displayed correctly on users/:user_id/containers' do
+      it 'check if contents are displayed correctly on user_products' do
         within('#prd-indx-form') do
           expect(page).to have_content 'No products found'
         end
@@ -157,7 +157,7 @@ RSpec.describe 'Product', type: :system do
       visit user_container_product_path(user, container, product)
     end
 
-    it 'check if contents are displayed correctly on users/:user_id/containers/:id' do
+    it 'check if contents are displayed correctly on user_container_product' do
       within('.breadcrumb') do
         expect(page).to have_content "Freedger - #{user.username} - #{product.name}"
       end
@@ -192,7 +192,7 @@ RSpec.describe 'Product', type: :system do
       visit edit_user_container_product_path(user, container, product)
     end
 
-    it 'check if contents are displayed correctly on users/:user_id/products/:id/edit' do
+    it 'check if contents are displayed correctly on edit_user_container_product' do
       within('.breadcrumb') do
         expect(page).to have_content 'Edit Product'
       end
