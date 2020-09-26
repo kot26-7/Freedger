@@ -3,7 +3,7 @@
 Freedgerは、冷蔵庫または冷凍庫にある食材や飲料の消費期限をチェックするアプリになります。
 
 ## :globe_with_meridians: APP URL
-### **https://freedger-20200925075006.herokuapp.com/**
+### **https://freedger-20200926013912.herokuapp.com/**
 
 
 ## :wrench: 使用方法
