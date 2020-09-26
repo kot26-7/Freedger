@@ -189,6 +189,12 @@ RSpec.describe 'Home', type: :system do
         visit root_path
       end
 
+      it 'check if contents are displayed correctly' do
+        within '.home-topic' do
+          expect(page).to have_button 'Update Alerts'
+        end
+      end
+
       it 'Alerts link generated' do
         within '.sidenav' do
           expect(page).to have_link 'Alerts'
