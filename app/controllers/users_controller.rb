@@ -21,7 +21,7 @@ class UsersController < AuthenticationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: 'Update Your Profile successfully'
+      redirect_to user_path(@user), notice: 'ユーザー情報が更新されました。'
     else
       render :edit
     end
@@ -29,7 +29,7 @@ class UsersController < AuthenticationController
 
   def destroy
     @user.destroy
-    flash[:notice] = 'User deleted'
+    flash[:notice] = 'ユーザーアカウントが削除されました。'
     redirect_to root_path
   end
 
@@ -42,7 +42,7 @@ class UsersController < AuthenticationController
   def correct_user
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user), alert: 'Invalid access detected'
+      redirect_to user_path(current_user), alert: Settings.invalid_access_msg
     end
   end
 end

@@ -28,7 +28,7 @@ class ProductsController < AuthenticationController
     @product = @container.products.build(product_params)
     if @product.save
       redirect_to user_container_product_path(@product.user_id, @product.container_id, @product),
-                  notice: 'Product created Successfully'
+                  notice: '飲食料品の登録に成功しました。'
     else
       render :new
     end
@@ -37,7 +37,7 @@ class ProductsController < AuthenticationController
   def update
     if @product.update(product_params)
       redirect_to user_container_product_path(@product.user_id, @product.container_id, @product),
-                  notice: 'Update Successfully'
+                  notice: '飲食料品の情報が更新されました。'
     else
       render :edit
     end
@@ -45,7 +45,7 @@ class ProductsController < AuthenticationController
 
   def destroy
     @product.destroy
-    redirect_to user_path(current_user), notice: 'Deleted Product Successfully'
+    redirect_to user_path(current_user), notice: '飲食料品が削除されました。'
   end
 
   private
@@ -63,7 +63,7 @@ class ProductsController < AuthenticationController
   def correct_product
     @product = Product.find(params[:id])
     if @product.user != @user || @product.container != @container
-      redirect_to user_path(current_user), alert: 'Invalid access detected'
+      redirect_to user_path(current_user), alert: Settings.invalid_access_msg
     end
   end
 end

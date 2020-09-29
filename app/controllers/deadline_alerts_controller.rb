@@ -41,7 +41,7 @@ class DeadlineAlertsController < AuthenticationController
                              product_id: product.id, action: Settings.deadline_recommend)
       end
     end
-    redirect_to user_deadline_alerts_path(@user), notice: 'Searched Successfully'
+    redirect_to user_deadline_alerts_path(@user), notice: '消費期限のチェックが完了しました。'
   end
 
   def destroy
@@ -74,7 +74,7 @@ class DeadlineAlertsController < AuthenticationController
   def correct_deadline_alert
     @deadline_alert = DeadlineAlert.find(params[:id])
     unless @deadline_alert.user_id == @user.id
-      redirect_to user_path(current_user), alert: 'Invalid access detected'
+      redirect_to user_path(current_user), alert: Settings.invalid_access_msg
     end
   end
 end
