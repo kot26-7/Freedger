@@ -16,11 +16,11 @@
   </div>
 <% else %>
   <div class='jumbotron'>
-    <h1 class='display-4'>Welcome to Freedger</h1>
-    <p class='lead'>This app can check products' expiration date to create containers as Fridge and Freezer.</p>
+    <h1 class='display-4'>Freedger へようこそ！</h1>
+    <p class='lead'>このWebアプリケーションでは冷蔵庫及び冷凍庫内にある 食品や飲料の消費期限を管理することができます。</p>
     <hr class='my-4'>
-    <p>Before using this, you need to login or signup for user</p></br>
-    <p>When you know about this app more, please check 'Learn more...'</p></br>
+    <p>このWebアプリケーションは、ユーザー登録及びログインを行う必要があります。</p></br>
+    <p>操作方法をご確認の際は'Learn more' もしくは 'About'のリンクをクリックしてください。</p></br>
     <%= button_to 'Signup Here', new_user_registration_path, method: :get, class: 'btn btn-success btn-lg btn-block' %></br>
     <%= button_to 'Login Here', new_user_session_path, method: :get, class: 'btn btn-primary btn-lg btn-block' %></br>
     <%= button_to 'Learn more...', about_path, method: :get, class: 'btn btn-outline-secondary btn-lg' %>
