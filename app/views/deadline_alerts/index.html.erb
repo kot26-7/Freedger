@@ -1,7 +1,7 @@
-<% provide(:title, 'Results') %>
+<% provide(:title, 'アラート 一覧') %>
 <% if @alerts.present? %>
   <div id='pdf-link'>
-    <%= link_to 'Displaying PDF', list_user_deadline_alerts_path(@user, format: 'pdf') %>
+    <%= link_to 'PDF で表示する', list_user_deadline_alerts_path(@user, format: 'pdf') %>
   </div>
   <div class='col-md-10 col-lg-10 alert-chart'>
     <%= pie_chart @data, colors: ['red', 'orange', '#83e698'] %>

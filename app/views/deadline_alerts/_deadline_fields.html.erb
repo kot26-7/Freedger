@@ -9,9 +9,9 @@
     <li class='list-group-item'>
       <%= link_to deadline.product.name, user_container_product_path(@user, deadline.container_id, deadline.product) %>
     </li>
-    <li class='list-group-item'><%= "Exp - #{deadline.product.product_expired_at}" %></li>
+    <li class='list-group-item'><%= "消費期限 - #{deadline.product.product_expired_at}" %></li>
     <li class='list-group-item'>
-      <%= link_to 'Delete Alert', user_deadline_alert_path(@user, deadline), method: :delete, id: 'delt-btn', remote: true %>
+      <%= link_to 'アラートを削除', user_deadline_alert_path(@user, deadline), method: :delete, id: 'delt-btn', remote: true %>
     </li>
   </ul>
 </div>
