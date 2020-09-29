@@ -35,7 +35,7 @@ RSpec.describe 'Containers', type: :request do
       end
 
       it 'displayed on correct title' do
-        expect(response.body).to include full_title('All Containers')
+        expect(response.body).to include full_title('コンテナ 一覧')
       end
 
       it 'invalid access and redirect to user_path' do
@@ -88,7 +88,7 @@ RSpec.describe 'Containers', type: :request do
       end
 
       it 'displayed on correct title' do
-        expect(response.body).to include full_title('Container New')
+        expect(response.body).to include full_title('コンテナ 作成')
       end
     end
 
@@ -117,7 +117,7 @@ RSpec.describe 'Containers', type: :request do
       end
 
       it 'displayed on correct title' do
-        expect(response.body).to include full_title('Edit Container')
+        expect(response.body).to include full_title('コンテナ 編集')
       end
 
       it 'invalid access and redirect to user_path' do

@@ -47,7 +47,7 @@ RSpec.describe 'Users', type: :request do
       end
 
       it 'displayed on correct title' do
-        expect(response.body).to include full_title('Edit User')
+        expect(response.body).to include full_title('ユーザー編集')
       end
 
       it 'invalid access and redirect to user_path' do

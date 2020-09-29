@@ -10,7 +10,7 @@ RSpec.describe 'Home', type: :system do
       it 'check if contents are displayed correctly on root' do
         expect(page).to have_title full_title('Home')
         within('.sidenav') do
-          expect(page).to have_link 'Home'
+          expect(page).to have_link 'ホーム'
           expect(page).to have_link 'Login'
           expect(page).to have_link 'Signup'
         end
@@ -19,16 +19,16 @@ RSpec.describe 'Home', type: :system do
           expect(page).not_to have_css '.srch-icon'
         end
         within('.jumbotron') do
-          expect(page).to have_content 'Welcome to Freedger'
+          expect(page).to have_content 'Freedger へようこそ！'
           expect(page).to have_button 'Signup Here'
           expect(page).to have_button 'Login Here'
         end
         expect(page).not_to have_button '賞味期限をチェック'
       end
 
-      it 'Home を押してホームページに飛ぶ' do
+      it 'ホーム を押してホームページに飛ぶ' do
         within('.sidenav') do
-          click_link 'Home'
+          click_link 'ホーム'
         end
         expect(current_path).to eq root_path
       end
@@ -72,23 +72,23 @@ RSpec.describe 'Home', type: :system do
 
       it 'check if contents are displayed correctly' do
         within '.sidenav' do
-          expect(page).to have_link 'Home'
+          expect(page).to have_link 'ホーム'
           expect(page).to have_link user.username
-          expect(page).to have_link 'Edit User'
+          expect(page).to have_link 'ユーザー 編集'
           expect(page).to have_link 'Logout'
-          expect(page).to have_link 'Create Container'
+          expect(page).to have_link 'コンテナ 作成'
           expect(page).not_to have_link 'Login'
           expect(page).not_to have_link 'Signup'
-          expect(page).not_to have_link 'All Containers'
-          expect(page).not_to have_link 'All Products'
-          expect(page).not_to have_link 'Alerts'
+          expect(page).not_to have_link 'コンテナ 一覧'
+          expect(page).not_to have_link '飲食料品 一覧'
+          expect(page).not_to have_link 'アラート 一覧'
         end
         within('.breadcrumb') do
           expect(page).not_to have_css '.srch-icon'
         end
         within '.home-topic' do
-          expect(page).to have_content "You haven't create any products"
-          expect(page).to have_content 'please create products'
+          expect(page).to have_content 'コンテナに飲食料品が登録されていません。'
+          expect(page).to have_content 'コンテナを作成もしくは飲食料品を登録してください。'
         end
       end
 
@@ -97,34 +97,36 @@ RSpec.describe 'Home', type: :system do
         expect(current_path).to eq user_path(user)
       end
 
-      it 'Edit User を押してユーザー編集ページに飛ぶ' do
-        click_link 'Edit User'
+      it 'ユーザー 編集 を押してユーザー編集ページに飛ぶ' do
+        click_link 'ユーザー 編集'
         expect(current_path).to eq edit_user_path(user)
       end
 
-      it 'Create Container を押してコンテナ作成ページに飛ぶ' do
-        click_link 'Create Container'
+      it 'コンテナ 作成 を押してコンテナ作成ページに飛ぶ' do
+        click_link 'コンテナ 作成'
         expect(current_path).to eq new_user_container_path(user)
       end
 
-      it 'Logout を押してログアウトする' do
-        click_link 'Logout'
-        expect(current_path).to eq root_path
+      it 'Logout を押してログアウトする', js: true do
+        page.accept_confirm do
+          click_link 'Logout'
+        end
         within '.sidenav' do
-          expect(page).to have_link 'Home'
+          expect(page).to have_link 'ホーム'
           expect(page).not_to have_link user.username
-          expect(page).not_to have_link 'Edit User'
+          expect(page).not_to have_link 'ユーザー 編集'
           expect(page).not_to have_link 'Logout'
-          expect(page).not_to have_link 'All Containers'
-          expect(page).not_to have_link 'Create Container'
-          expect(page).not_to have_link 'All Products'
-          expect(page).not_to have_link 'Alerts'
+          expect(page).not_to have_link 'コンテナ 一覧'
+          expect(page).not_to have_link 'コンテナ 作成'
+          expect(page).not_to have_link '飲食料品 一覧'
+          expect(page).not_to have_link 'アラート 一覧'
           expect(page).to have_link 'Login'
           expect(page).to have_link 'Signup'
         end
-        expect(page).to have_content 'Signed out successfully.'
+        expect(current_path).to eq root_path
+        expect(page).to have_content 'ログアウトしました。'
         visit current_path
-        expect(page).not_to have_content 'Signed out successfully.'
+        expect(page).not_to have_content 'ログアウトしました。'
       end
     end
 
@@ -132,18 +134,15 @@ RSpec.describe 'Home', type: :system do
       let!(:user) { create(:user) }
       let!(:container) { create(:container) }
 
-      before do
+      it 'コンテナ 一覧 link generated' do
         sign_in user
         visit root_path
-      end
-
-      it 'All Containers link generated' do
         within('.breadcrumb') do
           expect(page).not_to have_css '.srch-icon'
         end
         within '.sidenav' do
-          expect(page).to have_link 'All Containers'
-          click_link 'All Containers'
+          expect(page).to have_link 'コンテナ 一覧'
+          click_link 'コンテナ 一覧'
         end
         expect(current_path).to eq user_containers_path(user)
       end
@@ -159,10 +158,10 @@ RSpec.describe 'Home', type: :system do
         visit root_path
       end
 
-      it 'All Products link generated' do
+      it '飲食料品 一覧 link generated' do
         within '.sidenav' do
-          expect(page).to have_link 'All Products'
-          click_link 'All Products'
+          expect(page).to have_link '飲食料品 一覧'
+          click_link '飲食料品 一覧'
         end
         within('.breadcrumb') do
           expect(page).to have_css '.srch-icon'
@@ -172,8 +171,8 @@ RSpec.describe 'Home', type: :system do
 
       it 'check if contents are displayed correctly' do
         within '.home-topic' do
-          expect(page).to have_content "Let's check the Expiration Date"
-          expect(page).to have_button 'Check Expiration Date'
+          expect(page).to have_content '消費期限をチェックしましょう！'
+          expect(page).to have_button '消費期限をチェック'
         end
       end
     end
@@ -191,14 +190,14 @@ RSpec.describe 'Home', type: :system do
 
       it 'check if contents are displayed correctly' do
         within '.home-topic' do
-          expect(page).to have_button 'Update Alerts'
+          expect(page).to have_button '消費期限のアラートを更新'
         end
       end
 
-      it 'Alerts link generated' do
+      it 'アラート 一覧 link generated' do
         within '.sidenav' do
-          expect(page).to have_link 'Alerts'
-          click_link 'Alerts'
+          expect(page).to have_link 'アラート 一覧'
+          click_link 'アラート 一覧'
         end
         expect(current_path).to eq user_deadline_alerts_path(user)
       end
@@ -213,11 +212,11 @@ RSpec.describe 'Home', type: :system do
     it 'check if contents are displayed correctly on about' do
       within('#about-topic') do
         expect(page).to have_content 'Step 1'
-        expect(page).to have_content 'Create Container'
+        expect(page).to have_content 'コンテナを作成'
         expect(page).to have_content 'Step 2'
-        expect(page).to have_content 'Create Products'
+        expect(page).to have_content '飲食料品の登録'
         expect(page).to have_content 'Step 3'
-        expect(page).to have_content 'Check Alerts'
+        expect(page).to have_content 'アラートを確認'
         expect(page).to have_css '.fa-archive'
         expect(page).to have_css '.fa-hamburger'
         expect(page).to have_css '.fa-exclamation-circle'
@@ -227,21 +226,21 @@ RSpec.describe 'Home', type: :system do
         expect(page).to have_button 'Login Here'
       end
       within('#step1Modal') do
-        expect(page).to have_content 'Create Containers'
+        expect(page).to have_content 'コンテナを作成'
         expect(page).to have_button 'Close'
-        expect(page).to have_css("img[src*='step1']")
-        expect(page).to have_css("img[src*='step2']")
+        expect(page).to have_css("img[src*='step1_1']")
+        expect(page).to have_css("img[src*='step1_2']")
       end
       within('#step2Modal') do
-        expect(page).to have_content 'Create Products'
-        expect(page).to have_css("img[src*='step3']")
-        expect(page).to have_css("img[src*='step4']")
-        expect(page).to have_css("img[src*='step5']")
+        expect(page).to have_content '飲食料品の登録'
+        expect(page).to have_css("img[src*='step2_1']")
+        expect(page).to have_css("img[src*='step2_2']")
+        expect(page).to have_css("img[src*='step2_3']")
       end
       within('#step3Modal') do
-        expect(page).to have_content 'Check Alerts'
-        expect(page).to have_css("img[src*='step6']")
-        expect(page).to have_css("img[src*='step7']")
+        expect(page).to have_content 'アラートを確認'
+        expect(page).to have_css("img[src*='step3_1']")
+        expect(page).to have_css("img[src*='step3_2']")
       end
     end
 

@@ -15,17 +15,17 @@ RSpec.describe 'Container', type: :system do
 
     it 'check if contents are displayed correctly on new_user_container_path' do
       within('.breadcrumb') do
-        expect(page).to have_content 'Container New'
+        expect(page).to have_content 'コンテナ 作成'
       end
       within('#main-form') do
-        expect(page).to have_content 'Name'
-        expect(page).to have_content 'Container type'
-        expect(page).to have_content 'Description'
-        expect(page).to have_content 'Fridge'
-        expect(page).to have_content 'Freezer'
-        expect(page).to have_button 'Create'
-        expect(page).to have_field 'Name'
-        expect(page).to have_field 'Description'
+        expect(page).to have_content 'コンテナ名'
+        expect(page).to have_content 'タイプ'
+        expect(page).to have_content '説明文'
+        expect(page).to have_content 'Fridge(冷蔵庫)'
+        expect(page).to have_content 'Freezer(冷凍庫)'
+        expect(page).to have_button 'コンテナ作成'
+        expect(page).to have_field 'コンテナ名'
+        expect(page).to have_field '説明文'
         expect(find_field('container_position_fridge')).to be_checked
         expect(find_field('container_position_freezer')).not_to be_checked
       end
@@ -33,49 +33,55 @@ RSpec.describe 'Container', type: :system do
 
     it 'container create successfully' do
       within('#main-form') do
-        fill_in 'Name', with: 'testhoge'
-        fill_in 'Description', with: 'this is sample'
-        click_button 'Create'
+        fill_in 'コンテナ名', with: 'testhoge'
+        fill_in '説明文', with: 'this is sample'
+        click_button 'コンテナ作成'
       end
       expect(current_path).to eq user_container_path(user, 1)
-      expect(page).to have_content 'Container created Successfully'
+      expect(page).to have_content 'コンテナが作成されました。'
       within('.breadcrumb') do
         expect(page).to have_content "Freedger - #{user.username} - testhoge"
       end
       within('.card') do
         expect(page).to have_content 'testhoge'
-        expect(page).to have_content 'Type: Fridge'
-        expect(page).to have_content 'Description'
+        expect(page).to have_content 'タイプ: Fridge'
+        expect(page).to have_content '説明'
         expect(page).to have_content 'this is sample'
-        expect(page).to have_button 'Create product'
+        expect(page).to have_button '飲食料品を登録する'
         expect(page).to have_css '.cog-link'
       end
       visit current_path
-      expect(page).not_to have_content 'Container created Successfully'
+      expect(page).not_to have_content 'コンテナが作成されました。'
     end
 
     it 'container create failed' do
       within('#main-form') do
-        fill_in 'Name', with: ''
-        click_button 'Create'
+        fill_in 'コンテナ名', with: ''
+        click_button 'コンテナ作成'
       end
       expect(page).to have_content 'can\'t be blank'
     end
   end
 
   describe 'GET container#index' do
-    let!(:containers) { create_list(:container, 2) }
+    context 'when container exists' do
+      let!(:containers) { create_list(:container, 2) }
 
-    before do
-      visit user_containers_path(user)
+      it 'check if contents are displayed correctly on user_containers' do
+        visit user_containers_path(user)
+        within('.breadcrumb') do
+          expect(page).to have_content 'コンテナ 一覧'
+        end
+        expect(page).to have_link containers.first.name
+        expect(page).to have_link containers.second.name
+      end
     end
 
-    it 'check if contents are displayed correctly on user_containers' do
-      within('.breadcrumb') do
-        expect(page).to have_content 'All Containers'
+    context 'when container does not exists' do
+      it 'check if contents are displayed correctly on user_containers' do
+        visit user_containers_path(user)
+        expect(page).to have_content 'コンテナが見つかりませんでした'
       end
-      expect(page).to have_link containers.first.name
-      expect(page).to have_link containers.second.name
     end
   end
 
@@ -93,11 +99,11 @@ RSpec.describe 'Container', type: :system do
         end
         within('.card') do
           expect(page).to have_content container.name
-          expect(page).to have_content "Type: #{container.position}"
-          expect(page).not_to have_content 'Products:'
-          expect(page).to have_content 'Description'
+          expect(page).to have_content "タイプ: #{container.position}"
+          expect(page).not_to have_content '飲食料品:'
+          expect(page).to have_content '説明'
           expect(page).to have_content container.description
-          expect(page).to have_button 'Create product'
+          expect(page).to have_button '飲食料品を登録する'
           expect(page).to have_link container.name
           expect(page).to have_css '.cog-link'
         end
@@ -108,8 +114,8 @@ RSpec.describe 'Container', type: :system do
         expect(current_path).to eq edit_user_container_path(user, container)
       end
 
-      it 'Create product ボタンを押してproduct作成ページにいく' do
-        click_button 'Create product'
+      it '飲食料品を登録する ボタンを押してproduct作成ページにいく' do
+        click_button '飲食料品を登録する'
         expect(current_path).to eq new_user_container_product_path(user, container)
       end
     end
@@ -124,9 +130,9 @@ RSpec.describe 'Container', type: :system do
 
       it 'check if contents are displayed correctly on user_container' do
         within('.card') do
-          expect(page).to have_content "Products: #{container.products.size}"
+          expect(page).to have_content "飲食料品: #{container.products.size}"
         end
-        expect(page).to have_content "Products in #{container.name}"
+        expect(page).to have_content "#{container.name} 内の飲食料品"
         expect(page).to have_content p_warning.name
         expect(page).to have_content p_expired.name
         expect(page).to have_link p_warning.name
@@ -149,60 +155,60 @@ RSpec.describe 'Container', type: :system do
 
     it 'check if contents are displayed correctly on edit_user_container' do
       within('.breadcrumb') do
-        expect(page).to have_content 'Freedger - Edit Container'
+        expect(page).to have_content 'Freedger - コンテナ 編集'
       end
       within('#main-form') do
-        expect(page).to have_content 'Name'
-        expect(page).to have_content 'Container type'
-        expect(page).to have_content 'Description'
-        expect(page).to have_content 'Fridge'
-        expect(page).to have_content 'Freezer'
-        expect(page).to have_button 'Update'
-        expect(page).to have_field 'Name', with: container.name
-        expect(page).to have_field 'Description', with: container.description
+        expect(page).to have_content 'コンテナ名'
+        expect(page).to have_content 'タイプ'
+        expect(page).to have_content '説明文'
+        expect(page).to have_content 'Fridge(冷蔵庫)'
+        expect(page).to have_content 'Freezer(冷凍庫)'
+        expect(page).to have_button '更新'
+        expect(page).to have_field 'コンテナ名', with: container.name
+        expect(page).to have_field '説明文', with: container.description
         expect(find_field('container_position_fridge')).to be_checked
         expect(find_field('container_position_freezer')).not_to be_checked
-        expect(page).to have_link 'Delete container'
+        expect(page).to have_link 'コンテナを削除'
       end
     end
 
     it 'container update successfully' do
       within('#main-form') do
-        fill_in 'Name', with: 'testhoge'
+        fill_in 'コンテナ名', with: 'testhoge'
         find("input[id='container_position_freezer']").set(true)
-        fill_in 'Description', with: 'heres sample'
-        click_button 'Update'
+        fill_in '説明文', with: 'heres sample'
+        click_button '更新'
       end
       expect(current_path).to eq user_container_path(user, container)
-      expect(page).to have_content 'Update Successfully'
+      expect(page).to have_content 'コンテナの情報が更新されました。'
       within('.breadcrumb') do
         expect(page).to have_content "Freedger - #{user.username} - testhoge"
       end
       within('.card') do
         expect(page).to have_content 'testhoge'
-        expect(page).to have_content 'Type: Freezer'
+        expect(page).to have_content 'タイプ: Freezer'
         expect(page).to have_content 'heres sample'
       end
       visit current_path
-      expect(page).not_to have_content 'Update Successfully'
+      expect(page).not_to have_content 'コンテナの情報が更新されました。'
     end
 
     it 'container update failed' do
       within('#main-form') do
-        fill_in 'Name', with: ''
-        click_button 'Update'
+        fill_in 'コンテナ名', with: ''
+        click_button '更新'
       end
       expect(page).to have_content 'can\'t be blank'
     end
 
     it 'Delete user successfully', js: true do
       page.accept_confirm do
-        click_link 'Delete container'
+        click_link 'コンテナを削除'
       end
-      expect(page).to have_content 'Deleted Container Successfully'
+      expect(page).to have_content 'コンテナが削除されました。'
       expect(current_path).to eq user_path(user)
       visit current_path
-      expect(page).not_to have_content 'Deleted Container Successfully'
+      expect(page).not_to have_content 'コンテナが削除されました。'
     end
   end
 end

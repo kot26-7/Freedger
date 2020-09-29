@@ -33,7 +33,7 @@ RSpec.describe 'DeadlineAlerts', type: :request do
       end
 
       it 'displayed on correct title' do
-        expect(response.body).to include full_title('Results')
+        expect(response.body).to include full_title('アラート 一覧')
       end
     end
 
