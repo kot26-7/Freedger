@@ -1,15 +1,15 @@
-<% provide(:title, 'Container New') %>
+<% provide(:title, 'コンテナ 作成') %>
 <div id='main-form' class='col-sm-10 col-md-8'>
   <%= bootstrap_form_for @container, url: user_containers_path do |f| %>
-    <%= f.text_field :name, autofocus: true, autocomplete: 'name' %>
+    <%= f.text_field :name, label: 'コンテナ名', autofocus: true, autocomplete: 'name' %>
     <div id='radio-inputs'>
-      <%= f.form_group :position, label: { text: 'Container type' } do %>
-        <%= f.radio_button :position, 'Fridge', label: 'Fridge', checked: true %>
-        <%= f.radio_button :position, 'Freezer', label: 'Freezer' %>
+      <%= f.form_group :position, label: { text: 'タイプ' } do %>
+        <%= f.radio_button :position, 'Fridge', label: 'Fridge(冷蔵庫)', checked: true %>
+        <%= f.radio_button :position, 'Freezer', label: 'Freezer(冷凍庫)' %>
       <% end %>
     </div>
-    <%= f.text_area :description, autofocus: true, autocomplete: 'description', help: "It's optional" %>
-    <%= f.file_field :image, help: "It's optional" %>
-    <%= f.submit 'Create', class: 'btn btn-primary' %>
+    <%= f.text_area :description, label: '説明文', autofocus: true, autocomplete: 'description', help: '任意' %>
+    <%= f.file_field :image, label: 'イメージ', help: '任意' %>
+    <%= f.submit 'コンテナ作成', class: 'btn btn-primary' %>
   <% end %>
 </div>

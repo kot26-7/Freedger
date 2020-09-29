@@ -3,3 +3,4 @@ deadline_warning: '2: Warning'
 deadline_recommend: '3: Recommend'
 deadline_expired: '1: Expired'
 deadline_delay: 3
+delete_confirm_msg: '本当に削除しますか?'
