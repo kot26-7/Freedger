@@ -5,7 +5,7 @@
     <% if current_user.deadline_alerts.present? %>
       <%= button_to '消費期限のアラートを更新', user_deadline_alerts_path(current_user), class: 'btn btn-primary', data: {disable_with: '消費期限を確認中...'} %>
     <% else %>
-      <%= button_to '消費期限をチェック', user_deadline_alerts_path(current_user), class: 'btn btn-primary' %>
+      <%= button_to '消費期限をチェック', user_deadline_alerts_path(current_user), class: 'btn btn-primary', data: {disable_with: '消費期限を確認中...'} %>
     <% end %>
   </div>
 <% elsif user_signed_in? %>

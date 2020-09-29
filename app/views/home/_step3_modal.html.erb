@@ -3,7 +3,7 @@
     <div class='modal-content'>
       <div class='modal-header'>
         <h5 class='modal-title'>
-          Check Alerts
+          アラートを確認
         </h5>
         <button type='button' class='close' data-dismiss='modal'>
           <span aria-hidden='true'>&times;</span>
@@ -11,33 +11,33 @@
       </div>
       <div class='modal-body'>
         <h6>
-          1: After you created products, let's access to top page and push "Check Expiration Date" button. 
+          1: 飲食料品の登録が完了したら、ホームに戻り ’消費期限をチェック’ を押して消費期限を確認しましょう。 
         </h6>
-        <%= image_tag 'step6.jpg', size: '300x300'%>
+        <%= image_tag 'step3_1.jpg', size: '400x300'%>
         <hr>
         <h6>
-          2: When pushing the button, Alerts would be displayed and they have 3 types which are "Expired", "Warning" and "Recommend".
+          2: アラートには "Expired", "Warning", "Recommend" の3種類が存在します。
         </h6>
-        <%= image_tag 'step7.jpg', size: '300x320'%>
+        <%= image_tag 'step3_2.jpg', size: '400x420'%>
         <hr>
         <h6>
-          3: "Expired" would tell us the product's expiration date is already over.
-        </h6>
-        <hr>
-        <h6>
-          4: "Warning" would tell us the product's expiration date is today.
+          3: 消費期限が、すでに切れているものは "Expired" で表示されます。
         </h6>
         <hr>
         <h6>
-          5: "Recommend" would tell us the product's expiration date is within 3 days.
+          4: 消費期限が、消費期限をチェックした日と同じ場合は "Warning" で表示されます。
         </h6>
         <hr>
-        <h6 class='text-danger'>Warning:</h6>
         <h6>
-          If you check already-existing alerts, please access to "Alerts" in the sidebar.
+          5: 消費期限が切れるまで、あと4日のものが "Recommend" で表示されます。
+        </h6>
+        <hr>
+        <h6 class='text-danger'>注意:</h6>
+        <h6>
+          既存のアラートを確認する場合、サイドバーの 'アラート一覧' からアクセスしてください。
         </h6>
         <h6>
-          But when you want to recreate the alerts, please push "Check Expiration Date".
+          アラートを更新する際はホームにあるボタンを押してください。
         </h6>
       </div>
       <div class='modal-footer'>
