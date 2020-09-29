@@ -49,7 +49,7 @@
       </li>
     <% end %>
     <li>
-      <%= link_to destroy_user_session_path, method: :delete do %>
+      <%= link_to destroy_user_session_path, method: :delete, data: { confirm: 'ログアウトしますか?' } do %>
         <i class='fas fa-sign-out-alt fa-2x' id='logout_icon'></i>
         <span id='logout_span'>Logout</span>
       <% end %>
