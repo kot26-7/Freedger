@@ -1,12 +1,12 @@
-<% provide(:title, 'Change Password') %>
+<% provide(:title, 'パスワード 変更') %>
 <div id='main-form' class='col-sm-10 col-md-8'>
   <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= f.password_field :password %>
     <%= f.password_field :password_confirmation %>
-    <%= f.password_field :current_password, help: 'we need current password to confirm changes' %>
-    <%= f.submit 'Update', class: 'btn btn-primary' %>
+    <%= f.password_field :current_password, help: 'パスワード変更には現在のパスワードが必要です。' %>
+    <%= f.submit 'パスワードを更新', class: 'btn btn-primary' %>
   <% end %>
   <div id='sub-info-links'>
-    <%= link_to 'Back', :back %>
+    <%= link_to '戻る', :back %>
   </div>
 </div>

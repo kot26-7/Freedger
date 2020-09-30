@@ -19,7 +19,7 @@ class AlertsPdf < Prawn::Document
   end
 
   def header
-    text 'Alerts list', size: 20
+    text 'アラートリスト', size: 20
     move_down 10
   end
 
@@ -33,7 +33,7 @@ class AlertsPdf < Prawn::Document
   end
 
   def list_item_rows
-    [['Type', 'Container-name', 'Product-name', 'Expiration-date']] +
+    [['タイプ', 'コンテナ名', '飲食料品名', '消費期限']] +
     @data.map do |n|
       [n.action, n.container.name, n.product.name, n.product.product_expired_at]
     end

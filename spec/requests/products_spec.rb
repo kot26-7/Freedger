@@ -34,7 +34,7 @@ RSpec.describe 'Products', type: :request do
       end
 
       it 'displayed on correct title' do
-        expect(response.body).to include full_title('All Products')
+        expect(response.body).to include full_title('飲食料品 一覧')
       end
     end
 
@@ -84,7 +84,7 @@ RSpec.describe 'Products', type: :request do
       end
 
       it 'displayed on correct title' do
-        expect(response.body).to include full_title('Create Product')
+        expect(response.body).to include full_title('飲食料品 登録')
       end
     end
 
@@ -116,7 +116,7 @@ RSpec.describe 'Products', type: :request do
       end
 
       it 'displayed on correct title' do
-        expect(response.body).to include full_title('Edit Product')
+        expect(response.body).to include full_title('飲食料品 編集')
       end
     end
 

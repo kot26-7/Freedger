@@ -1,14 +1,14 @@
-<% provide(:title, 'Edit User') %>
+<% provide(:title, 'ユーザー編集') %>
 <div id='main-form' class='col-sm-10 col-md-8'>
   <%= bootstrap_form_for @user do |f| %>
-    <%= f.text_field :username, autofocus: true, autocomplete: 'username', help: 'Only half-width English numbers and letters' %>
+    <%= f.text_field :username, autofocus: true, autocomplete: 'username', help: '半角英数字のみ' %>
     <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
-    <%= f.submit 'Update', class: 'btn btn-primary' %>
+    <%= f.submit '更新', class: 'btn btn-primary' %>
     <div id='sub-info-links'>
       <ul>
-        <li><%= link_to 'Change your password', edit_user_registration_path %></li>
+        <li><%= link_to 'パスワードを変更', edit_user_registration_path %></li>
         <% if @user.id == current_user.id %>
-          <li><%= link_to 'Delete account', @user, method: :delete, data: { confirm: 'You sure?' }, id: 'delete-btn' %></li>
+          <li><%= link_to 'アカウントを削除', @user, method: :delete, data: { confirm: Settings.delete_confirm_msg }, id: 'delete-btn' %></li>
         <% end %>
       </ul>
     </div>

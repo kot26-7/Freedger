@@ -1,26 +1,26 @@
 <% provide(:title, 'Home') %>
 <% if user_signed_in? && current_user.products.present? %>
   <div class='home-topic'>
-    <h4>Let's check the Expiration Date</h4>
+    <h4>消費期限をチェックしましょう！</h4>
     <% if current_user.deadline_alerts.present? %>
-      <%= button_to 'Update Alerts', user_deadline_alerts_path(current_user), class: 'btn btn-primary' %>
+      <%= button_to '消費期限のアラートを更新', user_deadline_alerts_path(current_user), class: 'btn btn-primary', data: {disable_with: '消費期限を確認中...'} %>
     <% else %>
-      <%= button_to 'Check Expiration Date', user_deadline_alerts_path(current_user), class: 'btn btn-primary' %>
+      <%= button_to '消費期限をチェック', user_deadline_alerts_path(current_user), class: 'btn btn-primary', data: {disable_with: '消費期限を確認中...'} %>
     <% end %>
   </div>
 <% elsif user_signed_in? %>
   <div class='home-topic col-sm-10 col-md-8'>
-    <h3>You haven't create any products</h3>
-    <p>please create products</p>
-    <button type='button' class='btn btn-lg btn-primary' disabled>Check Expiration Date</button>
+    <h3>コンテナに飲食料品が登録されていません。</h3>
+    <p>コンテナを作成もしくは飲食料品を登録してください。</p>
+    <button type='button' class='btn btn-lg btn-primary' disabled>消費期限をチェック</button>
   </div>
 <% else %>
   <div class='jumbotron'>
-    <h1 class='display-4'>Welcome to Freedger</h1>
-    <p class='lead'>This app can check products' expiration date to create containers as Fridge and Freezer.</p>
+    <h1 class='display-4'>Freedger へようこそ！</h1>
+    <p class='lead'>このWebアプリケーションでは冷蔵庫及び冷凍庫内にある 食品や飲料の消費期限を管理することができます。</p>
     <hr class='my-4'>
-    <p>Before using this, you need to login or signup for user</p></br>
-    <p>When you know about this app more, please check 'Learn more...'</p></br>
+    <p>このWebアプリケーションは、ユーザー登録及びログインを行う必要があります。</p></br>
+    <p>操作方法をご確認の際は'Learn more' もしくは 'About'のリンクをクリックしてください。</p></br>
     <%= button_to 'Signup Here', new_user_registration_path, method: :get, class: 'btn btn-success btn-lg btn-block' %></br>
     <%= button_to 'Login Here', new_user_session_path, method: :get, class: 'btn btn-primary btn-lg btn-block' %></br>
     <%= button_to 'Learn more...', about_path, method: :get, class: 'btn btn-outline-secondary btn-lg' %>

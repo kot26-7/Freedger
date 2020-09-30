@@ -9,7 +9,7 @@
   <%= render 'container_form', container_form: @container %>
   <% if @products.present? %>
     <div id='products-box'>
-      <h4><%= "Products in #{@container.name}" %></h4>
+      <h4><%= "#{@container.name} 内の飲食料品" %></h4>
       <%= render 'container_products', products: @products %>
     </div>
   <% end %>

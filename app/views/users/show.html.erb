@@ -7,7 +7,7 @@
     <p><%= @user.email %></p>
   </div>
   <% if @containers.present? %>
-    <h5>Containers</h5>
+    <h5>コンテナ 情報</h5>
     <%= column_chart @data %>
     <%= render partial: 'containers/container_form', collection: @containers %>
   <% end %>

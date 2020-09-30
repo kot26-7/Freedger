@@ -1,14 +1,14 @@
-<% provide(:title, 'All Products') %>
+<% provide(:title, '飲食料品 一覧') %>
 <div class='col' id='prd-indx-form'>
-  <h5><%= @user.username %> 's Products</h5>
+  <h5><%= @user.username %> の飲食料品</h5>
   <% if params[:tag_name] %>
-    <h6><%= "With Tag: #{params[:tag_name]}" %></h6>
+    <h6><%= "タグ: #{params[:tag_name]}" %></h6>
   <% elsif params[:search]%>
-    <h6><%= "Including keyword: #{params[:search]}" %></h6>
+    <h6><%= "キーワード: #{params[:search]}" %></h6>
   <% end %>
   <% if @products.present? %>
     <%= render 'products_lists', products: @products %>
   <% else %>
-    <h4>No products found</h4>
+    <h4>飲食料品が見つかりませんでした</h4>
   <% end %>
 </div>

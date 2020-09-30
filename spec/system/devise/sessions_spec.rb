@@ -25,9 +25,9 @@ RSpec.describe 'Devise::Sessions', type: :system do
       fill_in 'Password', with: user.password
       click_button 'Log in'
       expect(current_path).to eq root_path
-      expect(page).to have_content 'Login successfully.'
+      expect(page).to have_content 'ログインしました。'
       visit current_path
-      expect(page).not_to have_content 'Login successfully.'
+      expect(page).not_to have_content 'ログインしました。'
     end
 
     it 'login failed' do
@@ -35,9 +35,9 @@ RSpec.describe 'Devise::Sessions', type: :system do
       fill_in 'Password', with: user.password
       click_button 'Log in'
       expect(current_path).to eq new_user_session_path
-      expect(page).to have_content 'Invalid Email or password.'
+      expect(page).to have_content 'Email もしくは パスワードが間違っています。'
       visit current_path
-      expect(page).not_to have_content 'Invalid Email or password.'
+      expect(page).not_to have_content 'Email もしくは パスワードが間違っています。'
     end
   end
 end

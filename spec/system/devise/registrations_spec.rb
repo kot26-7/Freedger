@@ -15,8 +15,8 @@ RSpec.describe 'Devise::Registrations', type: :system do
         expect(page).to have_content 'Email'
         expect(page).to have_content 'Password'
         expect(page).to have_content 'Password confirmation'
-        expect(page).to have_content 'Only half-width English numbers and letters'
-        expect(page).to have_content '6 characters minimum'
+        expect(page).to have_content '半角英数字のみ'
+        expect(page).to have_content '6文字以上'
         expect(page).to have_button 'Sign up'
         expect(page).to have_field 'Username'
         expect(page).to have_field 'Email'
@@ -32,9 +32,9 @@ RSpec.describe 'Devise::Registrations', type: :system do
       fill_in 'Password confirmation', with: 'password'
       click_button 'Sign up'
       expect(current_path).to eq root_path
-      expect(page).to have_content 'Welcome! You have signed up successfully.'
+      expect(page).to have_content 'ユーザー登録完了。 ようこそ、Freedgerへ！'
       visit current_path
-      expect(page).not_to have_content 'Welcome! You have signed up successfully.'
+      expect(page).not_to have_content 'ユーザー登録完了。 ようこそ、Freedgerへ！'
     end
 
     it 'signup failed' do

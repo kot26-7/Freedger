@@ -25,7 +25,7 @@ class ContainersController < AuthenticationController
   def create
     @container = @user.containers.build(container_params)
     if @container.save
-      redirect_to user_container_path(@user, @container), notice: 'Container created Successfully'
+      redirect_to user_container_path(@user, @container), notice: 'コンテナが作成されました。'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class ContainersController < AuthenticationController
 
   def update
     if @container.update(container_params)
-      redirect_to user_container_path(@user, @container), notice: 'Update Successfully'
+      redirect_to user_container_path(@user, @container), notice: 'コンテナの情報が更新されました。'
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class ContainersController < AuthenticationController
 
   def destroy
     @container.destroy
-    redirect_to user_path(current_user), notice: 'Deleted Container Successfully'
+    redirect_to user_path(current_user), notice: 'コンテナが削除されました。'
   end
 
   private
@@ -53,7 +53,7 @@ class ContainersController < AuthenticationController
   def correct_container
     @container = Container.find(params[:id])
     unless @container.user_id == current_user.id
-      redirect_to user_path(current_user), alert: 'Invalid access detected'
+      redirect_to user_path(current_user), alert: Settings.invalid_access_msg
     end
   end
 end

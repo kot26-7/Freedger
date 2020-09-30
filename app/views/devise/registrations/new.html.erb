@@ -1,9 +1,9 @@
 <% provide(:title, 'Signup') %>
 <div id='main-form' class='col-sm-10 col-md-8'>
   <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= f.text_field :username, autofocus: true, autocomplete: 'username', help: 'Only half-width English numbers and letters' %>
+    <%= f.text_field :username, autofocus: true, autocomplete: 'username', help: '半角英数字のみ' %>
     <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
-    <%= f.password_field :password, help: '6 characters minimum' %>
+    <%= f.password_field :password, help: '6文字以上' %>
     <%= f.password_field :password_confirmation %>
     <%= f.submit 'Sign up', class: 'btn btn-primary' %>
   <% end %>

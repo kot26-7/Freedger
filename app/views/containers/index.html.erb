@@ -1,2 +1,6 @@
-<% provide(:title, 'All Containers') %>
-<%= render partial: 'container_form', collection: @containers %>
+<% provide(:title, 'コンテナ 一覧') %>
+<% if @containers.present? %>
+  <%= render partial: 'container_form', collection: @containers %>
+<% else %>
+  <h4>コンテナが見つかりませんでした</h4>
+<% end %>
