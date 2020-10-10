@@ -1,6 +1,6 @@
 class UsersController < AuthenticationController
-  before_action :authenticate_user!
-  before_action :correct_user, except: [:index]
+  before_action :authenticate_user!, except: [:guest_login]
+  before_action :correct_user, except: [:index, :guest_login]
 
   def index
     redirect_to user_path(current_user)
@@ -31,6 +31,12 @@ class UsersController < AuthenticationController
     @user.destroy
     flash[:notice] = 'ユーザーアカウントが削除されました。'
     redirect_to root_path
+  end
+
+  def guest_login
+    user = User.guest
+    sign_in user
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
   end
 
   private

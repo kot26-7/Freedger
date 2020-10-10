@@ -44,6 +44,9 @@
     <li>
       <%= button_to 'Login Here', new_user_session_path, method: :get, class: 'btn btn-primary btn-lg btn-block' %>
     </li>
+    <li>
+      <%= button_to 'ゲストログイン(閲覧用)', guest_login_users_path, data: { confirm: Settings.guest_login_msg }, class: 'btn btn-primary btn-lg btn-block' %>
+    </li>
   </ul>
 </div>
 <%= render 'step1_modal' %>
