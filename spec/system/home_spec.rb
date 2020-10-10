@@ -22,6 +22,7 @@ RSpec.describe 'Home', type: :system do
           expect(page).to have_content 'Freedger へようこそ！'
           expect(page).to have_button 'Signup Here'
           expect(page).to have_button 'Login Here'
+          expect(page).to have_button 'ゲストログイン(閲覧用)'
         end
         expect(page).not_to have_button '賞味期限をチェック'
       end
@@ -59,6 +60,18 @@ RSpec.describe 'Home', type: :system do
           click_button 'Login Here'
         end
         expect(current_path).to eq new_user_session_path
+      end
+
+      it 'ゲストログイン(閲覧用)を押してログインする', js: true do
+        within('.jumbotron') do
+          page.accept_confirm do
+            click_button 'ゲストログイン(閲覧用)'
+          end
+        end
+        expect(page).to have_content 'ゲストユーザーとしてログインしました。'
+        expect(current_path).to eq root_path
+        visit current_path
+        expect(page).not_to have_content 'ゲストユーザーとしてログインしました。'
       end
     end
 
@@ -224,6 +237,7 @@ RSpec.describe 'Home', type: :system do
       within('#about-btns') do
         expect(page).to have_button 'Signup Here'
         expect(page).to have_button 'Login Here'
+        expect(page).to have_button 'ゲストログイン(閲覧用)'
       end
       within('#step1Modal') do
         expect(page).to have_content 'コンテナを作成'
@@ -256,6 +270,18 @@ RSpec.describe 'Home', type: :system do
         click_button 'Login Here'
       end
       expect(current_path).to eq new_user_session_path
+    end
+
+    it 'ゲストログイン(閲覧用)を押してログインする', js: true do
+      within('#about-btns') do
+        page.accept_confirm do
+          click_button 'ゲストログイン(閲覧用)'
+        end
+      end
+      expect(page).to have_content 'ゲストユーザーとしてログインしました。'
+      expect(current_path).to eq root_path
+      visit current_path
+      expect(page).not_to have_content 'ゲストユーザーとしてログインしました。'
     end
   end
 end

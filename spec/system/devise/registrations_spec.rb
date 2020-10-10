@@ -23,6 +23,10 @@ RSpec.describe 'Devise::Registrations', type: :system do
         expect(page).to have_field 'Password'
         expect(page).to have_field 'Password confirmation'
       end
+      within('#guest-login') do
+        expect(page).to have_content 'or'
+        expect(page).to have_button 'ゲストログイン(閲覧用)'
+      end
     end
 
     it 'signup succsessfully' do
@@ -45,6 +49,18 @@ RSpec.describe 'Devise::Registrations', type: :system do
       click_button 'Sign up'
       expect(page).to have_content 'can\'t be blank'
       expect(page).to have_content 'is invalid'
+    end
+
+    it 'ゲストログイン(閲覧用)を押してログインする', js: true do
+      within('#guest-login') do
+        page.accept_confirm do
+          click_button 'ゲストログイン(閲覧用)'
+        end
+      end
+      expect(page).to have_content 'ゲストユーザーとしてログインしました。'
+      expect(current_path).to eq root_path
+      visit current_path
+      expect(page).not_to have_content 'ゲストユーザーとしてログインしました。'
     end
   end
 end
