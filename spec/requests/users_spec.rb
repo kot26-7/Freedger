@@ -170,5 +170,17 @@ RSpec.describe 'Users', type: :request do
         expect(response).to redirect_to new_user_session_path
       end
     end
+
+    describe 'user#guest_login' do
+      it 'returns request http 302' do
+        post guest_login_users_path
+        expect(response.status).to eq 302
+      end
+
+      it 'redirect to top page successfully' do
+        post guest_login_users_path
+        expect(response).to redirect_to root_path
+      end
+    end
   end
 end

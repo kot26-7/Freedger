@@ -5,3 +5,4 @@ deadline_expired: '1: Expired'
 deadline_delay: 3
 delete_confirm_msg: '本当に削除しますか?'
 invalid_access_msg: '不正なアクセスです。'
+guest_login_msg: 'ゲストとしてログインしますか?'

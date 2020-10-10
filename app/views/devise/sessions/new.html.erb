@@ -11,3 +11,7 @@
     <%= f.submit 'Log in', class: 'btn btn-primary' %>
   <% end %>
 </div>
+<div id='guest-login' class='col-sm-10 col-md-8'>
+  <h4>or</h4>
+  <%= button_to 'ゲストログイン(閲覧用)', guest_login_users_path, data: { confirm: Settings.guest_login_msg }, class: 'btn btn-primary btn-block' %>
+</div>

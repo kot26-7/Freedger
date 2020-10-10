@@ -11,4 +11,11 @@ class User < ApplicationRecord
                        format: { with: VALID_USERNAME_REGEX }
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  def self.guest
+    find_or_create_by!(email: 'sampleuser@example.com') do |user|
+      user.username = 'guestuser'
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end

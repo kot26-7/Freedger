@@ -18,6 +18,10 @@ RSpec.describe 'Devise::Sessions', type: :system do
         expect(page).to have_field 'Password'
         expect(page).to have_unchecked_field 'remember_me'
       end
+      within('#guest-login') do
+        expect(page).to have_content 'or'
+        expect(page).to have_button 'ゲストログイン(閲覧用)'
+      end
     end
 
     it 'login succsessfully' do
@@ -38,6 +42,18 @@ RSpec.describe 'Devise::Sessions', type: :system do
       expect(page).to have_content 'Email もしくは パスワードが間違っています。'
       visit current_path
       expect(page).not_to have_content 'Email もしくは パスワードが間違っています。'
+    end
+
+    it 'ゲストログイン(閲覧用)を押してログインする', js: true do
+      within('#guest-login') do
+        page.accept_confirm do
+          click_button 'ゲストログイン(閲覧用)'
+        end
+      end
+      expect(page).to have_content 'ゲストユーザーとしてログインしました。'
+      expect(current_path).to eq root_path
+      visit current_path
+      expect(page).not_to have_content 'ゲストユーザーとしてログインしました。'
     end
   end
 end

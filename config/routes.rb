@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'home#index'
   get '/about', to: 'home#about'
   resources :users, except: [:new, :create] do
+    post 'guest_login', on: :collection
     resources :containers do
       resources :products, except: [:index]
     end
