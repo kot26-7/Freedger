@@ -68,6 +68,65 @@ a {
   margin-top: 0.2rem;
 }
 
+/* fridge illust */
+#fidge-illast {
+  margin: 0 auto;
+  border: solid 2px #e1e1e1;
+  border-radius: 45px 45px 0 0;
+  background-color: aliceblue;
+  #fridge-upside {
+    position: relative;
+    width: 100%;
+    height: 60%;
+    margin-top: 40px;
+    border-bottom: solid 2px #e1e1e1;
+    border-top: solid 2px #e1e1e1;
+    span {
+      width: 20px;
+      height: 47%;
+      background-color: white;
+      display: block;
+      position: absolute;
+      bottom: 25px;
+      left: 25px;
+      border-radius: 10px 10px 0 0;
+      border: solid 3px gainsboro;
+    }
+    #fr-content-up {
+      left: 55px;
+      padding: 30px 5px 25px;
+      height: 100%;
+      .col {
+        margin: 0 auto;
+      }
+    }
+  }
+  #fridge-downside {
+    position: relative;
+    width: 100%;
+    height: 40%;
+    span {
+      width: 20px;
+      height: 30%;
+      background-color: white;
+      border: solid 3px gainsboro;
+      display: block;
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      border-radius: 0 0 10px 10px;
+    }
+    #fr-content-down {
+      left: 55px;
+      height: 100%;
+      padding: 25px 5px 20px;
+      .col {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
 /* header sidebar */
 .sidebarmenu {
   overflow-y: scroll;
@@ -313,6 +372,7 @@ a {
 
 /* footer */
 .site-footer {
+  margin-top: 20px;
   background-color: #26272b;
   padding: 15px 0 20px;
   font-size: 15px;
