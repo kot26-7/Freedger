@@ -4,7 +4,7 @@
       <div class='col-sm-4 col-md-3'>
         <%= link_to user_container_product_path(product.user_id, product.container_id, product), class: 'link-to-do' do %>
           <div id='prd-indx-info'>
-            <p><%= product.name %></p>
+            <p><%= product.name.truncate(15) %></p>
           </div>
         <% end %>
       </div>
