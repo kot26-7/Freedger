@@ -18,7 +18,7 @@ RSpec.describe 'Home', type: :system do
           expect(page).to have_content 'Freedger - Home'
           expect(page).not_to have_css '.srch-icon'
         end
-        within('.jumbotron') do
+        within('#fidge-illast') do
           expect(page).to have_content 'Freedger へようこそ！'
           expect(page).to have_button 'Signup Here'
           expect(page).to have_button 'Login Here'
@@ -49,21 +49,21 @@ RSpec.describe 'Home', type: :system do
       end
 
       it 'Signup Here ボタンを押してユーザー登録ページに飛ぶ' do
-        within('.jumbotron') do
+        within('#fidge-illast') do
           click_button 'Signup Here'
         end
         expect(current_path).to eq new_user_registration_path
       end
 
       it 'Login Here ボタンを押してユーザーログインページに飛ぶ' do
-        within('.jumbotron') do
+        within('#fidge-illast') do
           click_button 'Login Here'
         end
         expect(current_path).to eq new_user_session_path
       end
 
       it 'ゲストログイン(閲覧用)を押してログインする', js: true do
-        within('.jumbotron') do
+        within('#fidge-illast') do
           page.accept_confirm do
             click_button 'ゲストログイン(閲覧用)'
           end
