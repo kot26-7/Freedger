@@ -1,0 +1,28 @@
+<div id='fidge-illast' class='col-sm-10 col-md-10'>
+  <div id='fridge-upside'>
+    <span></span>
+    <div id='fr-content-up'>
+      <div class='col col-sm-10 col-md-8'>
+        <h1>Freedger へようこそ！</h1>
+        <p>このWebアプリケーションでは冷蔵庫及び冷凍庫内にある</p>
+        <p>食品や飲料の消費期限を管理することができます。</p>
+        <hr>
+        <p>このWebアプリケーションは、</p>
+        <p>ユーザー登録及びログインを行う必要があります。</p></br>
+        <p>操作方法をご確認の際は'Learn more'</p>
+        <p>もしくは 'About'のリンクをクリックしてください。</p>
+      </div>
+    </div>
+  </div>
+  <div id='fridge-downside'>
+    <span></span>
+    <div id='fr-content-down'>
+      <div class='col col-sm-10 col-md-8'>
+        <%= button_to 'Signup Here', new_user_registration_path, method: :get, class: 'btn btn-success btn-block' %></br>
+        <%= button_to 'Login Here', new_user_session_path, method: :get, class: 'btn btn-primary btn-block' %></br>
+        <%= button_to 'ゲストログイン(閲覧用)', guest_login_users_path, data: { confirm: Settings.guest_login_msg }, class: 'btn btn-info btn-block' %></br>
+        <%= button_to 'Learn more...', about_path, method: :get, class: 'btn btn-outline-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>
