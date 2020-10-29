@@ -34,7 +34,7 @@ Freedgerは、冷蔵庫または冷凍庫にある食材や飲料の消費期限
 - 各Container に Products がどれほど登録されているかがわかる棒グラフ、
 - Alerts の合計数及び割合を確認できる、円グラフ　の表示(chartkick gem)
 - Product と Alerts に対するページネーション機能(kaminari gem, ajax)
-- Product の検索機能、検索機能の表示（jquery-ui-rails gem）
+- Product の検索機能、検索候補の表示（jquery-ui-rails gem）
 - Product のタグ作成、タグによる絞り込み機能(acts-as-taggable-on gem)
 - 管理者用ページ(rails_admin gem)
 - 表示された Alerts 一覧をpdfで出力できる機能(prawn gem)
